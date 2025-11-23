@@ -1,0 +1,79 @@
+@if (viewingGameDetail && selectedGame; as game) {
+	<div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out filter brightness-75 dark:brightness-50"
+	     [style.background-image]="'url(' + game.imageUrl + ')'">
+	</div>
+	<div class="absolute inset-0 bg-gradient-to-t from-tertiary-light dark:from-tertiary via-tertiary-light/70 dark:via-tertiary/70 to-transparent"></div>
+
+	<div class="relative z-10 h-full overflow-y-auto">
+		<button (click)="backClick.emit()" class="absolute top-6 left-6 z-30 flex items-center space-x-2 bg-black/50 text-white px-4 py-2 rounded-lg hover:bg-black/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-tertiary">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+				<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+			</svg>
+			<span>Library</span>
+		</button>
+		<div class="p-8 sm:p-12 md:p-16">
+			<div class="min-h-[70vh] flex flex-col justify-end">
+				<div class="max-w-2xl pb-12">
+					<div class="flex items-center gap-4 mb-4">
+						<span class="inline-block bg-secondary text-tertiary text-sm font-bold px-4 py-1 rounded-full">{{ game.genre }}</span>
+						@if(game.playCount && game.playCount > 0) {
+							<div class="flex items-center space-x-2 text-gray-200 dark:text-gray-300 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+									<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+								</svg>
+								<span>Played {{ game.playCount }} {{ game.playCount === 1 ? 'time' : 'times' }}</span>
+							</div>
+						}
+					</div>
+					<h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter mb-4 text-white text-shadow-lg uppercase" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5)">{{ game.title }}</h1>
+					<p class="text-lg text-gray-100 dark:text-gray-300 mb-8 max-w-prose drop-shadow-md">{{ game.description }}</p>
+
+					<button (click)="playClick.emit(game)" class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 text-lg font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transform hover:-translate-y-1 transition-all duration-300 shadow-2xl shadow-primary/40 hover:shadow-primary/50">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+						</svg>
+						Play Now
+					</button>
+				</div>
+			</div>
+
+			@if (game.news && game.news.length > 0) {
+				<div class="mt-8 pb-16">
+					<h2 class="text-3xl font-bold mb-6 border-l-4 border-primary pl-4 uppercase tracking-wider text-black dark:text-white">Latest News</h2>
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+						@for (article of game.news; track article.title) {
+							<div class="bg-white/60 dark:bg-black/60 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer flex ring-1 ring-black/5 dark:ring-white/5 hover:ring-black/10 dark:hover:ring-white/10">
+								<img [src]="article.imageUrl" [alt]="article.title" class="w-1/3 h-auto object-cover">
+								<div class="p-4 w-2/3">
+									<p class="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase">{{ article.date }}</p>
+									<h3 class="font-semibold mb-2 text-gray-900 dark:text-white">{{ article.title }}</h3>
+									<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{{ article.summary }}</p>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+
+	<footer class="absolute bottom-4 right-8 text-gray-500 dark:text-gray-400 text-sm z-20">
+		© 2025 Launcher. All rights reserved.
+	</footer>
+} @else {
+	<div class="bg-tertiary-light dark:bg-tertiary overflow-y-auto">
+		<div class="p-8 sm:p-12">
+			<h1 class="text-4xl font-bold mb-8 text-black dark:text-white">Library</h1>
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+				@for (game of games; track game.title) {
+					<app-game-card
+						[game]="game"
+						[imageLoaded]="imageLoaded[game.title] || false"
+						(playClick)="playClick.emit(game)"
+						(infoClick)="infoClick.emit(game)">
+					</app-game-card>
+				}
+			</div>
+		</div>
+	</div>
+}

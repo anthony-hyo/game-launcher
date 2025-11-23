@@ -1,0 +1,51 @@
+services:
+
+  postgresql:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 321
+      POSTGRES_DB: game_launcher
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - game_launcher-net
+
+  backend:
+    image: eclipse-temurin:24-jdk
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://postgresql:5432/game_launcher
+      DB_USER: root
+      DB_PASSWORD: 321
+    volumes:
+      - ./backend:/backend
+    depends_on:
+      - postgresql
+    networks:
+      - game_launcher-net
+    working_dir: /backend
+    command: ["./mvnw", "spring-boot:run"]
+
+  frontend:
+    image: node:latest
+    ports:
+      - "4200:4200"
+    environment:
+      API_URL: http://backend:8080
+    volumes:
+      - ./frontend:/frontend
+    depends_on:
+      - backend
+    command: ["sh", "-c", "cd /frontend && npm install && npm start"]
+
+networks:
+  game_launcher-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

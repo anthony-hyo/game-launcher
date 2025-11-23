@@ -1,0 +1,11 @@
+# Database Configuration
+DATABASE_URL=jdbc:postgresql://postgresql:5432/game_launcher
+DATABASE_USER=your_username
+DATABASE_PASSWORD=your_secure_password
+DATABASE_DB=game_launcher
+
+# API Configuration
+API_URL=http://backend:8080
+
+# Environment
+ENVIRONMENT=development

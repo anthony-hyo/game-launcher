@@ -1,0 +1,43 @@
+services:
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - game_launcher-net
+  
+  backend:
+    build:
+      context: .
+      dockerfile: .docker/backend/backend.Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_DB: ${DATABASE_DB}
+    depends_on:
+      - postgresql
+    networks:
+      - game_launcher-net
+  
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/frontend/frontend.Dockerfile
+    environment:
+      API_URL: ${API_URL:-http://backend:8080}
+    depends_on:
+      - backend
+
+networks:
+  game_launcher-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

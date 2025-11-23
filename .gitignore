@@ -1,0 +1,26 @@
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Spring Boot / Java
+backend/target/
+backend/*.jar
+backend/.idea/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# System / OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+
+.idea

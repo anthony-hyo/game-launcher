@@ -1,0 +1,57 @@
+<div class="flex h-screen font-sans antialiased text-gray-900 dark:text-gray-200">
+	<!-- Sidebar -->
+	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()" (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)" [activeView]="state.activeView" [games]="gameService.getGames()" [selectedGameTitle]="selectedGameTitle"></app-sidebar>
+
+	<!-- Main Content -->
+	<main class="flex-grow flex flex-col bg-tertiary-light dark:bg-tertiary">
+		<!-- Tab Bar -->
+		<div class="flex-shrink-0 bg-gray-200 dark:bg-neutral-950 backdrop-blur-md border-b border-black/10 dark:border-white/5 pl-4 z-20">
+			<div class="flex items-end -mb-px">
+				<button (click)="onLibraryClick()" [class.border-primary]="isLauncherViewActive()" [class.border-transparent]="!isLauncherViewActive()" [class.dark:hover:text-white]="!isLauncherViewActive()" [class.dark:text-gray-400]="!isLauncherViewActive()" [class.dark:text-white]="isLauncherViewActive()" [class.hover:text-black]="!isLauncherViewActive()" [class.text-black]="isLauncherViewActive()" [class.text-gray-600]="!isLauncherViewActive()" class="flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none">
+					<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+					</svg>
+					Library
+				</button>
+				@for (tab of state.openTabs(); track tab.id) {
+					<button (click)="state.selectView(tab.id)" class="group flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none" [class.text-black]="state.activeView() === tab.id" [class.dark:text-white]="state.activeView() === tab.id" [class.border-primary]="state.activeView() === tab.id" [class.text-gray-600]="state.activeView() !== tab.id" [class.dark:text-gray-400]="state.activeView() !== tab.id" [class.border-transparent]="state.activeView() !== tab.id" [class.hover:text-black]="state.activeView() !== tab.id" [class.dark:hover:text-white]="state.activeView() !== tab.id">
+						{{ tab.game.title }}
+						<button (click)="onCloseTab($event, tab.id)" class="ml-3 w-5 h-5 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-400 dark:hover:bg-gray-700 hover:text-white transition-colors duration-200">
+							&times;
+						</button>
+					</button>
+				}
+			</div>
+		</div>
+
+		<!-- Content Area -->
+		<div class="flex-grow relative">
+			<!-- Home View -->
+			<div [class.hidden]="state.activeView() !== 'home'" class="absolute inset-0">
+				<app-home (downloadClick)="state.selectView('download')"></app-home>
+			</div>
+
+			<!-- Download View -->
+			<div [class.hidden]="state.activeView() !== 'download'" class="absolute inset-0">
+				<app-download></app-download>
+			</div>
+
+			<!-- Launcher View -->
+			<div [class.hidden]="state.activeView() !== 'launcher'" class="absolute inset-0">
+				<app-launcher (backClick)="state.showLibraryGrid()" (infoClick)="state.selectGameFromGrid($event)" (playClick)="onPlayGame($event)" [games]="gameService.getGames()()" [imageLoaded]="state.imageLoaded()" [selectedGame]="state.selectedGame()" [viewingGameDetail]="state.viewingGameDetail()"></app-launcher>
+			</div>
+
+			<!-- Open Game Tabs (iframes) -->
+			@for (tab of state.openTabs(); track tab.id) {
+				<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.id">
+					<iframe class="w-full h-full border-0" [src]="tab.url"></iframe>
+				</div>
+			}
+		</div>
+	</main>
+</div>
+
+<!-- Settings Modal -->
+@if (settings.isSettingsVisible()) {
+	<app-setting [theme]="settings.theme()" [isDiscordRpcEnabled]="settings.isDiscordRpcEnabled()" (closeClick)="settings.toggleSettings(false)" (themeChange)="settings.toggleTheme()" (discordRpcChange)="settings.toggleDiscordRpc()"></app-setting>
+}

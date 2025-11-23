@@ -1,0 +1,11 @@
+<div class="h-screen w-screen flex items-center justify-center bg-tertiary-light dark:bg-tertiary">
+	<div class="w-[512px] overflow-hidden rounded-lg shadow-2xl shadow-primary/20 bg-tertiary-light dark:bg-tertiary border border-black/10 dark:border-white/5">
+		<img alt="Launcher Loading" draggable="false" src="https://picsum.photos/seed/launcher-art/512/288" class="w-full h-auto block" />
+		<div class="text-center px-4 py-2">
+			<span class="text-gray-500 dark:text-gray-400 text-sm font-semibold tracking-wider">{{ loadingText }}</span>
+		</div>
+		<div class="w-full bg-black/20 dark:bg-black/50 h-1">
+			<div class="h-1 bg-secondary transition-all duration-300 ease-linear" [style.width.%]="loadingProgress"></div>
+		</div>
+	</div>
+</div>
