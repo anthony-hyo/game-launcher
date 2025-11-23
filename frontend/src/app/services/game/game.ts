@@ -1,52 +1,26 @@
-import {Injectable, signal} from '@angular/core';
+import {inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {Game} from "../../util";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class GameService {
+
 	private readonly STORAGE_KEY = 'gameLauncherPlayCounts';
 
-	private games = signal<Game[]>([
-		{
-			title: 'Unknown Game',
-			description: 'No description available.',
-			imageUrl: 'https://placehold.co/1920x1080?text=Game+Background&font=roboto',
-			coverUrl: 'https://placehold.co/300x450?text=Game+Cover&font=roboto',
-			iconUrl: 'https://placehold.co/100x100?text=Icon&font=roboto',
-			url: 'https://google.com',
-			genre: 'Unknown',
-			news: [
-				{
-					title: 'No news available',
-					date: '',
-					summary: 'There are no updates for this game.',
-					imageUrl: 'https://placehold.co/400x200?text=No+News'
-				}
-			]
-		},
-		{
-			title: 'Unknown Game2',
-			description: 'No description available.',
-			imageUrl: 'https://placehold.co/1920x1080?text=Game+Background&font=roboto',
-			coverUrl: 'https://placehold.co/300x450?text=Game+Cover&font=roboto',
-			iconUrl: 'https://placehold.co/100x100?text=Icon&font=roboto',
-			url: 'https://google.com',
-			genre: 'Unknown',
-			news: [
-				{
-					title: 'No news available',
-					date: '',
-					summary: 'There are no updates for this game.',
-					imageUrl: 'https://placehold.co/400x200?text=No+News'
-				}
-			]
-		}
-	]);
+	private http = inject(HttpClient);
+
+	private games: WritableSignal<Game[]> = signal<Game[]>([]);
 
 	constructor() {
-		this.loadPlayCounts();
+		this.http.get<Game[]>(`http://localhost:8080/api/launcher/games`)
+			.subscribe(games => {
+				this.games.set(games);
+
+				this.loadPlayCounts();
+			})
 	}
 
-	getGames() {
+	public getGames() {
 		return this.games.asReadonly();
 	}
 

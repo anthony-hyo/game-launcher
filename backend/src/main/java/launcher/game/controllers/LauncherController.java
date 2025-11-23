@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@RestController()
 public class LauncherController {
 
-	@GetMapping("/launcher/list")
+	@GetMapping("/api/launcher/games")
 	public List<Launcher> getPerson() {
 		return new ArrayList<>() {
 			{
