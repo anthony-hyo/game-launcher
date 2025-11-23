@@ -3,6 +3,7 @@ import {Game, Tab, ViewType} from "../../util";
 
 @Injectable({providedIn: 'root'})
 export class StateService {
+
 	// UI State
 	isLoading = signal<boolean>(true);
 	loadingText = signal<string>('Initializing...');
@@ -80,4 +81,5 @@ export class StateService {
 	updateSelectedGame(game: Game | null): void {
 		this.selectedGame.set(game);
 	}
+
 }

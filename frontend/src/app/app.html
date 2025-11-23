@@ -1,6 +1,6 @@
 <div class="flex h-screen font-sans antialiased text-gray-900 dark:text-gray-200">
 	<!-- Sidebar -->
-	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()" (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)" [activeView]="state.activeView" [games]="gameService.getGames()" [selectedGameTitle]="selectedGameTitle"></app-sidebar>
+	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()" (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)" [activeView]="state.activeView" [selectedGameTitle]="selectedGameTitle"></app-sidebar>
 
 	<!-- Main Content -->
 	<main class="flex-grow flex flex-col bg-tertiary-light dark:bg-tertiary">
@@ -38,7 +38,7 @@
 
 			<!-- Launcher View -->
 			<div [class.hidden]="state.activeView() !== 'launcher'" class="absolute inset-0">
-				<app-launcher (backClick)="state.showLibraryGrid()" (infoClick)="state.selectGameFromGrid($event)" (playClick)="onPlayGame($event)" [games]="gameService.getGames()()" [imageLoaded]="state.imageLoaded()" [selectedGame]="state.selectedGame()" [viewingGameDetail]="state.viewingGameDetail()"></app-launcher>
+				<app-launcher (backClick)="state.showLibraryGrid()" (infoClick)="state.selectGameFromGrid($event)" (playClick)="onPlayGame($event)" [imageLoaded]="state.imageLoaded()" [selectedGame]="state.selectedGame()" [viewingGameDetail]="state.viewingGameDetail()"></app-launcher>
 			</div>
 
 			<!-- Open Game Tabs (iframes) -->

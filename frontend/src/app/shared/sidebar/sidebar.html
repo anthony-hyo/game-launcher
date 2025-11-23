@@ -21,17 +21,25 @@
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Library</span>
 	</button>
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
-	@for (game of games(); track game.title) {
+	@if (gameService.isLoading()) {
+		@for (_ of [1,2,3,4,5,6]; track _) {
+			<div
+				class="w-14 h-14 rounded-xl bg-zinc-700/40 animate-pulse">
+			</div>
+		}
+	} @else {
+		@for (game of gameService.getGames()(); track game.title) {
 		<button (click)="gameSelect.emit(game)"
-		        class="w-14 h-14 rounded-xl overflow-hidden focus:outline-none transition-all duration-300 transform hover:scale-110 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
-		        [class.ring-primary]="selectedGameTitle() === game.title && activeView() === 'launcher'"
-		        [class.ring-transparent]="selectedGameTitle() !== game.title || activeView() !== 'launcher'"
-		        [attr.aria-label]="'Select ' + game.title">
+				class="w-14 h-14 rounded-xl overflow-hidden focus:outline-none transition-all duration-300 transform hover:scale-110 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
+				[class.ring-primary]="selectedGameTitle() === game.title && activeView() === 'launcher'"
+				[class.ring-transparent]="selectedGameTitle() !== game.title || activeView() !== 'launcher'"
+				[attr.aria-label]="'Select ' + game.title">
 			<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
 			<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-        {{ game.title }}
-      </span>
+			{{ game.title }}
+		  </span>
 		</button>
+		}
 	}
 	<!-- Spacer -->
 	<div class="flex-grow"></div>

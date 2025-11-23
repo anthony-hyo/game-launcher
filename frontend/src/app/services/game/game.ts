@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({providedIn: 'root'})
 export class GameService {
 
+	isLoading = signal<boolean>(true);
+
 	private readonly STORAGE_KEY = 'gameLauncherPlayCounts';
 
 	private http = inject(HttpClient);
@@ -17,6 +19,8 @@ export class GameService {
 				this.games.set(games);
 
 				this.loadPlayCounts();
+
+				this.isLoading.set(false);
 			})
 	}
 

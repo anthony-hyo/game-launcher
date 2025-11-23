@@ -1,5 +1,4 @@
 import {Component, computed, DOCUMENT, effect, inject, OnInit, Renderer2} from '@angular/core';
-import {GameService} from "./services/game/game";
 import {SettingsService} from './services/setting/setting';
 import {DomSanitizer} from '@angular/platform-browser';
 import {StateService} from "./services/state/state";
@@ -9,6 +8,7 @@ import {Launcher} from "./pages/launcher/launcher";
 import {Download} from "./pages/download/download";
 import {Home} from "./pages/home/home";
 import {Setting} from "./shared/setting/setting";
+import {GameService} from './services/game/game';
 
 @Component({
 	selector: 'app-root',
@@ -27,6 +27,7 @@ export class App implements OnInit {
 	gameService = inject(GameService);
 	state = inject(StateService);
 	settings = inject(SettingsService);
+
 	// Computed properties
 	selectedGameTitle = computed(() => this.state.selectedGame()?.title ?? null);
 	isLauncherViewActive = computed(() => this.state.activeView() === 'launcher');
@@ -48,7 +49,6 @@ export class App implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.initializeApp();
 	}
 
 	onSelectGame(game: Game): void {
@@ -86,36 +86,4 @@ export class App implements OnInit {
 		this.state.closeTab(tabIdToClose);
 	}
 
-	private initializeApp(): void {
-		const messages = [
-			'Connecting to servers...',
-			'Downloading assets...',
-			'Verifying game files...',
-			'Preparing the universe...',
-			'Finalizing...'
-		];
-
-		let progress = 0;
-		let messageIndex = 0;
-
-		const interval = setInterval(() => {
-			progress += Math.random() * 10;
-			if (progress > 100) progress = 100;
-			this.state.updateLoadingState(messages[messageIndex], progress);
-
-			if (progress > (messageIndex + 1) * 20 && messageIndex < messages.length - 1) {
-				messageIndex++;
-				this.state.updateLoadingState(messages[messageIndex], progress);
-			}
-
-			if (progress >= 100) {
-				clearInterval(interval);
-				this.state.updateLoadingState('Ready!', 100);
-				setTimeout(() => {
-					this.state.finishLoading();
-					this.state.selectedGame.set(this.gameService.getGames()()[0]);
-				}, 500);
-			}
-		}, 400);
-	}
 }

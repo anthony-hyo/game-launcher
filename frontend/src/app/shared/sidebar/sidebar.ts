@@ -1,5 +1,6 @@
-import {Component, computed, EventEmitter, Input, Output, Signal} from '@angular/core';
+import {Component, computed, EventEmitter, inject, Input, Output, Signal} from '@angular/core';
 import {Game, ViewType} from "../../util";
+import {GameService} from '../../services/game/game';
 
 @Component({
 	selector: 'app-sidebar',
@@ -8,7 +9,9 @@ import {Game, ViewType} from "../../util";
 	styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-	@Input() games!: Signal<Game[]>;
+
+	public gameService = inject(GameService);
+
 	@Input() activeView!: Signal<ViewType>;
 	@Input() selectedGameTitle: Signal<string | null> = computed(() => null);
 
