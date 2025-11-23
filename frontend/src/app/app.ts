@@ -9,6 +9,7 @@ import {Download} from "./pages/download/download";
 import {Home} from "./pages/home/home";
 import {Setting} from "./shared/setting/setting";
 import {GameService} from './services/game/game';
+import {TabBar} from './shared/top-tab/top-bar';
 
 @Component({
 	selector: 'app-root',
@@ -17,7 +18,8 @@ import {GameService} from './services/game/game';
 		Launcher,
 		Download,
 		Home,
-		Setting
+		Setting,
+		TabBar
 	],
 	templateUrl: './app.html',
 	styleUrl: './app.scss'
