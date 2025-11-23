@@ -67,3 +67,9 @@
 	);
 	animation: shimmer 1.5s infinite;
 }
+
+/* For old browser */
+button {
+	background-color: transparent;
+	-webkit-appearance: none;
+}
