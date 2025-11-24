@@ -34,12 +34,14 @@
 							  [viewingGameDetail]="state.viewingGameDetail()"></app-launcher>
 			</div>
 
-			<!-- Open Game Tabs (iframes) -->
-			@for (tab of state.openTabs(); track tab.id) {
-				<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.id">
-					<iframe class="w-full h-full border-0" [src]="tab.url"></iframe>
-				</div>
-			}
+		<!-- Open Game Tabs (iframes) -->
+		@for (tab of state.openTabs(); track tab.id) {
+			<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.id">
+				<webview class="w-full h-full border-0" [id]="tab.id" [attr.src]="tab.url"
+						 webpreferences="allowRunningInsecureContent" enableremotemodule="false" plugins
+						 allowpopups></webview>
+			</div>
+		}
 		</div>
 	</main>
 </div>

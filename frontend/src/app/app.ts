@@ -1,8 +1,7 @@
-import {Component, computed, DOCUMENT, effect, inject, OnInit, Renderer2} from '@angular/core';
+import {Component, computed, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, OnInit, Renderer2} from '@angular/core';
 import {SettingsService} from './services/setting/setting';
-import {DomSanitizer} from '@angular/platform-browser';
 import {StateService} from "./services/state/state";
-import {Game, random, Tab} from "./util";
+import {Game, random, Tab, ViewType} from "./util";
 import {Sidebar} from "./shared/sidebar/sidebar";
 import {Launcher} from "./pages/launcher/launcher";
 import {Download} from "./pages/download/download";
@@ -21,6 +20,9 @@ import {TabBar} from './shared/top-tab/top-bar';
 		Setting,
 		TabBar
 	],
+	schemas: [
+		NO_ERRORS_SCHEMA
+	],
 	templateUrl: './app.html',
 	styleUrl: './app.scss'
 })
@@ -32,8 +34,6 @@ export class App implements OnInit {
 
 	// Computed properties
 	selectedGameTitle = computed(() => this.state.selectedGame()?.title ?? null);
-	isLauncherViewActive = computed(() => this.state.activeView() === 'launcher');
-	private sanitizer = inject(DomSanitizer);
 	private renderer = inject(Renderer2);
 	private document = inject(DOCUMENT);
 
@@ -77,15 +77,11 @@ export class App implements OnInit {
 			const newTab: Tab = {
 				id: random(),
 				game: game,
-				url: this.sanitizer.bypassSecurityTrustResourceUrl(game.url)
+				url: game.url
 			};
 			this.state.addTab(newTab);
 		}
 	}
 
-	onCloseTab(event: MouseEvent, tabIdToClose: string): void {
-		event.stopPropagation();
-		this.state.closeTab(tabIdToClose);
-	}
 
 }

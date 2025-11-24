@@ -22,7 +22,8 @@ export interface Game {
 export interface Tab {
 	id: string;
 	game: Game;
-	url: SafeResourceUrl;
+	url: string;
+	safeUrl?: SafeResourceUrl;
 }
 
 export type ViewType = 'home' | 'download' | 'launcher' | string;
