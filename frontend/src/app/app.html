@@ -15,7 +15,7 @@
 			(launcherSelect)="state.goToLauncher()"/>
 
 		<!-- Content Area -->
-		<div class="flex-grow relative">
+		<div class="flex-grow relative overflow-y-auto">
 			<!-- Home View -->
 			<div [class.hidden]="state.activeView() !== 'home'" class="absolute inset-0">
 				<app-home (downloadClick)="state.selectView('download')"></app-home>
