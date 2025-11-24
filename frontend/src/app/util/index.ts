@@ -1,5 +1,15 @@
 import {SafeResourceUrl} from '@angular/platform-browser';
 
+export interface Config {
+	deploys: Deploy[];
+}
+
+export interface Deploy {
+	system: string;
+	version: string;
+	details: string[];
+}
+
 export interface NewsArticle {
 	title: string;
 	date: string;

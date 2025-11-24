@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {LauncherService} from '../../services/launcher/launcher.service';
 
 @Component({
 	selector: 'app-download',
@@ -7,5 +8,7 @@ import {Component} from '@angular/core';
 	styleUrl: './download.scss',
 })
 export class Download {
+
+	protected readonly launcherService: LauncherService = inject(LauncherService)
 
 }
