@@ -24,6 +24,15 @@
 	background: #e03d3d; /* Lighter red for hover */
 }
 
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
+}
+
+.scrollbar-none {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;     /* Firefox */
+}
+
 /* Light theme scrollbar */
 .light ::-webkit-scrollbar-track {
 	background: #e5e7eb;
