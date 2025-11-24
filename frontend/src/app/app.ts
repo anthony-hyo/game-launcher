@@ -2,7 +2,7 @@ import {Component, computed, DOCUMENT, effect, inject, OnInit, Renderer2} from '
 import {SettingsService} from './services/setting/setting';
 import {DomSanitizer} from '@angular/platform-browser';
 import {StateService} from "./services/state/state";
-import {Game, Tab} from "./util";
+import {Game, random, Tab} from "./util";
 import {Sidebar} from "./shared/sidebar/sidebar";
 import {Launcher} from "./pages/launcher/launcher";
 import {Download} from "./pages/download/download";
@@ -75,7 +75,7 @@ export class App implements OnInit {
 			this.state.selectView(existingTab.id);
 		} else {
 			const newTab: Tab = {
-				id: self.crypto.randomUUID(),
+				id: random(),
 				game: game,
 				url: this.sanitizer.bypassSecurityTrustResourceUrl(game.url)
 			};
