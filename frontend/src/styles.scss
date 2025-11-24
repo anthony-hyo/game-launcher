@@ -73,3 +73,16 @@ button {
 	background-color: transparent;
 	-webkit-appearance: none;
 }
+
+/* For electron drag */
+* {
+	-webkit-user-select: none;
+}
+
+.draggable {
+	-webkit-app-region: drag;
+}
+
+.not-draggable {
+	-webkit-app-region: no-drag;
+}
