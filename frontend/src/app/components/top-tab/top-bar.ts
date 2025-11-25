@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, inject, input, output, signal} from '@angular/core';
+import {Component, computed, inject, input, output, signal} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {GameService} from '../../services/game/game.service';
 import {StateService} from '../../services/state/state.service';

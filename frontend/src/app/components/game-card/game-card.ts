@@ -9,11 +9,6 @@ import {Game} from '../../interfaces/IGame';
 })
 export class GameCard {
 	@Input() game!: Game;
-	@Input() imageLoaded = false;
 	@Output() playClick = new EventEmitter<void>();
 	@Output() infoClick = new EventEmitter<void>();
-
-	onImageLoad(): void {
-		this.imageLoaded = true;
-	}
 }

@@ -1,11 +1,9 @@
-<div class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50" (click)="closeClick.emit()">
-	<div class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl w-full max-w-lg border border-black/10 dark:border-white/10" (click)="$event.stopPropagation()">
+<div (click)="closeClick.emit()" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+	<div (click)="$event.stopPropagation()" class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl w-full max-w-lg border border-black/10 dark:border-white/10">
 		<div class="flex items-center justify-between p-6 border-b border-black/10 dark:border-white/10">
 			<h2 class="text-2xl font-bold">Settings</h2>
-			<button (click)="closeClick.emit()" class="text-gray-400 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
-				<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-				</svg>
+			<button (click)="closeClick.emit()" class="text-gray-400 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors flex items-center justify-center">
+				<span class="material-symbols-rounded">close</span>
 			</button>
 		</div>
 
@@ -18,8 +16,8 @@
 				</div>
 				<div class="flex items-center space-x-2">
 					<span class="text-sm text-gray-500 dark:text-gray-400">Light</span>
-					<button (click)="themeChange.emit()" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-800" [class.bg-primary]="theme === 'dark'" [class.bg-gray-400]="theme === 'light'">
-						<span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out" [class.translate-x-5]="theme === 'dark'" [class.translate-x-0]="theme === 'light'"></span>
+					<button (click)="themeChange.emit()" [class.bg-gray-400]="theme === 'light'" [class.bg-primary]="theme === 'dark'" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
+						<span [class.translate-x-0]="theme === 'light'" [class.translate-x-5]="theme === 'dark'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
 					</button>
 					<span class="text-sm text-gray-500 dark:text-gray-400">Dark</span>
 				</div>
@@ -31,8 +29,8 @@
 					<h3 class="font-semibold">Discord Rich Presence</h3>
 					<p class="text-sm text-gray-500 dark:text-gray-400">Show your current game activity on Discord.</p>
 				</div>
-				<button (click)="discordRpcChange.emit()" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-800" [class.bg-primary]="isDiscordRpcEnabled" [class.bg-gray-400]="!isDiscordRpcEnabled">
-					<span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out" [class.translate-x-5]="isDiscordRpcEnabled" [class.translate-x-0]="!isDiscordRpcEnabled"></span>
+				<button (click)="discordRpcChange.emit()" [class.bg-gray-400]="!isDiscordRpcEnabled" [class.bg-primary]="isDiscordRpcEnabled" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
+					<span [class.translate-x-0]="!isDiscordRpcEnabled" [class.translate-x-5]="isDiscordRpcEnabled" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
 				</button>
 			</div>
 		</div>

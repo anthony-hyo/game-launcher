@@ -17,9 +17,6 @@ export class StateService {
 	openTabs = signal<Tab[]>([]);
 	viewingGameDetail = signal<boolean>(false);
 
-	// Image loading state
-	imageLoaded = signal<Record<string, boolean>>({});
-
 	selectGame(game: Game): void {
 		this.selectedGame.set(game);
 		this.activeView.set('launcher');
@@ -65,10 +62,6 @@ export class StateService {
 	goToLauncher(): void {
 		this.selectView('launcher');
 		this.viewingGameDetail.set(false);
-	}
-
-	onImageLoad(gameTitle: string): void {
-		this.imageLoaded.update(states => ({...states, [gameTitle]: true}));
 	}
 
 	updateLoadingState(text: string, progress: number): void {

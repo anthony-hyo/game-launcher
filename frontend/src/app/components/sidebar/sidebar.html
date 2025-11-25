@@ -1,29 +1,25 @@
 <aside class="w-20 h-screen bg-gray-200 dark:bg-neutral-950 backdrop-blur-md flex-shrink-0 flex flex-col items-center py-5 space-y-5 overflow-y-auto overflow-x-hidden border-r border-black/10 dark:border-white/5">
 	<!-- Home Button -->
-	<button (click)="viewClick.emit('home')" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none" aria-label="Go to Home" [class.text-primary]="activeView() === 'home'">
-		<svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-			<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" />
-		</svg>
+	<button (click)="viewClick.emit('home')" [class.text-primary]="activeView() === 'home'" aria-label="Go to Home" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
+		<span class="material-symbols-rounded">home</span>
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Home</span>
 	</button>
+
 	<!-- Download Button -->
-	<button (click)="viewClick.emit('download')" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none" aria-label="Go to Downloads" [class.text-primary]="activeView() === 'download'">
-		<svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-		</svg>
+	<button (click)="viewClick.emit('download')" [class.text-primary]="activeView() === 'download'" aria-label="Go to Downloads" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
+		<span class="material-symbols-rounded">download</span>
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Download</span>
 	</button>
+
 	<!-- Library Button -->
-	<button (click)="libraryClick.emit()" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none" aria-label="Go to Library" [class.text-primary]="activeView() === 'launcher'">
-		<svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
-		</svg>
+	<button (click)="libraryClick.emit()" [class.text-primary]="activeView() === 'launcher'" aria-label="Go to Library" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
+		<span class="material-symbols-rounded">grid_view</span>
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Library</span>
 	</button>
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
 	<div class="w-14 h-full rounded-xl scrollbar-none overflow-y-auto overflow-x-hidden">
 		@if (gameService.isLoading()) {
-			@for (_ of [1,2,3,4,5,6]; track _) {
+			@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
 				<button
 					class="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-700/40 animate-pulse">
 				</button>
@@ -31,22 +27,20 @@
 		} @else {
 			@for (game of gameService.getGames()(); track game.title) {
 				<button (click)="gameSelect.emit(game)"
-						class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
-						[class.ring-primary]="selectedGameTitle() === game.title && activeView() === 'launcher'"
-						[class.ring-transparent]="selectedGameTitle() !== game.title || activeView() !== 'launcher'"
-						[attr.aria-label]="'Select ' + game.title">
+				        class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
+				        [class.ring-primary]="selectedGameTitle() === game.title && activeView() === 'launcher'"
+				        [class.ring-transparent]="selectedGameTitle() !== game.title || activeView() !== 'launcher'"
+				        [attr.aria-label]="'Select ' + game.title">
 					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
 				</button>
 			}
 		}
 	</div>
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
+
 	<!-- Settings Button -->
-	<button (click)="settingsClick.emit()" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none" aria-label="Open Settings">
-		<svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-			<path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.438.995s.145.755.438.995l1.003.827c.48.398.665 1.043.26 1.431l-1.296 2.247a1.125 1.125 0 0 1-1.37.49l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.063-.374-.313-.686-.645-.87a6.52 6.52 0 0 1-.22-.127c-.324-.196-.72-.257-1.075-.124l-1.217.456a1.125 1.125 0 0 1-1.37-.49l-1.296-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.437-.995s-.145-.755-.437-.995l-1.004-.827a1.125 1.125 0 0 1-.26-1.431l1.296-2.247a1.125 1.125 0 0 1 1.37-.49l1.217.456c.355.133.75.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.213-1.28Z" />
-			<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-		</svg>
+	<button (click)="settingsClick.emit()" aria-label="Open Settings" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
+		<span class="material-symbols-rounded">settings</span>
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Settings</span>
 	</button>
 </aside>

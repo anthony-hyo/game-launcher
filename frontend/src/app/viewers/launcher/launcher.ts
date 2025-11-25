@@ -17,9 +17,9 @@ export class Launcher {
 
 	@Input() selectedGame!: Game | null;
 	@Input() viewingGameDetail = false;
-	@Input() imageLoaded!: Record<string, boolean>;
 
 	@Output() playClick = new EventEmitter<Game>();
 	@Output() infoClick = new EventEmitter<Game>();
 	@Output() backClick = new EventEmitter<void>();
+
 }

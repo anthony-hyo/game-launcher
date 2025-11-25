@@ -1,25 +1,18 @@
-<div class="relative h-auto w-full rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-tertiary-light dark:focus-within:ring-offset-tertiary bg-gray-300 dark:bg-neutral-800">
-<!-- Skeleton Loader -->
-	<div class="absolute inset-0 shimmer-bg bg-gray-400 dark:bg-neutral-900 transition-opacity duration-500 z-10"
-	     [class.opacity-0]="imageLoaded">
-	</div>
-
+<div class="group relative h-auto w-full rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/40 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-tertiary-light dark:focus-within:ring-offset-tertiary bg-gray-300 dark:bg-neutral-800">
 	<!-- Play Count Indicator -->
-	@if(game.playCount && game.playCount > 0) {
-		<div class="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center space-x-1.5 z-20 ring-1 ring-white/20">
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-				<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-			</svg>
-			<span>{{ game.playCount }}</span>
+	@if (game.playCount && game.playCount > 0) {
+		<div class="absolute top-3 right-3 flex items-center space-x-2 text-gray-200 dark:text-gray-300 font-bold bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+			<span class="material-symbols-rounded text-sm">play_circle</span>
+			<span>Played {{ game.playCount }} {{ game.playCount === 1 ? 'time' : 'times' }}</span>
 		</div>
 	}
 
 	<!-- Background Image -->
-	<img [src]="game.imageUrl" (load)="onImageLoad()" (error)="onImageLoad()" [alt]="game.title + ' background art'" class="w-full aspect-video object-cover transition-all duration-300 group-hover:brightness-50 group-hover:scale-110">
+	<img [alt]="game.title + ' background art'" [src]="game.imageUrl" class="w-full aspect-video object-cover transition-all duration-300 group-hover:brightness-50 group-hover:scale-110">
 
 	<!-- Game Logo -->
-	<div class="absolute inset-0 flex items-center justify-center p-4 transition-all duration-300 transform group-hover:scale-110">
-		<img [src]="game.iconUrl" [alt]="game.title + ' logo'" class="max-w-[50%] max-h-[50%] h-auto drop-shadow-lg">
+	<div class="absolute inset-0 flex items-center justify-center p-4 transition-all duration-300 transform hover:scale-110">
+		<img [alt]="game.title + ' logo'" [src]="game.iconUrl" class="max-w-[50%] max-h-[50%] h-auto drop-shadow-lg">
 	</div>
 
 	<!-- Bottom Gradient & Title -->
@@ -30,9 +23,7 @@
 	<!-- Overlay shown on hover -->
 	<div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
 		<button (click)="playClick.emit()" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-3 mb-3 text-base font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-				<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-			</svg>
+			<span class="material-symbols-rounded mr-2">play_arrow</span>
 			Play
 		</button>
 		<button (click)="infoClick.emit()" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white bg-white/20 rounded-lg hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300">

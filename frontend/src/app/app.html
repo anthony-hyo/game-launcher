@@ -1,54 +1,40 @@
 <div class="flex h-screen font-sans antialiased text-gray-900 dark:text-gray-200">
 	<!-- Sidebar -->
-	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()"
-				 (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)"
-				 [activeView]="state.activeView" [selectedGameTitle]="selectedGameTitle"></app-sidebar>
+	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()" (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)" [activeView]="state.activeView" [selectedGameTitle]="selectedGameTitle"/>
 
 	<!-- Main Content -->
 	<main class="flex-grow flex flex-col bg-tertiary-light dark:bg-tertiary">
 		<!-- Tab Bar -->
-
-		<app-tab-bar
-			[activeView]="state.activeView()"
-			(viewSelect)="state.selectView($event)"
-			(tabClose)="state.closeTab($event)"
-			(launcherSelect)="state.goToLauncher()"/>
+		<app-tab-bar [activeView]="state.activeView()" (viewSelect)="state.selectView($event)" (tabClose)="state.closeTab($event)" (launcherSelect)="state.goToLauncher()"/>
 
 		<!-- Content Area -->
 		<div class="flex-grow relative overflow-y-auto">
 			<!-- Home View -->
 			<div [class.hidden]="state.activeView() !== 'home'" class="absolute inset-0">
-				<app-home (downloadClick)="state.selectView('download')"></app-home>
+				<app-home (downloadClick)="state.selectView('download')"/>
 			</div>
 
 			<!-- Download View -->
 			<div [class.hidden]="state.activeView() !== 'download'" class="absolute inset-0">
-				<app-download></app-download>
+				<app-download/>
 			</div>
 
 			<!-- Launcher View -->
 			<div [class.hidden]="state.activeView() !== 'launcher'" class="absolute inset-0">
-				<app-launcher (backClick)="state.showLibraryGrid()" (infoClick)="state.selectGameFromGrid($event)"
-							  (playClick)="onPlayGame($event)" [imageLoaded]="state.imageLoaded()"
-							  [selectedGame]="state.selectedGame()"
-							  [viewingGameDetail]="state.viewingGameDetail()"></app-launcher>
+				<app-launcher (backClick)="state.showLibraryGrid()" (infoClick)="state.selectGameFromGrid($event)" (playClick)="onPlayGame($event)" [selectedGame]="state.selectedGame()" [viewingGameDetail]="state.viewingGameDetail()"/>
 			</div>
 
-		<!-- Open Game Tabs (iframes) -->
-		@for (tab of state.openTabs(); track tab.id) {
-			<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.id">
-				<webview class="w-full h-full border-0" [id]="tab.id" [attr.src]="tab.url"
-						 webpreferences="allowRunningInsecureContent" enableremotemodule="false" plugins
-						 allowpopups></webview>
-			</div>
-		}
+			<!-- Open Game Tabs (iframes) -->
+			@for (tab of state.openTabs(); track tab.id) {
+				<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.id">
+					<webview class="w-full h-full border-0" [id]="tab.id" [attr.src]="tab.url" webpreferences="allowRunningInsecureContent" enableremotemodule="false" plugins allowpopups></webview>
+				</div>
+			}
 		</div>
 	</main>
 </div>
 
 <!-- Settings Modal -->
 @if (settings.isSettingsVisible()) {
-	<app-setting [theme]="settings.theme()" [isDiscordRpcEnabled]="settings.isDiscordRpcEnabled()"
-				 (closeClick)="settings.toggleSettings(false)" (themeChange)="settings.toggleTheme()"
-				 (discordRpcChange)="settings.toggleDiscordRpc()"></app-setting>
+	<app-setting [theme]="settings.theme()" [isDiscordRpcEnabled]="settings.isDiscordRpcEnabled()" (closeClick)="settings.toggleSettings(false)" (themeChange)="settings.toggleTheme()" (discordRpcChange)="settings.toggleDiscordRpc()"/>
 }
