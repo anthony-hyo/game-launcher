@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ThemeType} from "../../util";
+import {ThemeType} from '../../helper/helper.viewer';
 
 @Component({
 	selector: 'app-setting',

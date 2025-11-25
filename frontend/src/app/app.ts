@@ -1,14 +1,16 @@
 import {Component, computed, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, OnInit, Renderer2} from '@angular/core';
-import {SettingsService} from './services/setting/setting';
-import {StateService} from "./services/state/state";
-import {Game, random, Tab, ViewType} from "./util";
-import {Sidebar} from "./shared/sidebar/sidebar";
-import {Launcher} from "./pages/launcher/launcher";
-import {Download} from "./pages/download/download";
-import {Home} from "./pages/home/home";
-import {Setting} from "./shared/setting/setting";
-import {GameService} from './services/game/game';
-import {TabBar} from './shared/top-tab/top-bar';
+import {SettingsService} from './services/setting/setting.service';
+import {StateService} from "./services/state/state.service";
+import {Sidebar} from "./components/sidebar/sidebar";
+import {Launcher} from "./viewers/launcher/launcher";
+import {Download} from "./viewers/download/download";
+import {Home} from "./viewers/home/home";
+import {Setting} from "./components/setting/setting";
+import {GameService} from './services/game/game.service';
+import {TabBar} from './components/top-tab/top-bar';
+import {Game} from './interfaces/IGame';
+import {Tab} from './interfaces/ITab';
+import {random} from './helper/helper.random';
 
 @Component({
 	selector: 'app-root',

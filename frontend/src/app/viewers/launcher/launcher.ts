@@ -1,8 +1,7 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {Game} from '../../util'
-import {GameCard} from "../../shared/game-card/game-card";
-import {CommonModule} from "@angular/common";
-import {GameService} from '../../services/game/game';
+import {GameCard} from "../../components/game-card/game-card";
+import {GameService} from '../../services/game/game.service';
+import {Game} from '../../interfaces/IGame';
 
 @Component({
 	selector: 'app-launcher',

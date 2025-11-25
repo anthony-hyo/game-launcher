@@ -1,5 +1,5 @@
 import {Injectable, signal} from '@angular/core';
-import {ThemeType} from "../../util";
+import {ThemeType} from '../../helper/helper.viewer';
 
 @Injectable({providedIn: 'root'})
 export class SettingsService {

@@ -1,5 +1,7 @@
 import {Injectable, signal} from '@angular/core';
-import {Game, Tab, ViewType} from "../../util";
+import {Game} from '../../interfaces/IGame';
+import {Tab} from '../../interfaces/ITab';
+import {ViewType} from '../../helper/helper.viewer';
 
 @Injectable({providedIn: 'root'})
 export class StateService {

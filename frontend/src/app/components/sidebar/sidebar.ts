@@ -1,6 +1,7 @@
 import {Component, computed, EventEmitter, inject, Input, Output, Signal} from '@angular/core';
-import {Game, ViewType} from "../../util";
-import {GameService} from '../../services/game/game';
+import {GameService} from '../../services/game/game.service';
+import {Game} from '../../interfaces/IGame';
+import {ViewType} from '../../helper/helper.viewer';
 
 @Component({
 	selector: 'app-sidebar',

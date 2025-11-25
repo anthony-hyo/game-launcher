@@ -1,6 +1,6 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {Game} from "../../util";
 import {HttpClient} from '@angular/common/http';
+import {Game} from '../../interfaces/IGame';
 
 @Injectable({providedIn: 'root'})
 export class GameService {
