@@ -2,7 +2,7 @@ import {Component, computed, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, OnInit,
 import {SettingsService} from './services/setting/setting.service';
 import {StateService} from "./services/state/state.service";
 import {Sidebar} from "./components/sidebar/sidebar";
-import {Launcher} from "./viewers/launcher/launcher";
+import {Library} from "./viewers/library/library.component";
 import {Download} from "./viewers/download/download";
 import {Home} from "./viewers/home/home";
 import {Setting} from "./components/setting/setting";
@@ -16,7 +16,7 @@ import {random} from './helper/helper.random';
 	selector: 'app-root',
 	imports: [
 		Sidebar,
-		Launcher,
+		Library,
 		Download,
 		Home,
 		Setting,

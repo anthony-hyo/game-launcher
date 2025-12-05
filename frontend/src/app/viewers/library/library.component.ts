@@ -4,14 +4,14 @@ import {GameService} from '../../services/game/game.service';
 import {Game} from '../../interfaces/IGame';
 
 @Component({
-	selector: 'app-launcher',
+	selector: 'app-library',
 	imports: [
         GameCard
 	],
-	templateUrl: './launcher.html',
-	styleUrl: './launcher.scss',
+	templateUrl: './library.component.html',
+	styleUrl: './library.component.scss',
 })
-export class Launcher {
+export class Library {
 
 	public gameService = inject(GameService);
 
