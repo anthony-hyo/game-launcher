@@ -1,6 +1,6 @@
 <div class="flex h-screen font-sans antialiased text-gray-900 dark:text-gray-200">
 	<!-- Sidebar -->
-	<app-sidebar (gameSelect)="onSelectGame($event)" (libraryClick)="onLibraryClick()" (settingsClick)="settings.toggleSettings(true)" (viewClick)="onViewClick($event)" [activeView]="state.activeView" [selectedGameTitle]="selectedGameTitle"/>
+	<app-sidebar/>
 
 	<!-- Main Content -->
 	<main class="flex-grow flex flex-col bg-tertiary-light dark:bg-tertiary">

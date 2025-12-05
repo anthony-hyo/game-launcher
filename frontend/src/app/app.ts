@@ -55,18 +55,6 @@ export class App implements OnInit {
 	ngOnInit(): void {
 	}
 
-	onSelectGame(game: Game): void {
-		this.state.selectGame(game);
-	}
-
-	onViewClick(view: string): void {
-		this.state.selectView(view as any);
-	}
-
-	onLibraryClick(): void {
-		this.state.goToLauncher();
-	}
-
 	onPlayGame(game: Game): void {
 		if (!game.url || game.url === '#') return;
 

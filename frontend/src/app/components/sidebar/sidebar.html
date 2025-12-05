@@ -1,22 +1,10 @@
 <aside class="w-20 h-screen bg-gray-200 dark:bg-neutral-950 backdrop-blur-md flex-shrink-0 flex flex-col items-center py-5 space-y-5 overflow-y-auto overflow-x-hidden border-r border-black/10 dark:border-white/5">
-	<!-- Home Button -->
-	<button (click)="viewClick.emit('home')" [class.text-primary]="activeView() === 'home'" aria-label="Go to Home" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
-		<span class="material-symbols-rounded">home</span>
-		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Home</span>
-	</button>
+	<app-sidebar-button [description]="'Go to Home'" [viewType]="'home'" [icon]="'home'"/>
+	<app-sidebar-button [description]="'Go to Downloads'" [viewType]="'download'" [icon]="'download'"/>
+	<app-sidebar-button [description]="'Go to Library'" [viewType]="'launcher'" [icon]="'grid_view'"/>
 
-	<!-- Download Button -->
-	<button (click)="viewClick.emit('download')" [class.text-primary]="activeView() === 'download'" aria-label="Go to Downloads" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
-		<span class="material-symbols-rounded">download</span>
-		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Download</span>
-	</button>
-
-	<!-- Library Button -->
-	<button (click)="libraryClick.emit()" [class.text-primary]="activeView() === 'launcher'" aria-label="Go to Library" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
-		<span class="material-symbols-rounded">grid_view</span>
-		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Library</span>
-	</button>
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
+
 	<div class="text-center w-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden">
 		@if (gameService.isLoading()) {
 			@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
@@ -26,20 +14,27 @@
 			}
 		} @else {
 			@for (game of gameService.getGames()(); track game.title) {
-				<button (click)="gameSelect.emit(game)"
-				        class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
-				        [class.ring-primary]="selectedGameTitle() === game.title && activeView() === 'launcher'"
-				        [class.ring-transparent]="selectedGameTitle() !== game.title || activeView() !== 'launcher'"
-				        [attr.aria-label]="'Select ' + game.title">
+				<button
+					(click)="stateService.selectGame(game)"
+
+					class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
+
+					[ngClass]="{
+						'ring-primary': stateService.selectedGame()?.title === game.title && stateService.activeView() === 'launcher',
+						'ring-transparent': stateService.selectedGame()?.title !== game.title || stateService.activeView() !== 'launcher'
+					}"
+
+					[attr.aria-label]="'Select ' + game.title">
+
 					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
 				</button>
 			}
 		}
 	</div>
+
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
 
-	<!-- Settings Button -->
-	<button (click)="settingsClick.emit()" aria-label="Open Settings" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
+	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="group relative flex-shrink-0 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none">
 		<span class="material-symbols-rounded">settings</span>
 		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Settings</span>
 	</button>

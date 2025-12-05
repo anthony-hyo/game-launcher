@@ -1,0 +1,14 @@
+<button
+	(click)="stateService.selectView(viewType())"
+
+	class="hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none flex-shrink-0"
+
+	[ngClass]="{
+		'text-primary dark:text-primary': stateService.activeView() == viewType(),
+		'text-gray-500 dark:text-gray-400': stateService.activeView() != viewType()
+	}"
+
+	aria-label="{{ description()}}">
+
+	<span class="material-symbols-rounded">{{ icon() }}</span>
+</button>

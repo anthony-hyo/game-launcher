@@ -1,23 +1,23 @@
-import {Component, computed, EventEmitter, inject, Input, Output, Signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {GameService} from '../../services/game/game.service';
-import {Game} from '../../interfaces/IGame';
-import {ViewType} from '../../helper/helper.viewer';
+import {NgClass} from '@angular/common';
+import {StateService} from '../../services/state/state.service';
+import {SettingsService} from '../../services/setting/setting.service';
+import {SidebarButton} from '../sidebar-button/sidebar-button';
 
 @Component({
 	selector: 'app-sidebar',
-	imports: [],
+	imports: [
+		NgClass,
+		SidebarButton
+	],
 	templateUrl: './sidebar.html',
 	styleUrl: './sidebar.scss',
 })
 export class Sidebar {
 
 	public gameService = inject(GameService);
+	public stateService = inject(StateService);
+	public settingsService = inject(SettingsService);
 
-	@Input() activeView!: Signal<ViewType>;
-	@Input() selectedGameTitle: Signal<string | null> = computed(() => null);
-
-	@Output() gameSelect = new EventEmitter<Game>();
-	@Output() viewClick = new EventEmitter<ViewType>();
-	@Output() libraryClick = new EventEmitter<void>();
-	@Output() settingsClick = new EventEmitter<void>();
 }
