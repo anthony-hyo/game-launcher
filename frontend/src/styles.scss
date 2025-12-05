@@ -5,6 +5,15 @@
 	--tertiary-color-light: #f3f4f6;
 }
 
+@import "tailwindcss";
+
+@theme {
+	--color-primary: #cf1717;
+	--color-secondary: #fbcb00;
+	--color-tertiary: #18191b;
+	--color-tertiary-light: #f3f4f6;
+}
+
 /* For custom scrollbar styling */
 /* Dark theme scrollbar */
 ::-webkit-scrollbar {
@@ -78,10 +87,10 @@
 }
 
 /* For old browser */
-button {
+/*button {
 	background-color: transparent;
 	-webkit-appearance: none;
-}
+}*/
 
 /* For electron drag */
 * {
