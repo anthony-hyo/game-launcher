@@ -1,33 +1,32 @@
-import {Component, computed, inject, input, output, signal} from '@angular/core';
+import {Component, computed, inject, output, signal} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {GameService} from '../../services/game/game.service';
 import {StateService} from '../../services/state/state.service';
+import {SettingsService} from '../../services/setting/setting.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
-	selector: 'app-tab-bar',
-	imports: [],
+	selector: 'app-top-bar',
+	imports: [
+		RouterLink
+	],
 	templateUrl: './top-bar.html',
 	styleUrl: './top-bar.scss',
 })
 export class TabBar {
 
 	gameService = inject(GameService);
-	stateService = inject(StateService);
+	state = inject(StateService);
+	settings = inject(SettingsService);
 
 	private document = inject(DOCUMENT) as Document;
 
-	activeView = input.required<string>();
-
-	viewSelect = output<string>();
-	tabClose = output<string>();
-	launcherSelect = output<void>();
-
-	isLauncherViewActive = computed(() => this.activeView() === 'launcher');
+	isLauncherViewActive = computed(() => this.state.activeView() === 'library');
 	isFullscreen = signal(false);
 
 	closeTab(event: MouseEvent, tabId: string): void {
 		event.stopPropagation();
-		this.tabClose.emit(tabId);
+		this.state.closeTab(tabId);
 	}
 
 	minimizeApp(): void {
@@ -62,5 +61,4 @@ export class TabBar {
 		}, 1000);
 	}
 
-	protected readonly StateService = StateService;
 }

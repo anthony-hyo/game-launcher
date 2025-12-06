@@ -1,12 +1,9 @@
 <button
-	(click)="stateService.selectView(viewType())"
+	[routerLink]="path()"
 
-	class="hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none flex-shrink-0"
+	routerLinkActive="text-primary dark:text-primary"
 
-	[ngClass]="{
-		'text-primary dark:text-primary': stateService.activeView() == viewType(),
-		'text-gray-500 dark:text-gray-400': stateService.activeView() != viewType()
-	}"
+	class="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none flex-shrink-0"
 
 	aria-label="{{ description()}}">
 

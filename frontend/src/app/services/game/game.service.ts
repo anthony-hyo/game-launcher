@@ -44,8 +44,8 @@ export class GameService {
 		this.savePlayCounts();
 	}
 
-	getGameByTitle(title: string): Game | undefined {
-		return this.games().find(g => g.title === title);
+	getGameById(id: number): Game | undefined {
+		return this.games().find(g => g.id === id);
 	}
 
 	private loadPlayCounts(): void {
@@ -68,4 +68,5 @@ export class GameService {
 
 		localStorage.setItem(this.STORAGE_KEY, JSON.stringify(allCounts));
 	}
+
 }

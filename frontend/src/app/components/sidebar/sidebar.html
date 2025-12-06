@@ -1,11 +1,11 @@
 <aside class="w-20 h-screen bg-gray-200 dark:bg-neutral-950 backdrop-blur-md flex-shrink-0 flex flex-col items-center py-5 space-y-5 overflow-y-auto overflow-x-hidden border-r border-black/10 dark:border-white/5">
-	<app-sidebar-button [description]="'Go to Home'" [viewType]="'home'" [icon]="'home'"/>
-	<app-sidebar-button [description]="'Go to Downloads'" [viewType]="'download'" [icon]="'download'"/>
-	<app-sidebar-button [description]="'Go to Library'" [viewType]="'launcher'" [icon]="'grid_view'"/>
+	<app-sidebar-button [description]="'Go to Home'" [path]="'home'" [icon]="'home'"/>
+	<app-sidebar-button [description]="'Go to Downloads'" [path]="'download'" [icon]="'download'"/>
+	<app-sidebar-button [description]="'Go to Library'" [path]="'library'" [icon]="'grid_view'"/>
 
 	<div class="w-10 border-t border-black/10 dark:border-white/10"></div>
 
-	<div class="text-center w-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden">
+	<div class="text-center w-full h-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden">
 		@if (gameService.isLoading()) {
 			@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
 				<button
@@ -15,14 +15,13 @@
 		} @else {
 			@for (game of gameService.getGames()(); track game.title) {
 				<button
-					(click)="stateService.selectGame(game)"
+					[routerLink]="['/game/info', game.id]"
+
+					routerLinkActive #rla="routerLinkActive"
 
 					class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary-light dark:ring-offset-tertiary"
 
-					[ngClass]="{
-						'ring-primary': stateService.selectedGame()?.title === game.title && stateService.activeView() === 'launcher',
-						'ring-transparent': stateService.selectedGame()?.title !== game.title || stateService.activeView() !== 'launcher'
-					}"
+					[ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'"
 
 					[attr.aria-label]="'Select ' + game.title">
 

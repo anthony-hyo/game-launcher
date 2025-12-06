@@ -6,6 +6,7 @@ export interface GameNews {
 }
 
 export interface Game {
+	id: number;
 	title: string;
 	description: string;
 	imageUrl: string;
@@ -14,5 +15,5 @@ export interface Game {
 	url: string;
 	genre: string;
 	news: GameNews[];
-	playCount?: number;
+	playCount: number;
 }

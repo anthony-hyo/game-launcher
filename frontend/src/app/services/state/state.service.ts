@@ -1,80 +1,69 @@
-import {Injectable, signal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {Game} from '../../interfaces/IGame';
 import {Tab} from '../../interfaces/ITab';
 import {ViewType} from '../../helper/helper.viewer';
+import {Router} from '@angular/router';
+import {random} from '../../helper/helper.random';
+import {GameService} from '../game/game.service';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
 
-	// UI State
-	isLoading = signal<boolean>(true);
-	loadingText = signal<string>('Initializing...');
-	loadingProgress = signal<number>(0);
+	private router = inject(Router);
 
-	// Navigation
-	activeView = signal<ViewType>('home');
-	selectedGame = signal<Game | null>(null);
+	public gameService = inject(GameService);
+
+	activeView = signal<'router' | string>('router');
 	openTabs = signal<Tab[]>([]);
-	viewingGameDetail = signal<boolean>(false);
 
-	selectGame(game: Game): void {
-		this.selectedGame.set(game);
-		this.activeView.set('launcher');
-		this.viewingGameDetail.set(true);
+	openRouterView() {
+		console.log('router')
+		this.activeView.set('router');
 	}
 
-	selectGameFromGrid(game: Game): void {
-		this.selectedGame.set(game);
-		this.viewingGameDetail.set(true);
-	}
-
-	showLibraryGrid(): void {
-		this.viewingGameDetail.set(false);
-	}
-
-	selectView(viewId: ViewType): void {
+	openTab(viewId: ViewType) {
 		this.activeView.set(viewId);
 	}
 
 	closeTab(tabIdToClose: string): void {
 		const tabs = this.openTabs();
-		const tabIndexToClose = tabs.findIndex(tab => tab.id === tabIdToClose);
+		const tabIndexToClose = tabs.findIndex(tab => tab.tabId === tabIdToClose);
 
-		if (tabIndexToClose === -1) return;
+		if (tabIndexToClose === -1) {
+			return;
+		}
 
 		if (this.activeView() === tabIdToClose) {
 			if (tabs.length === 1) {
-				this.activeView.set('launcher');
+				this.router.navigate(['/library']);
 			} else {
 				const newActiveIndex = tabIndexToClose >= tabs.length - 1 ? tabIndexToClose - 1 : tabIndexToClose;
-				this.activeView.set(tabs[newActiveIndex].id);
+				this.activeView.set(tabs[newActiveIndex].tabId);
 			}
 		}
 
-		this.openTabs.update(currentTabs => currentTabs.filter(tab => tab.id !== tabIdToClose));
+		this.openTabs.update(currentTabs => currentTabs.filter(tab => tab.tabId !== tabIdToClose));
 	}
 
-	addTab(tab: Tab): void {
-		this.openTabs.update(tabs => [...tabs, tab]);
-		this.activeView.set(tab.id);
-	}
+	onPlayGame(game: Game): void {
+		this.gameService.incrementPlayCount(game.title);
 
-	goToLauncher(): void {
-		this.selectView('launcher');
-		this.viewingGameDetail.set(false);
-	}
+		const existingTab = this.openTabs().find(tab => tab.game.title === game.title);
 
-	updateLoadingState(text: string, progress: number): void {
-		this.loadingText.set(text);
-		this.loadingProgress.set(progress);
-	}
+		if (existingTab) {
+			this.activeView.set(existingTab.tabId);
+			return;
+		}
 
-	finishLoading(): void {
-		this.isLoading.set(false);
-	}
+		const newTab: Tab = {
+			tabId: random(),
+			game: game,
+			url: game.url
+		};
 
-	updateSelectedGame(game: Game | null): void {
-		this.selectedGame.set(game);
+		this.openTabs.update(tabs => [...tabs, newTab]);
+
+		this.activeView.set(newTab.tabId);
 	}
 
 }

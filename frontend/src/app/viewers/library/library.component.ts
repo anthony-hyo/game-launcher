@@ -18,8 +18,4 @@ export class Library {
 	@Input() selectedGame!: Game | null;
 	@Input() viewingGameDetail = false;
 
-	@Output() playClick = new EventEmitter<Game>();
-	@Output() infoClick = new EventEmitter<Game>();
-	@Output() backClick = new EventEmitter<void>();
-
 }

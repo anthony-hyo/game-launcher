@@ -4,12 +4,15 @@ import {NgClass} from '@angular/common';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {SidebarButton} from '../sidebar-button/sidebar-button';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
 	selector: 'app-sidebar',
 	imports: [
 		NgClass,
-		SidebarButton
+		SidebarButton,
+		RouterLink,
+		RouterLinkActive
 	],
 	templateUrl: './sidebar.html',
 	styleUrl: './sidebar.scss',
