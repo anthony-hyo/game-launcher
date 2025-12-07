@@ -7,6 +7,8 @@ import {Component, Input} from '@angular/core';
 	styleUrl: './loading.scss',
 })
 export class Loading {
-  @Input() loadingText = 'Initializing...';
-  @Input() loadingProgress = 0;
+
+	@Input() loadingText = 'Initializing...';
+	@Input() loadingProgress = 0;
+
 }

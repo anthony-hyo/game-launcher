@@ -5,6 +5,7 @@ import {Library} from './viewers/library/library.component';
 import {GameInfo} from './viewers/game-info/game-info.component';
 import {gameInfo} from './app.titles.resolver';
 import {Launcher} from './viewers/launcher/launcher.component';
+import {Loading} from './viewers/loading/loading';
 
 export const routes: Routes = [
 	{
@@ -37,5 +38,10 @@ export const routes: Routes = [
 				title: gameInfo
 			}
 		],
+	},
+	{
+		path: 'loading',
+		component: Loading,
+		title: 'Loading',
 	},
 ];

@@ -13,7 +13,7 @@ export class StateService {
 
 	public gameService = inject(GameService);
 
-	activeView = signal<'router' | string>('router');
+	activeView = signal<'router' | string>('router'); //todo: make private
 	openTabs = signal<Map<string, Tab>>(new Map());
 
 	openRouterView() {
@@ -51,15 +51,15 @@ export class StateService {
 	onPlayGame(game: Game): void {
 		this.gameService.incrementPlayCount(game.title);
 
-		const newTab: Tab = {
-			tabId: random(),
-			game: game,
-			url: game.url
-		};
+			const newTab: Tab = {
+				tabId: random(),
+				game: game,
+				url: game.url
+			};
 
-		this.openTabs().set(newTab.tabId, newTab);
+			this.openTabs().set(newTab.tabId, newTab);
 
-		this.activeView.set(newTab.tabId);
+			this.activeView.set(newTab.tabId);
 	}
 
 	/**
