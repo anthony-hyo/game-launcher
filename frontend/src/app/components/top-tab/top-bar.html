@@ -8,7 +8,7 @@
 		<div class="flex items-end -mb-px pl-4 h-full self-end scrollbar-none overflow-x-auto overflow-y-hidden">
 			@for (tab of state.openTabs().values(); track tab.tabId) {
 				<button (click)="state.openTab(tab.tabId)" class="not-draggable group flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]" [class.text-white]="state.activeView() === tab.tabId" [class.light:text-black]="state.activeView() === tab.tabId" [class.border-primary]="state.activeView() === tab.tabId" [class.text-gray-400]="state.activeView() !== tab.tabId" [class.light:text-gray-600]="state.activeView() !== tab.tabId" [class.border-transparent]="state.activeView() !== tab.tabId" [class.hover:text-white]="state.activeView() !== tab.tabId" [class.light:hover:text-black]="state.activeView() !== tab.tabId">
-					<img class="w-4 h-auto object-cover rounded-xl" [srcset]="tab.game.iconUrl" [alt]="tab.game.title"/>
+					<img class="w-4 h-auto object-cover rounded-xl" [srcset]="'https://s2.googleusercontent.com/s2/favicons?domain='+tab.url+'&sz=32'" [alt]="tab.game.title"/>
 
 					<span class="ps-2 truncate">{{ tab.game.title }}</span>
 
