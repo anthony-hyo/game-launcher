@@ -15,7 +15,7 @@
 		} @else {
 			@for (game of gameService.getGames()(); track game.title) {
 				<button
-					[routerLink]="['/game/info', game.id]"
+					[routerLink]="['/library/viewer', game.id]"
 
 					routerLinkActive #rla="routerLinkActive"
 

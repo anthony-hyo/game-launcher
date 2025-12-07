@@ -6,14 +6,14 @@ import {SettingsService} from '../../services/setting/setting.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
-	selector: 'app-game-card',
+	selector: 'app-library-card',
 	imports: [
 		RouterLink
 	],
-	templateUrl: './game-card.html',
-	styleUrl: './game-card.scss',
+	templateUrl: './library-card.component.html',
+	styleUrl: './library-card.component.scss',
 })
-export class GameCard {
+export class LibraryCard {
 
 	public gameService = inject(GameService);
 	public state = inject(StateService);

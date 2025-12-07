@@ -5,7 +5,7 @@
 		<app-top-bar/>
 
 		<div class="flex-grow relative overflow-y-auto">
-			@if (state.activeView() === 'router') {
+			@if (state.isRouterActive) {
 				<router-outlet/>
 			}
 
@@ -19,5 +19,5 @@
 </div>
 
 @if (settings.isSettingsVisible()) {
-	<app-setting [theme]="settings.theme()" [isDiscordRpcEnabled]="settings.isDiscordRpcEnabled()" (closeClick)="settings.toggleSettings(false)" (themeChange)="settings.toggleTheme()" (discordRpcChange)="settings.toggleDiscordRpc()"/>
+	<app-setting/>
 }

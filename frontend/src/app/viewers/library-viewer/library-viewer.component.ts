@@ -6,14 +6,14 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
 import {Game} from '../../interfaces/IGame';
 
 @Component({
-	selector: 'app-game-info',
+	selector: 'app-library-viewer',
 	imports: [
 		RouterLink
 	],
-	templateUrl: './game-info.component.html',
-	styleUrl: './game-info.component.scss',
+	templateUrl: './library-viewer.component.html',
+	styleUrl: './library-viewer.component.scss',
 })
-export class GameInfo {
+export class LibraryViewer {
 
 	public gameService = inject(GameService);
 	public stateService = inject(StateService);

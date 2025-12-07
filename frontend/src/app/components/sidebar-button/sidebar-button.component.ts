@@ -1,5 +1,4 @@
-import {Component, inject, input} from '@angular/core';
-import {StateService} from '../../services/state/state.service';
+import {Component, input} from '@angular/core';
 import {ViewType} from '../../helper/helper.viewer';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
@@ -9,12 +8,10 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 		RouterLink,
 		RouterLinkActive
 	],
-	templateUrl: './sidebar-button.html',
-	styleUrl: './sidebar-button.scss',
+	templateUrl: './sidebar-button.component.html',
+	styleUrl: './sidebar-button.component.scss',
 })
 export class SidebarButton {
-
-	public stateService = inject(StateService);
 
 	description = input.required<ViewType>();
 	path = input.required<ViewType>();

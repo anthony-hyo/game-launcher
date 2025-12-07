@@ -1,27 +1,23 @@
-import {Component, computed, inject, signal} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {GameService} from '../../services/game/game.service';
+import {Component, inject, signal} from '@angular/core';
+import {DOCUMENT, NgClass} from '@angular/common';
 import {StateService} from '../../services/state/state.service';
-import {SettingsService} from '../../services/setting/setting.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
 	selector: 'app-top-bar',
 	imports: [
-		RouterLink
+		RouterLink,
+		NgClass
 	],
-	templateUrl: './top-bar.html',
-	styleUrl: './top-bar.scss',
+	templateUrl: './top-bar.component.html',
+	styleUrl: './top-bar.component.scss',
 })
 export class TabBar {
 
-	gameService = inject(GameService);
 	state = inject(StateService);
-	settings = inject(SettingsService);
 
 	private document = inject(DOCUMENT) as Document;
 
-	isLauncherViewActive = computed(() => this.state.activeView() === 'library');
 	isFullscreen = signal(false);
 
 	minimizeApp(): void {
@@ -32,15 +28,14 @@ export class TabBar {
 		if (!this.document.fullscreenElement) {
 			this.document.documentElement.requestFullscreen().then(() => {
 				this.isFullscreen.set(true);
-			}).catch(err => {
-				console.error('Error attempting to enable fullscreen:', err);
 			});
-		} else {
-			if (this.document.exitFullscreen) {
-				this.document.exitFullscreen().then(() => {
-					this.isFullscreen.set(false);
-				});
-			}
+			return
+		}
+
+		if (this.document.exitFullscreen) {
+			this.document.exitFullscreen().then(() => {
+				this.isFullscreen.set(false);
+			});
 		}
 	}
 

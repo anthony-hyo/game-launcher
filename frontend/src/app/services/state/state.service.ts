@@ -16,15 +16,19 @@ export class StateService {
 	activeView = signal<'router' | string>('router'); //todo: make private
 	openTabs = signal<Map<string, Tab>>(new Map());
 
-	openRouterView() {
+	public get isRouterActive(): boolean {
+		return this.activeView() === 'router';
+	}
+
+	public openRouterView(): void {
 		this.activeView.set('router');
 	}
 
-	openTab(viewId: ViewType) {
+	public openTab(viewId: ViewType): void {
 		this.activeView.set(viewId);
 	}
 
-	closeTab(event: MouseEvent, tab: Tab): void {
+	public closeTab(event: MouseEvent, tab: Tab): void {
 		event.stopPropagation(); //Prevent tab click propagation
 
 		const openTabs = this.openTabs();
@@ -48,7 +52,7 @@ export class StateService {
 			.catch(console.error);
 	}
 
-	onPlayGame(game: Game): void {
+	public onPlayGame(game: Game): void {
 		this.gameService.incrementPlayCount(game.title);
 
 			const newTab: Tab = {

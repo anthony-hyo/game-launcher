@@ -1,19 +1,17 @@
-<div class="bg-tertiary light:bg-tertiary-light overflow-y-auto">
-	<div class="container mx-auto px-8 py-12">
-		<h1 class="text-4xl font-bold mb-8 text-white light:text-black">Library</h1>
+<div class="bg-tertiary light:bg-tertiary-light overflow-y-auto px-8 py-12">
+	<h1 class="text-4xl font-bold mb-8 text-white light:text-black">Library</h1>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-			@if (gameService.isLoading()) {
-				@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
-					<div
-						class="w-full pt-[56.25%] rounded-xl bg-zinc-700/40 animate-pulse">
-					</div>
-				}
-			} @else {
-				@for (game of gameService.getGames()(); track game.title) {
-					<app-game-card [game]="game"/>
-				}
+	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+		@if (gameService.isLoading()) {
+			@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
+				<div
+					class="w-full pt-[56.25%] rounded-xl bg-zinc-700/40 animate-pulse">
+				</div>
 			}
-		</div>
+		} @else {
+			@for (game of gameService.getGames()(); track game.title) {
+				<app-library-card [game]="game"/>
+			}
+		}
 	</div>
 </div>

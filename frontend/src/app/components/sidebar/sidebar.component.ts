@@ -1,9 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {GameService} from '../../services/game/game.service';
 import {NgClass} from '@angular/common';
-import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
-import {SidebarButton} from '../sidebar-button/sidebar-button';
+import {SidebarButton} from '../sidebar-button/sidebar-button.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
@@ -14,13 +13,12 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 		RouterLink,
 		RouterLinkActive
 	],
-	templateUrl: './sidebar.html',
-	styleUrl: './sidebar.scss',
+	templateUrl: './sidebar.component.html',
+	styleUrl: './sidebar.component.scss',
 })
 export class Sidebar {
 
 	public gameService = inject(GameService);
-	public stateService = inject(StateService);
 	public settingsService = inject(SettingsService);
 
 }

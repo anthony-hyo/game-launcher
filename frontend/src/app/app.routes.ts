@@ -1,22 +1,22 @@
 import {Routes} from '@angular/router';
-import {Home} from './viewers/home/home';
-import {Download} from './viewers/download/download';
+import {Home} from './viewers/home/home.component';
+import {Download} from './viewers/download/download.component';
 import {Library} from './viewers/library/library.component';
-import {GameInfo} from './viewers/game-info/game-info.component';
-import {gameInfo} from './app.titles.resolver';
+import {LibraryViewer} from './viewers/library-viewer/library-viewer.component';
+import {libraryViewer} from './app.titles.resolver';
 import {Launcher} from './viewers/launcher/launcher.component';
-import {Loading} from './viewers/loading/loading';
+import {Loading} from './viewers/loading/loading.component';
 
 export const routes: Routes = [
+	{
+		path: 'home',
+		redirectTo: '',
+	},
 	{
 		path: '',
 		component: Launcher,
 		title: 'Launcher',
 		children: [
-			{
-				path: 'home',
-				redirectTo: '',
-			},
 			{
 				path: '',
 				component: Home,
@@ -33,11 +33,11 @@ export const routes: Routes = [
 				title: 'Library',
 			},
 			{
-				path: 'game/info/:id',
-				component: GameInfo,
-				title: gameInfo
+				path: 'library/viewer/:id',
+				component: LibraryViewer,
+				title: libraryViewer
 			}
-		],
+		]
 	},
 	{
 		path: 'loading',
