@@ -1,4 +1,4 @@
-import {Component, computed, inject, output, signal} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {GameService} from '../../services/game/game.service';
 import {StateService} from '../../services/state/state.service';
@@ -23,11 +23,6 @@ export class TabBar {
 
 	isLauncherViewActive = computed(() => this.state.activeView() === 'library');
 	isFullscreen = signal(false);
-
-	closeTab(event: MouseEvent, tabId: string): void {
-		event.stopPropagation();
-		this.state.closeTab(tabId);
-	}
 
 	minimizeApp(): void {
 		console.log('Application minimized to tray');

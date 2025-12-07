@@ -14,10 +14,9 @@ export class StateService {
 	public gameService = inject(GameService);
 
 	activeView = signal<'router' | string>('router');
-	openTabs = signal<Tab[]>([]);
+	openTabs = signal<Map<string, Tab>>(new Map());
 
 	openRouterView() {
-		console.log('router')
 		this.activeView.set('router');
 	}
 
@@ -25,35 +24,32 @@ export class StateService {
 		this.activeView.set(viewId);
 	}
 
-	closeTab(tabIdToClose: string): void {
-		const tabs = this.openTabs();
-		const tabIndexToClose = tabs.findIndex(tab => tab.tabId === tabIdToClose);
+	closeTab(event: MouseEvent, tab: Tab): void {
+		event.stopPropagation(); //Prevent tab click propagation
 
-		if (tabIndexToClose === -1) {
+		const openTabs = this.openTabs();
+
+		const nextTab = this.getNearestTab(tab.tabId)
+
+		openTabs.delete(tab.tabId)
+
+		if (openTabs.size < 1) {
+			this.router.navigate(["/library"])
+				.catch(console.error);
 			return;
 		}
 
-		if (this.activeView() === tabIdToClose) {
-			if (tabs.length === 1) {
-				this.router.navigate(['/library']);
-			} else {
-				const newActiveIndex = tabIndexToClose >= tabs.length - 1 ? tabIndexToClose - 1 : tabIndexToClose;
-				this.activeView.set(tabs[newActiveIndex].tabId);
-			}
+		if (nextTab) {
+			this.activeView.set(openTabs.get(nextTab)!.tabId)
+			return;
 		}
 
-		this.openTabs.update(currentTabs => currentTabs.filter(tab => tab.tabId !== tabIdToClose));
+		this.router.navigate(["/library"])
+			.catch(console.error);
 	}
 
 	onPlayGame(game: Game): void {
 		this.gameService.incrementPlayCount(game.title);
-
-		const existingTab = this.openTabs().find(tab => tab.game.title === game.title);
-
-		if (existingTab) {
-			this.activeView.set(existingTab.tabId);
-			return;
-		}
 
 		const newTab: Tab = {
 			tabId: random(),
@@ -61,9 +57,34 @@ export class StateService {
 			url: game.url
 		};
 
-		this.openTabs.update(tabs => [...tabs, newTab]);
+		this.openTabs().set(newTab.tabId, newTab);
 
 		this.activeView.set(newTab.tabId);
+	}
+
+	/**
+	 * Find the nearest tab available
+	 *
+	 * @param tabId
+	 */
+	private getNearestTab(tabId: string): undefined | string {
+		const keysArr = Array.from(this.openTabs().keys());
+
+		const removedIndex = keysArr.indexOf(tabId);
+
+		const previousKey = keysArr[removedIndex - 1]
+
+		if (previousKey) {
+			return previousKey;
+		}
+
+		const nextKey = keysArr[removedIndex + 1]
+
+		if (nextKey) {
+			return nextKey;
+		}
+
+		return undefined
 	}
 
 }
