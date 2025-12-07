@@ -5,28 +5,28 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<div class="text-center w-full h-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-py-8 py-1">
-		@if (gameService.isLoading()) {
-			@for (_ of [1, 2, 3, 4, 5, 6]; track _) {
-				<button
-					class="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-700/40 animate-pulse">
-				</button>
-			}
-		} @else {
-			@for (game of gameService.getGames()(); track game.title) {
-				<button
-					[routerLink]="['/library/viewer', game.id]"
+	<div class="text-center w-full h-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-py-8 py-1 staggered-list">
+		@for (game of gameService.getGames(); track game.title) {
+			<button
+				[routerLink]="['/library/viewer', game.id]"
 
-					routerLinkActive #rla="routerLinkActive"
+				routerLinkActive #rla="routerLinkActive"
 
-					class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary light:ring-offset-tertiary-light snap-start"
+				class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary light:ring-offset-tertiary-light snap-start staggered-list-item"
 
-					[ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'"
+				[ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'"
 
-					[attr.aria-label]="'Select ' + game.title">
+				[attr.aria-label]="'Select ' + game.title"
 
-					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
-				</button>
+				[style.--index]="$index">
+
+				<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
+			</button>
+		} @empty {
+			@for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track _) {
+				<div class="staggered-list-item" [style.--index]="$index">
+					<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-700/40 animate-pulse"></button>
+				</div>
 			}
 		}
 	</div>

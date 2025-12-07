@@ -1,0 +1,17 @@
+.staggered-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	.staggered-list-item {
+		transition-property: opacity, transform;
+		transition-duration: 500ms;
+		transition-delay: calc(100ms * var(--index));
+
+		@starting-style {
+			opacity: 0;
+			transform: translateX(-10px);
+		}
+	}
+}
+

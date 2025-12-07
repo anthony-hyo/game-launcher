@@ -1,11 +1,9 @@
-import {inject, Injectable, signal, WritableSignal} from '@angular/core';
+import {inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Game} from '../../interfaces/IGame';
 
 @Injectable({providedIn: 'root'})
 export class GameService {
-
-	isLoading = signal<boolean>(true);
 
 	private readonly STORAGE_KEY = 'gameLauncherPlayCounts';
 
@@ -19,16 +17,14 @@ export class GameService {
 				this.games.set(games);
 
 				this.loadPlayCounts();
-
-				this.isLoading.set(false);
 			})
 	}
 
-	public getGames() {
+	public get getGames(): Signal<Game[]> {
 		return this.games.asReadonly();
 	}
 
-	incrementPlayCount(gameTitle: string): void {
+	public incrementPlayCount(gameTitle: string): void {
 		let updatedGame: Game | undefined;
 
 		this.games.update(currentGames =>
@@ -37,6 +33,7 @@ export class GameService {
 					updatedGame = {...g, playCount: (g.playCount || 0) + 1};
 					return updatedGame;
 				}
+
 				return g;
 			})
 		);
@@ -44,7 +41,7 @@ export class GameService {
 		this.savePlayCounts();
 	}
 
-	getGameById(id: number): Game | undefined {
+	public getGameById(id: number): Game | undefined {
 		return this.games().find(g => g.id === id);
 	}
 
