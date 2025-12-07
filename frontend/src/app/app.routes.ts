@@ -3,6 +3,7 @@ import {Home} from './viewers/home/home';
 import {Download} from './viewers/download/download';
 import {Library} from './viewers/library/library.component';
 import {GameInfo} from './viewers/game-info/game-info.component';
+import {gameInfo} from './app.titles.resolver';
 
 export const routes: Routes = [
 	{
@@ -27,6 +28,6 @@ export const routes: Routes = [
 	{
 		path: 'game/info/:id',
 		component: GameInfo,
-		title: 'Game Info',
+		title: gameInfo
 	}
 ];
