@@ -1,17 +1,12 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
 	--primary-color: #cf1717;
 	--secondary-color: #fbcb00;
 	--tertiary-color-dark: #18191b;
 	--tertiary-color-light: #f3f4f6;
-}
-
-@theme {
-	--color-primary: #cf1717;
-	--color-secondary: #fbcb00;
-	--color-tertiary: #18191b;
-	--color-tertiary-light: #f3f4f6;
 }
 
 /* For custom scrollbar styling */
@@ -87,10 +82,10 @@
 }
 
 /* For old browser */
-/*button {
+button {
 	background-color: transparent;
 	-webkit-appearance: none;
-}*/
+}
 
 /* For electron drag */
 * {
