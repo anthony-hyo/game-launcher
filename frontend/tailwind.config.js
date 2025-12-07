@@ -1,26 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin');
 
+function withOpacityValue(variable) {
+	return ({ opacityValue }) => {
+		if (opacityValue === undefined) {
+			return `rgb(var(${variable}))`;
+		}
+		return `rgb(var(${variable}) / ${opacityValue})`;
+	};
+}
+
 module.exports = {
 	content: [
 		"./src/**/*.{html,ts}",
 	],
-	darkMode: 'class',
+
 	theme: {
 		extend: {
 			colors: {
-				primary: 'var(--primary-color)',
-				secondary: 'var(--secondary-color)',
+				primary: withOpacityValue("--primary-color"),
+				secondary: withOpacityValue("--secondary-color"),
 				tertiary: {
-					DEFAULT: 'var(--tertiary-color-dark)',
-					light: 'var(--tertiary-color-light)',
+					DEFAULT: withOpacityValue("--tertiary-color-dark"),
+					light: withOpacityValue("--tertiary-color-light"),
 				},
 			},
 		},
 	},
+
 	plugins: [
-		plugin(function({ addVariant }) {
-			addVariant('dark', '.dark &');
-		})
+		plugin(({addVariant}) => addVariant('light', '.light &'))
 	],
 };

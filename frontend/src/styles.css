@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--primary-color: #cf1717;
-	--secondary-color: #fbcb00;
-	--tertiary-color-dark: #18191b;
-	--tertiary-color-light: #f3f4f6;
+@layer base {
+	:root {
+		--primary-color: 207 23 23;
+		--secondary-color: 251 203 0;
+
+		--tertiary-color-dark: 24 25 27;
+		--tertiary-color-light: 243 244 246;
+	}
 }
 
 /* For custom scrollbar styling */
@@ -16,16 +19,16 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--tertiary-color-dark);
+	background: theme('colors.tertiary.DEFAULT');
 }
 
 ::-webkit-scrollbar-thumb {
-	background: var(--primary-color);
+	background: theme('colors.primary');
 	border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #e03d3d; /* Lighter red for hover */
+	background-color: rgb(var(--primary-color) / 0.7);
 }
 
 .scrollbar-none::-webkit-scrollbar {
@@ -48,37 +51,6 @@
 
 .light ::-webkit-scrollbar-thumb:hover {
 	background: #6b7280;
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-.shimmer-bg {
-	position: relative;
-	overflow: hidden;
-}
-
-.shimmer-bg::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transform: translateX(-100%);
-	background-image: linear-gradient(
-			90deg,
-			rgba(255, 255, 255, 0) 0,
-			rgba(255, 255, 255, 0.3) 40%,
-			rgba(255, 255, 255, 0.6) 50%,
-			rgba(255, 255, 255, 0.3) 60%,
-			rgba(255, 255, 255, 0) 100%
-	);
-	animation: shimmer 1.5s infinite;
 }
 
 /* For old browser */

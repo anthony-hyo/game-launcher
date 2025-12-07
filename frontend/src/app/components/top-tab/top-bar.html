@@ -1,14 +1,14 @@
-<div class="draggable flex-shrink-0 bg-gray-200 dark:bg-neutral-950 backdrop-blur-md border-b border-black/10 dark:border-white/5 z-20 flex items-center justify-between pr-3 h-[50px]">
+<div class="draggable flex-shrink-0 bg-neutral-950 light:bg-gray-200 backdrop-blur-md border-b border-white/5 light:border-black/10 z-20 flex items-center justify-between pr-3 h-[50px]">
 	<div class="flex items-end -mb-px pl-4 overflow-x-auto no-scrollbar h-full self-end">
-		<button routerLink="/library" (click)="state.openRouterView()" [class.border-primary]="isLauncherViewActive()" [class.border-transparent]="!isLauncherViewActive()" [class.dark:hover:text-white]="!isLauncherViewActive()" [class.dark:text-gray-400]="!isLauncherViewActive()" [class.dark:text-white]="isLauncherViewActive()" [class.hover:text-black]="!isLauncherViewActive()" [class.text-black]="isLauncherViewActive()" [class.text-gray-600]="!isLauncherViewActive()" class="not-draggable flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap">
+		<button routerLink="/library" (click)="state.openRouterView()" [class.border-primary]="isLauncherViewActive()" [class.border-transparent]="!isLauncherViewActive()" [class.hover:text-white]="!isLauncherViewActive()" [class.light:hover:text-black]="!isLauncherViewActive()" [class.text-gray-400]="!isLauncherViewActive()" [class.light:text-gray-600]="!isLauncherViewActive()" [class.text-white]="isLauncherViewActive()" [class.light:text-black]="isLauncherViewActive()" class="not-draggable flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap">
 			<span class="mr-2 material-symbols-rounded">browse</span>
 			Library
 		</button>
 
 		@for (tab of state.openTabs(); track tab.tabId) {
-			<button (click)="state.openTab(tab.tabId)" class="not-draggable group flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]" [class.text-black]="state.activeView() === tab.tabId" [class.dark:text-white]="state.activeView() === tab.tabId" [class.border-primary]="state.activeView() === tab.tabId" [class.text-gray-600]="state.activeView() !== tab.tabId" [class.dark:text-gray-400]="state.activeView() !== tab.tabId" [class.border-transparent]="state.activeView() !== tab.tabId" [class.hover:text-black]="state.activeView() !== tab.tabId" [class.dark:hover:text-white]="state.activeView() !== tab.tabId">
+			<button (click)="state.openTab(tab.tabId)" class="not-draggable group flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]" [class.text-white]="state.activeView() === tab.tabId" [class.light:text-black]="state.activeView() === tab.tabId" [class.border-primary]="state.activeView() === tab.tabId" [class.text-gray-400]="state.activeView() !== tab.tabId" [class.light:text-gray-600]="state.activeView() !== tab.tabId" [class.border-transparent]="state.activeView() !== tab.tabId" [class.hover:text-white]="state.activeView() !== tab.tabId" [class.light:hover:text-black]="state.activeView() !== tab.tabId">
 				<span class="truncate">{{ tab.game.title }}</span>
-				<button (click)="closeTab($event, tab.tabId)" class="ml-2 w-5 h-5 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-400 dark:hover:bg-gray-700 hover:text-white transition-colors duration-200 flex-shrink-0">
+				<button (click)="closeTab($event, tab.tabId)" class="ml-2 w-5 h-5 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-700 light:hover:bg-gray-400 hover:text-white transition-colors duration-200 flex-shrink-0">
 					<span class="material-symbols-rounded">close_small</span>
 				</button>
 			</button>
@@ -17,15 +17,15 @@
 
 	<!-- Window Controls -->
 	<div class="not-draggable flex items-center gap-1.5 ml-4">
-		<button (click)="minimizeApp()" aria-label="Minimize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none">
+		<button (click)="minimizeApp()" aria-label="Minimize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">minimize</span>
 		</button>
 
-		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none">
+		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">{{ isFullscreen() ? 'fullscreen_exit' : 'crop_square' }} </span>
 		</button>
 
-		<button (click)="closeApp()" aria-label="Close" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-white dark:text-gray-400 dark:hover:text-white hover:bg-red-500 transition-colors focus:outline-none">
+		<button (click)="closeApp()" aria-label="Close" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">close</span>
 		</button>
 	</div>

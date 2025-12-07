@@ -1,6 +1,6 @@
-<div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out filter brightness-75 dark:brightness-50" [style.background-image]="'url(' + game.imageUrl + ')'"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out filter brightness-50 light:brightness-75" [style.background-image]="'url(' + game.imageUrl + ')'"></div>
 
-<div class="absolute inset-0 bg-gradient-to-t from-tertiary-light dark:from-tertiary via-tertiary-light/70 dark:via-tertiary/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-tertiary light:from-tertiary-light via-tertiary/70 light:via-tertiary-light/70 to-transparent"></div>
 
 <div class="relative z-10 h-full overflow-y-auto">
 	<button routerLink="/library" class="absolute top-6 left-6 z-30 flex items-center space-x-2 bg-black/50 text-white px-4 py-2 rounded-lg hover:bg-black/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-tertiary">
@@ -15,7 +15,7 @@
 					<span class="inline-block bg-secondary text-tertiary text-sm font-bold px-4 py-1 rounded-full">{{ game.genre }}</span>
 
 					@if (game.playCount && game.playCount > 0) {
-						<div class="flex items-center space-x-2 text-gray-200 dark:text-gray-300 font-bold bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+						<div class="flex items-center space-x-2 text-gray-300 light:text-gray-200 font-bold bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
 							<span class="material-symbols-rounded text-sm">play_circle</span>
 							<span>Played {{ game.playCount }} {{ game.playCount === 1 ? 'time' : 'times' }}</span>
 						</div>
@@ -24,7 +24,7 @@
 
 				<h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter mb-4 text-white text-shadow-lg uppercase" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5)">{{ game.title }}</h1>
 
-				<p class="text-lg text-gray-100 dark:text-gray-300 mb-8 max-w-prose drop-shadow-md">{{ game.description }}</p>
+				<p class="text-lg text-gray-300 light:text-gray-100 mb-8 max-w-prose drop-shadow-md">{{ game.description }}</p>
 
 				<button (click)="stateService.onPlayGame(game)" class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 text-lg font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transform hover:-translate-y-1 transition-all duration-300 shadow-2xl shadow-black/40 hover:shadow-black/50">
 					<span class="material-symbols-rounded mr-2">play_arrow</span>
@@ -35,16 +35,16 @@
 
 		@if (game.news && game.news.length > 0) {
 			<div class="mt-8 pb-16">
-				<h2 class="text-3xl font-bold mb-6 border-l-4 border-primary pl-4 uppercase tracking-wider text-black dark:text-white">Latest News</h2>
+				<h2 class="text-3xl font-bold mb-6 border-l-4 border-primary pl-4 uppercase tracking-wider text-white light:text-black">Latest News</h2>
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 					@for (article of game.news; track article.title) {
-						<div class="bg-white/60 dark:bg-black/60 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 cursor-pointer flex ring-1 ring-black/5 dark:ring-white/5 hover:ring-black/10 dark:hover:ring-white/10">
+						<div class="bg-black/60 light:bg-white/60 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 cursor-pointer flex ring-1 ring-white/5 light:ring-black/5 hover:ring-white/10 light:hover:ring-black/10">
 							<img [src]="article.imageUrl" [alt]="article.title" class="w-1/3 h-auto object-cover">
 
 							<div class="p-4 w-2/3">
-								<p class="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase">{{ article.date }}</p>
-								<h3 class="font-semibold mb-2 text-gray-900 dark:text-white">{{ article.title }}</h3>
-								<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{{ article.summary }}</p>
+								<p class="text-xs text-gray-400 light:text-gray-500 mb-1 uppercase">{{ article.date }}</p>
+								<h3 class="font-semibold mb-2 text-white light:text-gray-900">{{ article.title }}</h3>
+								<p class="text-sm text-gray-400 light:text-gray-600 line-clamp-2">{{ article.summary }}</p>
 							</div>
 						</div>
 					}
@@ -54,6 +54,6 @@
 	</div>
 </div>
 
-<footer class="absolute bottom-4 right-8 text-gray-500 dark:text-gray-400 text-sm z-20">
+<footer class="absolute bottom-4 right-8 text-gray-400 light:text-gray-500 text-sm z-20">
 	© 2025 Launcher. All rights reserved.
 </footer>

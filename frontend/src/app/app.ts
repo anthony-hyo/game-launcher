@@ -33,12 +33,10 @@ export class App {
 
 	constructor(_routerHandler: RouterHandler) {
 		effect(() => {
-			if (this.settings.theme() === 'dark') {
-				this.renderer.addClass(this.document.documentElement, 'dark');
-				this.renderer.removeClass(this.document.documentElement, 'light');
-			} else {
-				this.renderer.removeClass(this.document.documentElement, 'dark');
+			if (this.settings.theme() === 'light') {
 				this.renderer.addClass(this.document.documentElement, 'light');
+			} else {
+				this.renderer.removeClass(this.document.documentElement, 'light');
 			}
 		});
 	}
