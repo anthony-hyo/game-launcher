@@ -1,0 +1,16 @@
+@use "scss/electron";
+@use "scss/scroll";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--primary-color: 207 23 23;
+		--secondary-color: 251 203 0;
+
+		--tertiary-color-dark: 24 25 27;
+		--tertiary-color-light: 243 244 246;
+	}
+}

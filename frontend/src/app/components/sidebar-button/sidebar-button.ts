@@ -1,5 +1,4 @@
 import {Component, inject, input} from '@angular/core';
-import {NgClass} from '@angular/common'
 import {StateService} from '../../services/state/state.service';
 import {ViewType} from '../../helper/helper.viewer';
 import {RouterLink, RouterLinkActive} from '@angular/router';
@@ -7,7 +6,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 @Component({
 	selector: 'app-sidebar-button',
 	imports: [
-		NgClass,
 		RouterLink,
 		RouterLinkActive
 	],

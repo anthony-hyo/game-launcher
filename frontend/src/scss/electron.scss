@@ -1,0 +1,17 @@
+* {
+	-webkit-user-select: none;
+}
+
+.draggable {
+	-webkit-app-region: drag;
+}
+
+.not-draggable {
+	-webkit-app-region: no-drag;
+}
+
+/* For old browser */
+button {
+	background-color: transparent;
+	-webkit-appearance: none;
+}
