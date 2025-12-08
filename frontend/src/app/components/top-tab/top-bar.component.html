@@ -17,7 +17,7 @@
 				<button
 					(click)="state.openTab(tab.tabId)"
 
-					class="not-draggable flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]"
+					class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]"
 
 					[ngClass]="state.activeView() == tab.tabId ? 'text-white light:text-black border-primary' : 'text-gray-400 light:text-gray-600 border-transparent hover:text-white light:hover:text-black'">
 
@@ -25,7 +25,7 @@
 
 					<span class="ps-2 truncate">{{ tab.game.title }}</span>
 
-					<button (click)="this.state.closeTab($event, tab)" class="ml-2 w-5 h-5 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-700 light:hover:bg-gray-400 hover:text-white transition-colors duration-200 flex-shrink-0">
+					<button (click)="this.state.closeTab($event, tab)" class="bg-transparent ml-2 w-5 h-5 rounded-lg flex items-center justify-center text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 focus:outline-none transition-colors duration-300 flex-shrink-0">
 						<span class="material-symbols-rounded">close_small</span>
 					</button>
 				</button>
@@ -34,15 +34,15 @@
 	</div>
 
 	<div class="not-draggable flex items-center gap-1.5 ml-4">
-		<button (click)="minimizeApp()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
+		<button (click)="minimizeApp()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
 			<span class="material-symbols-rounded text-base">minimize</span>
 		</button>
 
-		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
+		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
 			<span class="material-symbols-rounded text-base">{{ isFullscreen() ? 'fullscreen_exit' : 'crop_square' }} </span>
 		</button>
 
-		<button (click)="closeApp()" aria-label="Close" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors focus:outline-none">
+		<button (click)="closeApp()" aria-label="Close" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors duration-300 focus:outline-none">
 			<span class="material-symbols-rounded text-base">close</span>
 		</button>
 	</div>
