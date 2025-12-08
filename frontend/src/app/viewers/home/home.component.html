@@ -3,7 +3,8 @@
 <div class="absolute inset-0 bg-gradient-to-t from-black light:from-tertiary-light via-tertiary/70 light:via-tertiary-light/70 to-transparent"></div>
 
 <div class="relative z-10 h-full flex flex-col items-center justify-center text-center p-8">
-	<h1 class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white text-shadow-lg uppercase" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5)">Launcher</h1>
+	<h1 class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white text-shadow-lg uppercase" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5)">{{ environment.name }}</h1>
+
 	<p class="text-xl text-gray-300 light:text-gray-200 mt-4 mb-8 max-w-2xl drop-shadow-md">
 		Your Ultimate Gaming Universe. Discover, play, and connect like never before. </p>
 	<button (click)="downloadClick.emit()" class="inline-flex items-center justify-center px-12 py-4 text-lg font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transform hover:-translate-y-1 transition-all duration-300 shadow-2xl shadow-black/40 hover:shadow-black/50">

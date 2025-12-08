@@ -1,7 +1,8 @@
 import {Environment} from './models/environment.model';
 
 export const environment: Environment = {
-	showDownload: false,
-	showHome: false,
+	name: 'Web Launcher',
+	showDownload: true,
+	showHome: true,
 	useHash: true
 };
