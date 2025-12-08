@@ -1,0 +1,4 @@
+export enum HelperStorage {
+	THEME = 'GAME_LAUNCHER_THEME',
+	PLAY_COUNTS = 'GAME_LAUNCHER_PLAY_COUNTS'
+}

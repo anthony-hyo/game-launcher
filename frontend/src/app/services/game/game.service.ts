@@ -1,11 +1,10 @@
 import {inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Game} from '../../models/game.model';
+import {HelperStorage} from '../../helper/helper.storage';
 
 @Injectable({providedIn: 'root'})
 export class GameService {
-
-	private readonly STORAGE_KEY = 'gameLauncherPlayCounts';
 
 	private http = inject(HttpClient);
 
@@ -46,7 +45,7 @@ export class GameService {
 	}
 
 	private loadPlayCounts(): void {
-		const savedCountsRaw = localStorage.getItem(this.STORAGE_KEY);
+		const savedCountsRaw = localStorage.getItem(HelperStorage.PLAY_COUNTS);
 		const playCounts = savedCountsRaw ? JSON.parse(savedCountsRaw) : {};
 
 		this.games.update(currentGames =>
@@ -63,7 +62,7 @@ export class GameService {
 			return acc;
 		}, {} as { [key: string]: number });
 
-		localStorage.setItem(this.STORAGE_KEY, JSON.stringify(allCounts));
+		localStorage.setItem(HelperStorage.PLAY_COUNTS, JSON.stringify(allCounts));
 	}
 
 }
