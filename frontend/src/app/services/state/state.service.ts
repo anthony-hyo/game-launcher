@@ -1,6 +1,6 @@
 import {inject, Injectable, signal} from '@angular/core';
-import {Game} from '../../interfaces/IGame';
-import {Tab} from '../../interfaces/ITab';
+import {Game} from '../../models/game.model';
+import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';
 import {Router} from '@angular/router';
 import {random} from '../../helper/helper.random';

@@ -1,5 +1,5 @@
 import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import {Config} from '../../interfaces/IConfig';
+import {Config} from '../../models/config.model';
 
 @Injectable({
 	providedIn: 'root',

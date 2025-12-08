@@ -1,4 +1,4 @@
-import {Game} from './IGame';
+import {Game} from './game.model';
 import {SafeResourceUrl} from '@angular/platform-browser';
 
 export interface Tab {

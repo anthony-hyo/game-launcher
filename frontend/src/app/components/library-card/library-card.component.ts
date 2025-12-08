@@ -1,5 +1,5 @@
 import {Component, inject, input} from '@angular/core';
-import {Game} from '../../interfaces/IGame';
+import {Game} from '../../models/game.model';
 import {StateService} from '../../services/state/state.service';
 import {GameService} from '../../services/game/game.service';
 import {SettingsService} from '../../services/setting/setting.service';
