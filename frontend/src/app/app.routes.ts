@@ -6,19 +6,27 @@ import {LibraryViewer} from './viewers/library-viewer/library-viewer.component';
 import {libraryViewer} from './app.titles.resolver';
 import {Launcher} from './viewers/launcher/launcher.component';
 import {Loading} from './viewers/loading/loading.component';
+import {environment} from '../environments/environment';
 
 export const routes: Routes = [
 	{
-		path: 'home',
-		redirectTo: '',
+		path: '',
+		redirectTo: 'home',
+		pathMatch: "full"
 	},
 	{
 		path: '',
 		component: Launcher,
 		title: 'Launcher',
 		children: [
+			...(!environment.showHome ? [
+				{
+					path: 'home',
+					redirectTo: 'library',
+				}
+			] : []),
 			{
-				path: '',
+				path: 'home',
 				component: Home,
 				title: 'Home',
 			},

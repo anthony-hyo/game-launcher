@@ -4,6 +4,7 @@ import {NgClass} from '@angular/common';
 import {SettingsService} from '../../services/setting/setting.service';
 import {SidebarButton} from '../sidebar-button/sidebar-button.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
 	selector: 'app-sidebar',
@@ -18,7 +19,9 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class Sidebar {
 
-	public gameService = inject(GameService);
-	public settingsService = inject(SettingsService);
+	protected readonly environment = environment;
+
+	protected readonly gameService = inject(GameService);
+	protected readonly settingsService = inject(SettingsService);
 
 }
