@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController()
 public class LauncherController {
+	
+	private final static AtomicInteger counter = new AtomicInteger(0);
 
 	@GetMapping("/api/launcher/games")
 	public List<Launcher> getPerson() {
 		return new ArrayList<>() {
 			{
 				add(new Launcher(
+					counter.incrementAndGet(),
 					"Unknown Game",
 					"No description available.",
 					"https://placehold.co/1920x1080?text=Game+Background&font=roboto",
@@ -37,7 +41,8 @@ public class LauncherController {
 				));
 				
 				add(new Launcher(
-					"Unknown Game 2",
+					counter.incrementAndGet(),
+					"Unknown Game " + counter.get(),
 					"No description available.",
 					"https://placehold.co/1920x1080?text=Game+Background&font=roboto",
 					"https://placehold.co/300x450?text=Game+Cover&font=roboto",
