@@ -1,9 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {LauncherService} from '../../services/launcher/launcher.service';
+import {Footer} from '../../components/footer/footer.component';
 
 @Component({
 	selector: 'app-download',
-	imports: [],
+	imports: [
+		Footer
+	],
 	templateUrl: './download.component.html',
 	styleUrl: './download.component.scss',
 })

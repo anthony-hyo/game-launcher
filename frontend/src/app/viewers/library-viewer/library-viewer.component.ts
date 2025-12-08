@@ -4,11 +4,13 @@ import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {Game} from '../../models/game.model';
+import {Footer} from '../../components/footer/footer.component';
 
 @Component({
 	selector: 'app-library-viewer',
 	imports: [
-		RouterLink
+		RouterLink,
+		Footer
 	],
 	templateUrl: './library-viewer.component.html',
 	styleUrl: './library-viewer.component.scss',
