@@ -4,5 +4,5 @@ export const environment: Environment = {
 	name: 'Web Launcher',
 	showDownload: true,
 	showHome: true,
-	useHash: true
+	useHash: false
 };
