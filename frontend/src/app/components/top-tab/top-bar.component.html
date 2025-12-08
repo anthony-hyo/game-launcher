@@ -6,34 +6,30 @@
 
 			[ngClass]="this.state.isRouterActive ? 'border-primary text-white light:text-black' : 'border-transparent hover:text-white light:hover:text-black text-gray-400 light:text-gray-600'"
 
-			class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap">
+			class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full">
 
 			<span class="mr-2 material-symbols-rounded">browse</span>
 			Library
 		</button>
 
-		<div class="flex items-end pl-4 h-full self-end scrollbar-none overflow-x-auto overflow-y-hidden">
+		<div #scrollArea (wheel)="onWheelHorizontal($event)" class="flex items-end pl-4 h-full self-end scrollbar-none overflow-x-auto overflow-y-hidden scroll-smooth">
 			@for (tab of state.openTabs().values(); track tab.tabId) {
-				<button
-					(click)="state.openTab(tab.tabId)"
-
-					class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]"
-
-					[ngClass]="state.activeView() == tab.tabId ? 'text-white light:text-black border-primary' : 'text-gray-400 light:text-gray-600 border-transparent hover:text-white light:hover:text-black'">
-
-					<img class="w-4 h-auto object-cover rounded-xl" [src]="'https://s2.googleusercontent.com/s2/favicons?domain='+tab.url+'&sz=32'" [alt]="tab.game.title"/>
-
-					<span class="ps-2 truncate">{{ tab.game.title }}</span>
-
-					<button (click)="this.state.closeTab($event, tab)" class="bg-transparent ml-2 w-5 h-5 rounded-lg flex items-center justify-center text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 focus:outline-none transition-colors duration-300 flex-shrink-0">
-						<span class="material-symbols-rounded">close_small</span>
-					</button>
-				</button>
+				<app-top-bar-tab [tab]="tab"/>
 			}
 		</div>
 	</div>
 
-	<div class="not-draggable flex items-center gap-1.5 ml-4">
+	<div [class.hidden]="!isScrollable()" class="not-draggable flex items-center">
+		<button (click)="scrollLeft()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
+			<span class="material-symbols-rounded">keyboard_arrow_left</span>
+		</button>
+
+		<button (click)="scrollRight()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
+			<span class="material-symbols-rounded">keyboard_arrow_right</span>
+		</button>
+	</div>
+
+	<div class="not-draggable flex items-center gap-1.5">
 		<button (click)="minimizeApp()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
 			<span class="material-symbols-rounded text-base">minimize</span>
 		</button>

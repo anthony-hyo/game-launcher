@@ -1,24 +1,55 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, effect, ElementRef, inject, signal, viewChild} from '@angular/core';
 import {DOCUMENT, NgClass} from '@angular/common';
 import {StateService} from '../../services/state/state.service';
 import {RouterLink} from '@angular/router';
+import {TopBarTab} from '../top-bar-tab/top-bar-tab.component';
 
 @Component({
 	selector: 'app-top-bar',
 	imports: [
 		RouterLink,
-		NgClass
+		NgClass,
+		TopBarTab
 	],
 	templateUrl: './top-bar.component.html',
 	styleUrl: './top-bar.component.scss',
 })
-export class TabBar {
+export class TopBar {
 
-	state = inject(StateService);
+	private readonly document = inject(DOCUMENT);
+	private readonly scrollArea = viewChild.required<ElementRef>('scrollArea')
 
-	private document = inject(DOCUMENT) as Document;
+	protected readonly state = inject(StateService);
 
-	isFullscreen = signal(false);
+	protected readonly isFullscreen = signal(false);
+	protected readonly isScrollable = signal(false);
+
+	constructor() {
+		effect(() => {
+			const el = this.scrollArea().nativeElement;
+
+			const updateScroll = () => this.isScrollable.set(el.scrollWidth > el.clientWidth);
+
+			new ResizeObserver(updateScroll).observe(el);
+
+			updateScroll();
+		});
+	}
+
+	scrollLeft() {
+		const el = this.scrollArea().nativeElement;
+		el.scrollBy({left: -150, behavior: 'smooth'});
+	}
+
+	scrollRight() {
+		const el = this.scrollArea().nativeElement;
+		el.scrollBy({left: 150, behavior: 'smooth'});
+	}
+
+	onWheelHorizontal(e: WheelEvent) {
+		const el = e.currentTarget as HTMLElement;
+		el.scrollLeft += e.deltaY;
+	}
 
 	minimizeApp(): void {
 		console.log('Application minimized to tray');

@@ -1,7 +1,7 @@
 import {Component, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, Renderer2} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
-import {TabBar} from '../../components/top-tab/top-bar.component';
+import {TopBar} from '../../components/top-tab/top-bar.component';
 import {GameService} from '../../services/game/game.service';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
@@ -13,7 +13,7 @@ import {Setting} from '../../components/setting/setting.component';
 	imports: [
 		RouterOutlet,
 		Sidebar,
-		TabBar,
+		TopBar,
 		Setting
 	],
 	schemas: [
