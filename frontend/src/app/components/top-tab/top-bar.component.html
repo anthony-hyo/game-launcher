@@ -6,7 +6,7 @@
 
 			[ngClass]="this.state.isRouterActive ? 'border-primary text-white light:text-black' : 'border-transparent hover:text-white light:hover:text-black text-gray-400 light:text-gray-600'"
 
-			class="not-draggable flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap">
+			class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap">
 
 			<span class="mr-2 material-symbols-rounded">browse</span>
 			Library
@@ -34,15 +34,15 @@
 	</div>
 
 	<div class="not-draggable flex items-center gap-1.5 ml-4">
-		<button (click)="minimizeApp()" aria-label="Minimize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
+		<button (click)="minimizeApp()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">minimize</span>
 		</button>
 
-		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
+		<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">{{ isFullscreen() ? 'fullscreen_exit' : 'crop_square' }} </span>
 		</button>
 
-		<button (click)="closeApp()" aria-label="Close" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors focus:outline-none">
+		<button (click)="closeApp()" aria-label="Close" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors focus:outline-none">
 			<span class="material-symbols-rounded text-base">close</span>
 		</button>
 	</div>

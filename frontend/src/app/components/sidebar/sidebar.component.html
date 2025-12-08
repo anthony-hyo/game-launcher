@@ -33,8 +33,7 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="group relative flex-shrink-0 text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black transition-colors duration-200 focus:outline-none">
-		<span class="material-symbols-rounded">settings</span>
-		<span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-zinc-800 text-white text-sm px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">Settings</span>
+	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="bg-transparent group relative flex-shrink-0 text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black transition-colors duration-200 focus:outline-none hove">
+		<span class="material-symbols-rounded transition-transform hover:rotate-90">settings</span>
 	</button>
 </aside>
