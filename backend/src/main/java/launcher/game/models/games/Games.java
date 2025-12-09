@@ -36,8 +36,9 @@ public class Games {
 	@Column(name = "icon_url")
 	private String iconUrl;
 
-	@Column(name = "play_click")
-	private int playClick;
+	@JsonIgnore
+	@Column(name = "play_clicks")
+	private int playClicks;
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
@@ -121,12 +122,12 @@ public class Games {
 		return this;
 	}
 
-	public int getPlayClick() {
-		return playClick;
+	public int getPlayClicks() {
+		return playClicks;
 	}
 
-	public Games setPlayClick(int playClick) {
-		this.playClick = playClick;
+	public Games setPlayClicks(int playClicks) {
+		this.playClicks = playClicks;
 		return this;
 	}
 
