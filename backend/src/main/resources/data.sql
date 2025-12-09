@@ -78,7 +78,7 @@ VALUES ('Final Fantasy XIV Online',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/logo.png');
 
-INSERT INTO launcher_deploys (systems, version, description, url)
+INSERT INTO launcher_deploys (system, version, description, url)
 VALUES ('Windows', '1.0.0', 'basic game library support, simple UI, initial release, limited features',
         'https://example.com/launcher/1.0.0/download'),
        ('macOS', '1.0.0', 'basic game library support, simple UI, initial release, limited features',

@@ -15,11 +15,17 @@ public class LauncherDeploys {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "system")
+	private String system;
+
 	@Column(name = "version")
 	private String version;
 
 	@Column(name = "description")
 	private String description;
+
+	@Column(name = "url")
+	private String url;
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
@@ -40,6 +46,15 @@ public class LauncherDeploys {
 		return this;
 	}
 
+	public String getSystem() {
+		return system;
+	}
+
+	public LauncherDeploys setSystem(String system) {
+		this.system = system;
+		return this;
+	}
+
 	public String getVersion() {
 		return version;
 	}
@@ -55,6 +70,15 @@ public class LauncherDeploys {
 
 	public LauncherDeploys setDescription(String description) {
 		this.description = description;
+		return this;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public LauncherDeploys setUrl(String url) {
+		this.url = url;
 		return this;
 	}
 

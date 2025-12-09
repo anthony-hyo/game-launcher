@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS games
 CREATE TABLE IF NOT EXISTS launcher_deploys
 (
     id          SERIAL PRIMARY KEY,
-    systems     VARCHAR(16) DEFAULT 'Windows'                                                                                                 NOT NULL,
+    system      VARCHAR(16) DEFAULT 'Windows'                                                                                                 NOT NULL,
     version     VARCHAR(16) DEFAULT '1.0.0'                                                                                                   NOT NULL,
     description TEXT        DEFAULT 'No description available.,No description available.,No description available.,No description available.' NOT NULL,
     url         TEXT        DEFAULT 'https://www.google.com/'                                                                                 NOT NULL,
