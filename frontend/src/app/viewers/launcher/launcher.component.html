@@ -12,7 +12,7 @@
 			@for (tab of state.openTabs().values(); track tab.tabId) {
 				<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.tabId">
 					@if (environment.useWebview) {
-						<webview class="w-full h-full border-0" [attr.src]="tab.safeUrl" webpreferences="allowRunningInsecureContent" enableremotemodule="false" plugins allowpopups></webview>
+						<webview class="w-full h-full border-0" [attr.src]="tab.url" webpreferences="allowRunningInsecureContent" enableremotemodule="false" plugins allowpopups></webview>
 					} @else {
 						<iframe class="w-full h-full border-0" [attr.src]="tab.safeUrl"></iframe>
 					}

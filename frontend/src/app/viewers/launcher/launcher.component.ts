@@ -2,7 +2,6 @@ import {Component, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, Renderer2} from '
 import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
 import {TopBar} from '../../components/top-tab/top-bar.component';
-import {LibraryService} from '../../services/library/library.service';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
