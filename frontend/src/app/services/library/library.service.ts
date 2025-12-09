@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Game} from '../../models/game.model';
 import {HelperStorage} from '../../helper/helper.storage';
 import {environment} from '../../../environments/environment';
-import {retry} from 'rxjs';
+import {interval, retry, startWith, switchMap} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class LibraryService {
@@ -13,11 +13,18 @@ export class LibraryService {
 	private games: WritableSignal<Game[]> = signal<Game[]>([]);
 
 	constructor() {
-		this.http
-			.get<Game[]>(`${environment.apiUrl}/api/library/games`)
-			.pipe(retry({
-				delay: 2500,
-			}))
+		interval(60000 * 30) //execute every thirty minutes
+			.pipe(
+				startWith(0), //execute now
+				switchMap(() =>
+					this.http.get<Game[]>(`${environment.apiUrl}/api/library/games`)
+						.pipe(
+							retry({
+								delay: 5000
+							})
+						)
+				)
+			)
 			.subscribe(games => {
 				this.games.set(games);
 
@@ -30,17 +37,8 @@ export class LibraryService {
 	}
 
 	public incrementPlayCount(gameTitle: string): void {
-		let updatedGame: Game | undefined;
-
 		this.games.update(currentGames =>
-			currentGames.map(g => {
-				if (g.title === gameTitle) {
-					updatedGame = {...g, playCount: (g.playCount || 0) + 1};
-					return updatedGame;
-				}
-
-				return g;
-			})
+			currentGames.map(g => g.title === gameTitle ? {...g, playCount: (g.playCount || 0) + 1} : g)
 		);
 
 		this.savePlayCounts();
