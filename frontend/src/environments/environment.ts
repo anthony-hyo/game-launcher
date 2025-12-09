@@ -5,5 +5,6 @@ export const environment: Environment = {
 	apiUrl: 'http://localhost:8080',
 	showDownload: true,
 	showHome: true,
-	useHash: false
+	useHash: false,
+	useWebview: false
 };

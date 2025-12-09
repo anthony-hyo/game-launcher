@@ -7,6 +7,7 @@ import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
 import {Setting} from '../../components/setting/setting.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
 	selector: 'app-launcher',
@@ -24,12 +25,13 @@ import {Setting} from '../../components/setting/setting.component';
 })
 export class Launcher {
 
-	gameService = inject(LibraryService);
-	state = inject(StateService);
-	settings = inject(SettingsService);
+	protected readonly state = inject(StateService);
+	protected readonly settings = inject(SettingsService);
 
-	private renderer = inject(Renderer2);
-	private document = inject(DOCUMENT);
+	protected readonly environment = environment;
+
+	private readonly renderer = inject(Renderer2);
+	private readonly document = inject(DOCUMENT);
 
 	constructor(_routerHandler: RouterHandler) {
 		effect(() => {

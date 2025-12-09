@@ -5,13 +5,14 @@ import {ViewType} from '../../helper/helper.viewer';
 import {Router} from '@angular/router';
 import {random} from '../../helper/helper.random';
 import {LibraryService} from '../library/library.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
 
-	private router = inject(Router);
-
-	public gameService = inject(LibraryService);
+	private readonly router = inject(Router);
+	private readonly gameService = inject(LibraryService);
+	private readonly sanitizer = inject(DomSanitizer);
 
 	activeView = signal<'router' | string>('router'); //todo: make private
 	openTabs = signal<Map<string, Tab>>(new Map());
@@ -58,7 +59,8 @@ export class StateService {
 		const newTab: Tab = {
 			tabId: random(),
 			game: game,
-			url: game.url
+			url: game.url,
+			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(game.url)
 		};
 
 		this.openTabs().set(newTab.tabId, newTab);
