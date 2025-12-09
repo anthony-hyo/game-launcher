@@ -2,6 +2,7 @@ import {inject, Injectable, Signal, signal, WritableSignal} from '@angular/core'
 import {HttpClient} from '@angular/common/http';
 import {Game} from '../../models/game.model';
 import {HelperStorage} from '../../helper/helper.storage';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class LibraryService {
@@ -11,7 +12,7 @@ export class LibraryService {
 	private games: WritableSignal<Game[]> = signal<Game[]>([]);
 
 	constructor() {
-		this.http.get<Game[]>(`http://localhost:8080/api/library/games`)
+		this.http.get<Game[]>(`${environment.apiUrl}/api/library/games`)
 			.subscribe(games => {
 				this.games.set(games);
 
