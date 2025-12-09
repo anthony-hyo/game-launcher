@@ -3,6 +3,7 @@ import {DOCUMENT, NgClass} from '@angular/common';
 import {StateService} from '../../services/state/state.service';
 import {RouterLink} from '@angular/router';
 import {TopBarTab} from '../top-bar-tab/top-bar-tab.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
 	selector: 'app-top-bar',
@@ -15,6 +16,8 @@ import {TopBarTab} from '../top-bar-tab/top-bar-tab.component';
 	styleUrl: './top-bar.component.scss',
 })
 export class TopBar {
+
+	protected readonly environment = environment;
 
 	private readonly document = inject(DOCUMENT);
 	private readonly scrollArea = viewChild.required<ElementRef>('scrollArea')
@@ -36,26 +39,26 @@ export class TopBar {
 		});
 	}
 
-	scrollLeft() {
+	protected scrollLeft() {
 		const el = this.scrollArea().nativeElement;
 		el.scrollBy({left: -150, behavior: 'smooth'});
 	}
 
-	scrollRight() {
+	protected scrollRight() {
 		const el = this.scrollArea().nativeElement;
 		el.scrollBy({left: 150, behavior: 'smooth'});
 	}
 
-	onWheelHorizontal(e: WheelEvent) {
+	protected onWheelHorizontal(e: WheelEvent) {
 		const el = e.currentTarget as HTMLElement;
 		el.scrollLeft += e.deltaY;
 	}
 
-	minimizeApp(): void {
+	protected minimizeApp(): void {
 		console.log('Application minimized to tray');
 	}
 
-	toggleMaximizeApp(): void {
+	protected toggleMaximizeApp(): void {
 		if (!this.document.fullscreenElement) {
 			this.document.documentElement.requestFullscreen().then(() => {
 				this.isFullscreen.set(true);
@@ -70,16 +73,8 @@ export class TopBar {
 		}
 	}
 
-	closeApp(): void {
-		console.log('Closing application...');
-
-		setTimeout(() => {
-			try {
-				window.close();
-			} catch (e) {
-				console.warn('Cannot close window via script', e);
-			}
-		}, 1000);
+	protected closeApp(): void {
+		window.close();
 	}
 
 }
