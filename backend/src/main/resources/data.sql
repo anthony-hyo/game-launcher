@@ -101,31 +101,4 @@ VALUES ('Windows', '1.0.0', 'basic game library support, simple UI, initial rele
        ('macOS', '1.2.0', 'automatic updates, macOS fixes, performance improvements, UI tweaks',
         'https://example.com/launcher/1.2.0/mac/download'),
        ('Linux', '1.2.0', 'automatic updates, Linux fixes, performance improvements, UI tweaks',
-        'https://example.com/launcher/1.2.0/linux/download'),
-
-       ('Windows', '2.0.0',
-        'redesigned interface, cloud saves integration, improved download manager, stability improvements',
-        'https://example.com/launcher/2.0.0/download'),
-       ('macOS', '2.0.0',
-        'redesigned interface, cloud saves integration, improved download manager, stability improvements',
-        'https://example.com/launcher/2.0.0/mac/download'),
-       ('Linux', '2.0.0',
-        'redesigned interface, cloud saves integration, improved download manager, stability improvements',
-        'https://example.com/launcher/2.0.0/linux/download'),
-
-       ('Windows', '2.1.0', 'friends list, chat system, notifications support, UI enhancements',
-        'https://example.com/launcher/2.1.0/download'),
-       ('macOS', '2.1.0', 'friends list, chat system, notifications support, UI enhancements',
-        'https://example.com/launcher/2.1.0/mac/download'),
-       ('Linux', '2.1.0', 'friends list, chat system, notifications support, UI enhancements',
-        'https://example.com/launcher/2.1.0/linux/download'),
-
-       ('Windows', '3.0.0',
-        'integrated mod support, custom themes, next-generation launcher features, improved performance',
-        'https://example.com/launcher/3.0.0/download'),
-       ('macOS', '3.0.0',
-        'integrated mod support, custom themes, next-generation launcher features, improved performance',
-        'https://example.com/launcher/3.0.0/mac/download'),
-       ('Linux', '3.0.0',
-        'integrated mod support, custom themes, next-generation launcher features, improved performance',
-        'https://example.com/launcher/3.0.0/linux/download');
+        'https://example.com/launcher/1.2.0/linux/download');
