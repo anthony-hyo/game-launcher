@@ -38,7 +38,7 @@ public class Games {
 
 	@JsonIgnore
 	@Column(name = "play_clicks")
-	private int playClicks;
+	private Long playClicks;
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
@@ -122,11 +122,11 @@ public class Games {
 		return this;
 	}
 
-	public int getPlayClicks() {
+	public Long getPlayClicks() {
 		return playClicks;
 	}
 
-	public Games setPlayClicks(int playClicks) {
+	public Games setPlayClicks(Long playClicks) {
 		this.playClicks = playClicks;
 		return this;
 	}
