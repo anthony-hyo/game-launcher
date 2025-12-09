@@ -7,7 +7,7 @@ export class SettingsService {
 
 	public readonly theme = signal<ThemeType>('dark');
 	public readonly isSettingsVisible = signal<boolean>(false);
-	public readonly isDiscordRpcEnabled = signal<boolean>(true);
+	public readonly isDiscordRpcEnabled = signal<boolean>(false);
 
 	constructor() {
 		this.theme.set(<"light" | "dark">localStorage.getItem(HelperStorage.THEME) ?? 'dark')
