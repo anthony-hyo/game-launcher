@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Game} from '../../models/game.model';
 import {HelperStorage} from '../../helper/helper.storage';
 import {environment} from '../../../environments/environment';
+import {retry} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class LibraryService {
@@ -12,7 +13,11 @@ export class LibraryService {
 	private games: WritableSignal<Game[]> = signal<Game[]>([]);
 
 	constructor() {
-		this.http.get<Game[]>(`${environment.apiUrl}/api/library/games`)
+		this.http
+			.get<Game[]>(`${environment.apiUrl}/api/library/games`)
+			.pipe(retry({
+				delay: 2500,
+			}))
 			.subscribe(games => {
 				this.games.set(games);
 
