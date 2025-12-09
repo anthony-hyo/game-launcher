@@ -53,7 +53,7 @@ export class StateService {
 			.catch(console.error);
 	}
 
-	public playGame(game: LibraryGame): void {
+	public playGame(url: string, game: LibraryGame): void {
 		this.gameService.incrementPlayCount(game.title);
 
 		const newTab: Tab = {
@@ -61,8 +61,8 @@ export class StateService {
 
 			title: 'Loading..',
 
-			rawUrl: game.url,
-			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(game.url),
+			rawUrl: url,
+			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
 			isWhitelistedDomain: true,
 		};

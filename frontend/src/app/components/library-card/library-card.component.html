@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="absolute inset-0 light:bg-white/70 bg-black/70 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md z-20">
-		<button (click)="state.playGame(game())" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-3 mb-3 text-base font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
+		<button (click)="state.playGame(game().url, game())" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-3 mb-3 text-base font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
 			<span class="material-symbols-rounded mr-2">play_arrow</span>
 			Play
 		</button>
