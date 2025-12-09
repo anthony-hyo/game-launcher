@@ -1,7 +1,7 @@
 import {Component, inject, input} from '@angular/core';
 import {Game} from '../../models/game.model';
 import {StateService} from '../../services/state/state.service';
-import {GameService} from '../../services/game/game.service';
+import {LibraryService} from '../../services/library/library.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {RouterLink} from '@angular/router';
 
@@ -15,7 +15,7 @@ import {RouterLink} from '@angular/router';
 })
 export class LibraryCard {
 
-	public gameService = inject(GameService);
+	public gameService = inject(LibraryService);
 	public state = inject(StateService);
 	public settings = inject(SettingsService);
 

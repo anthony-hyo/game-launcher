@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {GameService} from '../../services/game/game.service';
+import {LibraryService} from '../../services/library/library.service';
 import {NgClass} from '@angular/common';
 import {SettingsService} from '../../services/setting/setting.service';
 import {SidebarButton} from '../sidebar-button/sidebar-button.component';
@@ -21,7 +21,7 @@ export class Sidebar {
 
 	protected readonly environment = environment;
 
-	protected readonly gameService = inject(GameService);
+	protected readonly gameService = inject(LibraryService);
 	protected readonly settingsService = inject(SettingsService);
 
 }

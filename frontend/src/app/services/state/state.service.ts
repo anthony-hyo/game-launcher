@@ -4,14 +4,14 @@ import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';
 import {Router} from '@angular/router';
 import {random} from '../../helper/helper.random';
-import {GameService} from '../game/game.service';
+import {LibraryService} from '../library/library.service';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
 
 	private router = inject(Router);
 
-	public gameService = inject(GameService);
+	public gameService = inject(LibraryService);
 
 	activeView = signal<'router' | string>('router'); //todo: make private
 	openTabs = signal<Map<string, Tab>>(new Map());

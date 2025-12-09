@@ -4,7 +4,7 @@ import {Game} from '../../models/game.model';
 import {HelperStorage} from '../../helper/helper.storage';
 
 @Injectable({providedIn: 'root'})
-export class GameService {
+export class LibraryService {
 
 	private http = inject(HttpClient);
 

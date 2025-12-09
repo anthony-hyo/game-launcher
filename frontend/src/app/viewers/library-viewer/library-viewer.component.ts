@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {GameService} from '../../services/game/game.service';
+import {LibraryService} from '../../services/library/library.service';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {ActivatedRoute, RouterLink} from '@angular/router';
@@ -17,7 +17,7 @@ import {Footer} from '../../components/footer/footer.component';
 })
 export class LibraryViewer {
 
-	public gameService = inject(GameService);
+	public gameService = inject(LibraryService);
 	public stateService = inject(StateService);
 	public settingsService = inject(SettingsService);
 

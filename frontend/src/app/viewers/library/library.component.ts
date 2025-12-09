@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {LibraryCard} from "../../components/library-card/library-card.component";
-import {GameService} from '../../services/game/game.service';
+import {LibraryService} from '../../services/library/library.service';
 
 @Component({
 	selector: 'app-library',
@@ -12,6 +12,6 @@ import {GameService} from '../../services/game/game.service';
 })
 export class Library {
 
-	public gameService = inject(GameService);
+	public gameService = inject(LibraryService);
 
 }

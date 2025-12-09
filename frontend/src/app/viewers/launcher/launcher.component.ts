@@ -2,7 +2,7 @@ import {Component, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, Renderer2} from '
 import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
 import {TopBar} from '../../components/top-tab/top-bar.component';
-import {GameService} from '../../services/game/game.service';
+import {LibraryService} from '../../services/library/library.service';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
@@ -24,7 +24,7 @@ import {Setting} from '../../components/setting/setting.component';
 })
 export class Launcher {
 
-	gameService = inject(GameService);
+	gameService = inject(LibraryService);
 	state = inject(StateService);
 	settings = inject(SettingsService);
 
