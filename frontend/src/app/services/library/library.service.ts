@@ -54,6 +54,11 @@ export class LibraryService {
 		return this.games().find(g => g.id === id);
 	}
 
+	public getGamesByURL(url: string): LibraryGame | undefined {
+		const hostname = new URL(url).hostname;
+		return this.games().find(g => g.url.includes(hostname));
+	}
+
 	private loadPlayCounts(): void {
 		const savedCountsRaw = localStorage.getItem(HelperStorage.PLAY_COUNTS);
 		const playCounts = savedCountsRaw ? JSON.parse(savedCountsRaw) : {};

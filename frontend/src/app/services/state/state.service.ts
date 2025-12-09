@@ -6,6 +6,17 @@ import {Router} from '@angular/router';
 import {random} from '../../helper/helper.random';
 import {LibraryService} from '../library/library.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment';
+
+declare global {
+	interface Window {
+		tab: {
+			open: (viewId: ViewType) => void,
+			close: (event: MouseEvent, tab: Tab) => void
+			openURL: (url: string) => void
+		};
+	}
+}
 
 @Injectable({providedIn: 'root'})
 export class StateService {
@@ -16,6 +27,16 @@ export class StateService {
 
 	activeView = signal<'router' | string>('router'); //todo: make private
 	openTabs = signal<Map<string, Tab>>(new Map());
+
+	constructor() {
+		if (environment.useWebview) {
+			window.tab = {
+				open: this.openTab.bind(this),
+				close: this.closeTab.bind(this),
+				openURL: this.openURL.bind(this),
+			};
+		}
+	}
 
 	public get isRouterActive(): boolean {
 		return this.activeView() === 'router';
@@ -65,6 +86,30 @@ export class StateService {
 			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
 			isWhitelistedDomain: true,
+		};
+
+		this.openTabs().set(newTab.tabId, newTab);
+
+		this.activeView.set(newTab.tabId);
+	}
+
+	public openURL(url: string): void {
+		const game: LibraryGame | undefined = this.gameService.getGamesByURL(url)
+
+		if (game) {
+			this.playGame(url, game);
+			return;
+		}
+
+		const newTab: Tab = {
+			tabId: random(),
+
+			title: 'Loading..',
+
+			rawUrl: url,
+			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
+
+			isWhitelistedDomain: false,
 		};
 
 		this.openTabs().set(newTab.tabId, newTab);

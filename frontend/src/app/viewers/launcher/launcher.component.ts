@@ -1,4 +1,13 @@
-import {Component, DOCUMENT, effect, inject, NO_ERRORS_SCHEMA, Renderer2} from '@angular/core';
+import {
+	Component,
+	DOCUMENT,
+	effect,
+	ElementRef,
+	inject,
+	NO_ERRORS_SCHEMA,
+	Renderer2,
+	viewChildren
+} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
 import {TopBar} from '../../components/top-tab/top-bar.component';
@@ -32,6 +41,8 @@ export class Launcher {
 	private readonly renderer = inject(Renderer2);
 	private readonly document = inject(DOCUMENT);
 
+	private readonly webviews = viewChildren<ElementRef>('webview');
+
 	constructor(_routerHandler: RouterHandler) {
 		effect(() => {
 			if (this.settings.theme() === 'light') {
@@ -40,6 +51,22 @@ export class Launcher {
 				this.renderer.removeClass(this.document.documentElement, 'light');
 			}
 		});
+
+		if (environment.useWebview) {
+			effect(() => {
+				for (let webview of this.webviews()) {
+					if (webview.nativeElement.dataset.isInitialized) {
+						continue;
+					}
+
+					const tab = this.state.openTabs().get(webview.nativeElement.dataset.tabId)!;
+
+					webview.nativeElement.addEventListener('did-finish-load', () => tab.title = webview.nativeElement.getTitle())
+
+					webview.nativeElement.dataset.isInitialized = true;
+				}
+			});
+		}
 	}
 
 }
