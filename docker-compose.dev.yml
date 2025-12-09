@@ -10,7 +10,8 @@ services:
       POSTGRES_PASSWORD: 321
       POSTGRES_DB: game_launcher
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+        - postgres_data:/var/lib/postgresql
+        #- postgres_data:/var/lib/postgresql/data
     networks:
       - game_launcher-net
 
