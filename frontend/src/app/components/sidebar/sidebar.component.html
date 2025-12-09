@@ -12,7 +12,7 @@
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
 	<div class="text-center w-full h-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-py-8 py-1 staggered-list">
-		@for (game of gameService.getGames(); track game.title) {
+		@for (game of gameService.getGamesByPlays(); track game.title) {
 			<div class="staggered-list-item" [style.--index]="$index">
 				<button
 					[routerLink]="['/library/viewer', game.id]"

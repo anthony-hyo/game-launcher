@@ -42,6 +42,10 @@ export class LibraryService {
 		return this.games.asReadonly();
 	}
 
+	public get getGamesByPlays(): Signal<LibraryGame[]> {
+		return signal([...this.games()].sort((a, b) => b.playCount - a.playCount)).asReadonly();
+	}
+
 	public incrementPlayCount(gameTitle: string): void {
 		this.games.update(currentGames =>
 			currentGames.map(g => g.title === gameTitle ? {...g, playCount: (g.playCount || 0) + 1} : g)

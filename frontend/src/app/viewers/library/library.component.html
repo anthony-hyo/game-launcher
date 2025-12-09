@@ -3,7 +3,7 @@
 
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 staggered-list">
 
-		@for (game of gameService.getGames(); track game.title) {
+		@for (game of gameService.getGamesByPlays(); track game.title) {
 			<app-library-card [game]="game" class="staggered-list-item" [style.--index]="$index"/>
 		} @empty {
 			@for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track _) {
