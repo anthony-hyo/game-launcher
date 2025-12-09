@@ -11,7 +11,7 @@ export class GameService {
 	private games: WritableSignal<Game[]> = signal<Game[]>([]);
 
 	constructor() {
-		this.http.get<Game[]>(`http://localhost:8080/api/launcher/games`)
+		this.http.get<Game[]>(`http://localhost:8080/api/library/games`)
 			.subscribe(games => {
 				this.games.set(games);
 

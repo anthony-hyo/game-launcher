@@ -30,7 +30,8 @@ public class SecurityConfig {
 				// Non-Authenticate
 				.requestMatchers(
 					"/",
-					"/api/launcher/games"
+					"/api/launcher/deploys",
+					"/api/library/games"
 				).permitAll()
 
 				// Required Authenticate
