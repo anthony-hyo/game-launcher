@@ -1,5 +1,5 @@
 import {inject, Injectable, signal} from '@angular/core';
-import {Game} from '../../models/game.model';
+import {LibraryGame} from '../../models/library-game.model';
 import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';
 import {Router} from '@angular/router';
@@ -53,14 +53,18 @@ export class StateService {
 			.catch(console.error);
 	}
 
-	public onPlayGame(game: Game): void {
+	public playGame(game: LibraryGame): void {
 		this.gameService.incrementPlayCount(game.title);
 
 		const newTab: Tab = {
 			tabId: random(),
-			game: game,
-			url: game.url,
-			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(game.url)
+
+			title: 'Loading..',
+
+			rawUrl: game.url,
+			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(game.url),
+
+			isWhitelistedDomain: true,
 		};
 
 		this.openTabs().set(newTab.tabId, newTab);

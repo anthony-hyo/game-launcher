@@ -1,5 +1,5 @@
 import {Component, inject, input} from '@angular/core';
-import {Game} from '../../models/game.model';
+import {LibraryGame} from '../../models/library-game.model';
 import {StateService} from '../../services/state/state.service';
 import {LibraryService} from '../../services/library/library.service';
 import {SettingsService} from '../../services/setting/setting.service';
@@ -19,6 +19,6 @@ export class LibraryCard {
 	public state = inject(StateService);
 	public settings = inject(SettingsService);
 
-	public game = input.required<Game>();
+	public game = input.required<LibraryGame>();
 
 }

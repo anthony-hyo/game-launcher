@@ -1,23 +1,24 @@
 import {inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Game} from '../../models/game.model';
+import {LibraryGame} from '../../models/library-game.model';
 import {HelperStorage} from '../../helper/helper.storage';
 import {environment} from '../../../environments/environment';
 import {interval, retry, startWith, switchMap} from 'rxjs';
+import {LibraryGameResponse} from '../../models/library-game-response.model';
 
 @Injectable({providedIn: 'root'})
 export class LibraryService {
 
-	private http = inject(HttpClient);
+	private readonly http = inject(HttpClient);
 
-	private games: WritableSignal<Game[]> = signal<Game[]>([]);
+	private readonly games: WritableSignal<LibraryGame[]> = signal<LibraryGame[]>([]);
 
 	constructor() {
 		interval(60000 * 30) //execute every thirty minutes
 			.pipe(
 				startWith(0), //execute now
 				switchMap(() =>
-					this.http.get<Game[]>(`${environment.apiUrl}/api/library/games`)
+					this.http.get<LibraryGameResponse[]>(`${environment.apiUrl}/api/library/games`)
 						.pipe(
 							retry({
 								delay: 5000
@@ -25,14 +26,19 @@ export class LibraryService {
 						)
 				)
 			)
-			.subscribe(games => {
-				this.games.set(games);
+			.subscribe(libraryGamesResponse => {
+				this.games.set(libraryGamesResponse.map(libraryGameResponse => ({
+						...libraryGameResponse,
+						news: [],
+						playCount: 0,
+					})
+				));
 
 				this.loadPlayCounts();
 			})
 	}
 
-	public get getGames(): Signal<Game[]> {
+	public get getGames(): Signal<LibraryGame[]> {
 		return this.games.asReadonly();
 	}
 
@@ -44,7 +50,7 @@ export class LibraryService {
 		this.savePlayCounts();
 	}
 
-	public getGameById(id: number): Game | undefined {
+	public getGameById(id: number): LibraryGame | undefined {
 		return this.games().find(g => g.id === id);
 	}
 

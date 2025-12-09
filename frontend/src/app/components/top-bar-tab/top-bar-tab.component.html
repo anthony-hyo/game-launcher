@@ -5,9 +5,9 @@
 
 	[ngClass]="state.activeView() == tab().tabId ? 'text-white light:text-black border-primary' : 'text-gray-400 light:text-gray-600 border-transparent hover:text-white light:hover:text-black'">
 
-	<img class="w-4 h-auto object-cover rounded-xl" [src]="'https://s2.googleusercontent.com/s2/favicons?domain='+tab().url+'&sz=32'" [alt]="tab().game.title"/>
+	<img class="w-4 h-auto object-cover rounded-xl" [src]="'https://s2.googleusercontent.com/s2/favicons?domain='+tab().rawUrl+'&sz=32'" [alt]="tab().title"/>
 
-	<span class="ps-2 truncate">{{ tab().game.title }}</span>
+	<span class="ps-2 truncate">{{ tab().title }}</span>
 
 	<button (click)="this.state.closeTab($event, tab())" class="bg-transparent ml-2 w-5 h-5 rounded-lg flex items-center justify-center text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 focus:outline-none transition-colors duration-300 flex-shrink-0">
 		<span class="material-symbols-rounded">close_small</span>
