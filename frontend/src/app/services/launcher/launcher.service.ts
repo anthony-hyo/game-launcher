@@ -1,49 +1,32 @@
-import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import {Config} from '../../models/config.model';
+import {inject, Injectable, Signal, signal, WritableSignal} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {LauncherDeploy} from '../../models/launcher-deploy.model';
+import {LauncherDeployResponse} from '../../models/launcher-deploy-response.model';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class LauncherService {
 
-	//TODO: Get Config from API using HttpClient
-	private config: WritableSignal<Config> = signal({
-		deploys: [
-			{
-				system: "Windows",
-				version: "1.0.0",
-				details: [
-					"Lightweight and efficient",
-					"Integrated web browser",
-					"Discord Rich Presence",
-					"Auto-updates",
-				]
-			},
-			{
-				system: "Mac",
-				version: "1.0.0",
-				details: [
-					"Lightweight and efficient",
-					"Integrated web browser",
-					"Discord Rich Presence",
-					"Auto-updates",
-				]
-			},
-			{
-				system: "Linux",
-				version: "1.0.0",
-				details: [
-					"Lightweight and efficient",
-					"Integrated web browser",
-					"Discord Rich Presence",
-					"Auto-updates",
-				]
-			}
-		]
-	})
+	private readonly http = inject(HttpClient)
 
-	public getConfig(): Signal<Config> {
-		return this.config.asReadonly()
+	private readonly deploys: WritableSignal<LauncherDeploy[]> = signal<LauncherDeploy[]>([]);
+
+	constructor() {
+		this.http
+			.get<LauncherDeployResponse[]>(`${environment.apiUrl}/api/launcher/deploys`)
+			.subscribe(launcherDeploysResponse =>
+				this.deploys.set(launcherDeploysResponse.map(launcherDeployResponse => ({
+						...launcherDeployResponse,
+						description_split: launcherDeployResponse.description.split(',')
+					})
+				))
+			);
+	}
+
+	public get getDeploys(): Signal<LauncherDeploy[]> {
+		return this.deploys.asReadonly();
 	}
 
 }

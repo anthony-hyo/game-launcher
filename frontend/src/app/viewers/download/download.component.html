@@ -2,17 +2,17 @@
 	<div class="min-h-full flex flex-col items-center p-4 sm:p-8">
 		<div class="w-full max-w-6xl mx-auto py-12">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				@for (ddx of launcherService.getConfig()().deploys; track ddx.details) {
+				@for (deploys of launcherService.getDeploys(); track deploys.id) {
 					<div class="bg-neutral-800 light:bg-white border border-white/10 light:border-black/10 rounded-xl p-8 flex flex-col text-center transform hover:-translate-y-2 transition-transform duration-300 shadow-lg">
-						<h2 class="text-3xl font-bold mb-2">{{ ddx.system }}</h2>
-						<p class="text-sm text-gray-400 light:text-gray-500 mb-6">Version {{ ddx.version }}</p>
+						<h2 class="text-3xl font-bold mb-2">{{ deploys.system }}</h2>
+						<p class="text-sm text-gray-400 light:text-gray-500 mb-6">Version {{ deploys.version }}</p>
 						<ul class="space-y-3 text-gray-300 light:text-gray-700 mb-8 text-left ml-4 list-disc list-inside">
-							@for (detail of ddx.details; track detail) {
+							@for (detail of deploys.description_split; track detail) {
 								<li>{{ detail}}</li>
 							}
 						</ul>
 						<button class="mt-auto w-full inline-flex items-center justify-center px-6 py-3 font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
-							Download for {{ ddx.system }}
+							Download for {{ deploys.system }}
 						</button>
 					</div>
 				}
