@@ -3,7 +3,7 @@
 		<app-window-control [hasMaximize]="false"/>
 	</div>
 
-	<img alt="Launcher Loading" draggable="false" src="https://picsum.photos/seed/launcher-art/512/288" class="w-full h-auto block"/>
+	<img alt="Launcher Loading" draggable="false" [src]="environment.loadingImageUrl" class="block" width="512px" height="288px"/>
 
 	<div class="text-center px-4 py-2">
 		<span class="text-gray-400 light:text-gray-500 text-sm font-semibold tracking-wider">{{ stateService.loadingText() }}</span>

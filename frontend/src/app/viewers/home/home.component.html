@@ -1,6 +1,6 @@
-<div [style.background-image]="'url(https://picsum.photos/seed/cyberpunk/1920/1080)'" class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out filter brightness-50 light:brightness-75"></div>
+<div [style.background-image]="'url('+environment.backgroundImageUrl+')'" class="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out filter brightness-50 light:brightness-75"></div>
 
-<div class="absolute inset-0 bg-gradient-to-t from-black light:from-tertiary-light via-tertiary/70 light:via-tertiary-light/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 light:from-tertiary-light via-black/50 light:via-tertiary-light/50 to-transparent"></div>
 
 <div class="relative z-10 h-full flex flex-col items-center justify-center text-center p-8">
 	<h1 class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white text-shadow-lg uppercase" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5)">{{ environment.name }}</h1>
