@@ -29,7 +29,6 @@ public class SecurityConfig {
 			.authorizeHttpRequests(auth -> auth
 				// Non-Authenticate
 				.requestMatchers(
-					"/",
 					"/api/launcher/deploys",
 					"/api/library/games"
 				).permitAll()
@@ -49,6 +48,7 @@ public class SecurityConfig {
 		CorsConfiguration configuration = new CorsConfiguration();
 
 		configuration.setAllowedOrigins(Arrays.asList(
+			"https://launcher.anthhyo.dev", //TODO: use environment
 			"http://localhost:80",
 			"http://localhost:4200"
 		));
