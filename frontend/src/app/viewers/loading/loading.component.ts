@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {WindowControll} from '../../components/window-control/window-control.component';
+import {StateService} from '../../services/state/state.service';
 
 @Component({
 	selector: 'app-loading',
@@ -11,7 +12,6 @@ import {WindowControll} from '../../components/window-control/window-control.com
 })
 export class Loading {
 
-	@Input() loadingText = 'Initializing...';
-	@Input() loadingProgress = 0;
+	protected readonly stateService = inject(StateService);
 
 }

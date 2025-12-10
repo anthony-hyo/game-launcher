@@ -15,11 +15,19 @@ export class StateService {
 	private readonly gameService = inject(LibraryService);
 	private readonly sanitizer = inject(DomSanitizer);
 
-	activeView = signal<'router' | string>('router'); //todo: make private
-	openTabs = signal<Map<string, Tab>>(new Map());
+	public readonly activeView = signal<'router' | string>('router'); //todo: make private
+	public readonly openTabs = signal<Map<string, Tab>>(new Map());
+
+	public readonly loadingProgress = signal<number>(0)
+	public readonly loadingText = signal<string>('')
 
 	constructor() {
 		if (environment.useWebview) {
+			window.loading = {
+				progress: this.setLoadingProgress.bind(this),
+				text: this.setLoadingText.bind(this),
+			};
+
 			window.tab = {
 				open: this.openTab.bind(this),
 				close: this.closeTab.bind(this),
@@ -105,6 +113,14 @@ export class StateService {
 		this.openTabs().set(newTab.tabId, newTab);
 
 		this.activeView.set(newTab.tabId);
+	}
+
+	public setLoadingProgress(value: number): void {
+		this.loadingProgress.set(value)
+	}
+
+	public setLoadingText(text: string): void {
+		this.loadingText.set(text)
 	}
 
 	/**
