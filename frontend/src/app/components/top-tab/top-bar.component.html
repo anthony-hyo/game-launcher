@@ -29,19 +29,5 @@
 		</button>
 	</div>
 
-	@if (environment.useWebview) {
-		<div class="not-draggable flex items-center gap-1.5">
-			<button (click)="minimizeApp()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
-				<span class="material-symbols-rounded text-base">minimize</span>
-			</button>
-
-			<button (click)="toggleMaximizeApp()" aria-label="Maximize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
-				<span class="material-symbols-rounded text-base">{{ isFullscreen() ? 'fullscreen_exit' : 'crop_square' }} </span>
-			</button>
-
-			<button (click)="closeApp()" aria-label="Close" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors duration-300 focus:outline-none">
-				<span class="material-symbols-rounded text-base">close</span>
-			</button>
-		</div>
-	}
+	<app-window-control/>
 </div>

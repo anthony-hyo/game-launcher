@@ -1,10 +1,10 @@
 import {Environment} from './models/environment.model';
 
 export const environment: Environment = {
-	name: 'Web Launcher',
+	name: 'Electron Launcher',
 	apiUrl: 'http://localhost:8080',
-	showDownload: true,
-	showHome: true,
-	useHash: false,
-	useWebview: false
+	showDownload: false,
+	showHome: false,
+	useHash: true,
+	useWebview: true
 };

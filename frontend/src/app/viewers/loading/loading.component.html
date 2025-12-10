@@ -1,4 +1,8 @@
 <div class="w-[512px] h-[332px] overflow-hidden rounded-lg shadow-2xl shadow-black/20 bg-tertiary light:bg-tertiary-light border border-white/5 light:border-black/10">
+	<div class="draggable flex-shrink-0 bg-neutral-950 light:bg-gray-200 backdrop-blur-md border-b border-white/5 light:border-black/10 z-20 flex items-center justify-end pr-3 h-[50px]">
+		<app-window-control [hasMaximize]="false"/>
+	</div>
+
 	<img alt="Launcher Loading" draggable="false" src="https://picsum.photos/seed/launcher-art/512/288" class="w-full h-auto block"/>
 	<div class="text-center px-4 py-2">
 		<span class="text-gray-400 light:text-gray-500 text-sm font-semibold tracking-wider">{{ loadingText }}</span>
