@@ -8,16 +8,6 @@ import {LibraryService} from '../library/library.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
 
-declare global {
-	interface Window {
-		tab: {
-			open: (viewId: ViewType) => void,
-			close: (event: MouseEvent, tab: Tab) => void
-			openURL: (url: string) => void
-		};
-	}
-}
-
 @Injectable({providedIn: 'root'})
 export class StateService {
 
