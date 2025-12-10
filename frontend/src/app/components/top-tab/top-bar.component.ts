@@ -4,7 +4,7 @@ import {StateService} from '../../services/state/state.service';
 import {RouterLink} from '@angular/router';
 import {TopBarTab} from '../top-bar-tab/top-bar-tab.component';
 import {environment} from '../../../environments/environment';
-import {WindowControll} from '../window-control/window-control.component';
+import {WindowControl} from '../window-control/window-control.component';
 
 @Component({
 	selector: 'app-top-bar',
@@ -12,7 +12,7 @@ import {WindowControll} from '../window-control/window-control.component';
 		RouterLink,
 		NgClass,
 		TopBarTab,
-		WindowControll
+		WindowControl
 	],
 	templateUrl: './top-bar.component.html',
 	styleUrl: './top-bar.component.scss',

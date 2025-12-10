@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 	templateUrl: './window-control.component.html',
 	styleUrl: './window-control.component.scss',
 })
-export class WindowControll {
+export class WindowControl {
 
 	protected readonly environment = environment;
 

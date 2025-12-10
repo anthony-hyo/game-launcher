@@ -29,5 +29,7 @@
 		</button>
 	</div>
 
-	<app-window-control/>
+	@if (environment.useWebview) {
+		<app-window-control/>
+	}
 </div>
