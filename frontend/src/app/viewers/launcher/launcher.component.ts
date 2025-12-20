@@ -16,6 +16,7 @@ import {SettingsService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
 import {Setting} from '../../components/setting/setting.component';
 import {environment} from '../../../environments/environment';
+import {Title} from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-launcher',
@@ -40,6 +41,7 @@ export class Launcher {
 
 	private readonly renderer = inject(Renderer2);
 	private readonly document = inject(DOCUMENT);
+	private readonly title = inject(Title);
 
 	private readonly webviews = viewChildren<ElementRef>('webview');
 
@@ -61,7 +63,12 @@ export class Launcher {
 
 					const tab = this.state.openTabs().get(webview.nativeElement.dataset.tabId)!;
 
-					webview.nativeElement.addEventListener('did-finish-load', () => tab.title = webview.nativeElement.getTitle())
+					webview.nativeElement.addEventListener('did-finish-load', () => {
+						const title: string = webview.nativeElement.getTitle();
+
+						this.title.setTitle(title);
+						tab.title = title;
+					})
 
 					webview.nativeElement.dataset.isInitialized = true;
 				}
