@@ -1,45 +1,35 @@
-<aside class="w-20 h-screen bg-neutral-950 light:bg-gray-200 backdrop-blur-md flex-shrink-0 flex flex-col items-center py-5 space-y-5 overflow-y-auto overflow-x-hidden border-r border-white/5 light:border-black/10">
+<aside [class.hidden]="!this.stateService.isSideBarVisible()" class="flex h-screen w-20 flex-shrink-0 flex-col items-center space-y-5 overflow-y-auto overflow-x-hidden border-r border-white/5 bg-neutral-950 py-5 backdrop-blur-md light:border-black/10 light:bg-gray-200">
 	@if (environment.showHome) {
-		<app-sidebar-button [description]="'Go to Home'" [path]="'home'" [icon]="'home'"/>
+		<app-sidebar-button [description]="'Go to Home'" [path]="'home'" [icon]="'home'" />
 	}
 
 	@if (environment.showDownload) {
-		<app-sidebar-button [description]="'Go to Downloads'" [path]="'download'" [icon]="'download'"/>
+		<app-sidebar-button [description]="'Go to Downloads'" [path]="'download'" [icon]="'download'" />
 	}
 
-	<app-sidebar-button [description]="'Go to Library'" [path]="'library'" [icon]="'grid_view'"/>
+	<app-sidebar-button [description]="'Go to Library'" [path]="'library'" [icon]="'grid_view'" />
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<div class="text-center w-full h-full mx-auto scrollbar-none overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-py-8 py-1 staggered-list">
+	<div class="scrollbar-none staggered-list mx-auto h-full w-full snap-y snap-mandatory scroll-py-8 overflow-y-auto overflow-x-hidden py-1 text-center">
 		@for (game of gameService.getGamesByPlays(); track game.title) {
 			<div class="staggered-list-item" [style.--index]="$index">
-				<button
-					[routerLink]="['/library/viewer', game.id]"
-
-					routerLinkActive #rla="routerLinkActive"
-
-					class="flex-shrink-0 w-14 h-14 rounded-xl focus:outline-none transition-all duration-300 transform hover:scale-90 relative group ring-2 ring-offset-2 ring-offset-tertiary light:ring-offset-tertiary-light snap-start"
-
-					[ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'"
-
-					[attr.aria-label]="'Select ' + game.title">
-
+				<button [routerLink]="['/library/viewer', game.id]" routerLinkActive #rla="routerLinkActive" (click)="onGameSelect(game)" class="group relative h-14 w-14 flex-shrink-0 transform snap-start rounded-xl ring-2 ring-offset-2 ring-offset-tertiary transition-all duration-300 hover:scale-90 focus:outline-none light:ring-offset-tertiary-light" [ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'" [attr.aria-label]="'Select ' + game.title">
 					@let tabs = stateService.getTabsByUrl(game.url)();
 
 					@if (tabs.length > 0) {
-						<span class="absolute -right-1 -top-1 inline-flex items-center justify-center bg-primary text-[10px] text-white w-4 h-4 rounded-full font-medium pl-[1px] z-10">
+						<span class="absolute -right-1 -top-1 z-10 inline-flex h-4 w-4 items-center justify-center rounded-full bg-primary pl-[1px] text-[10px] font-medium text-white">
 							{{ tabs.length }}
 						</span>
 					}
 
-					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl grayscale z-0 hover:grayscale-0" [ngClass]="tabs.length > 0 ? 'grayscale-0' : 'grayscale-1'">
+					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="z-0 h-full w-full rounded-xl object-cover grayscale hover:grayscale-0" [ngClass]="tabs.length > 0 ? 'grayscale-0' : 'grayscale-1'" />
 				</button>
 			</div>
 		} @empty {
 			@for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track _) {
 				<div class="staggered-list-item" [style.--index]="$index">
-					<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-700/40 animate-pulse"></button>
+					<button class="h-14 w-14 flex-shrink-0 animate-pulse rounded-xl bg-zinc-700/40"></button>
 				</div>
 			}
 		}
@@ -47,7 +37,7 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="bg-transparent group relative flex-shrink-0 text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black transition-colors duration-200 focus:outline-none hove">
+	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="hove group relative flex-shrink-0 bg-transparent text-gray-400 transition-colors duration-200 hover:text-white focus:outline-none light:text-gray-500 light:hover:text-black">
 		<span class="material-symbols-rounded transition-transform hover:rotate-90">settings</span>
 	</button>
 </aside>

@@ -18,30 +18,36 @@ export class StateService {
 	public readonly activeView = signal<'router' | string>('router'); //todo: make private
 	public readonly openTabs = signal<Map<string, Tab>>(new Map());
 
-	public readonly loadingProgress = signal<number>(0)
-	public readonly loadingText = signal<string>('')
+	public readonly loadingProgress = signal<number>(0);
+
+	public readonly loadingText = signal<string>('');
+
+	public readonly currentGame = signal<LibraryGame | undefined>(undefined);
+	public readonly isSideBarVisible = signal(true);
 
 	constructor() {
 		if (environment.useWebview) {
 			window.loading = {
 				progress: this.setLoadingProgress.bind(this),
-				text: this.setLoadingText.bind(this),
+				text: this.setLoadingText.bind(this)
 			};
 
 			window.tab = {
 				open: this.openTab.bind(this),
 				close: this.closeTab.bind(this),
-				openURL: this.openURL.bind(this),
+				openURL: this.openURL.bind(this)
 			};
 		}
 	}
 
 	public getTabsByUrl(rawUrl: string): Signal<any[]> {
 		const url = new URL(rawUrl);
-		return signal([...this.openTabs()].filter(([id, tab]) => {
-			console.log(tab.url.hostname == url.hostname, tab.url.hostname, url.hostname)
-			return tab.url.hostname == url.hostname;
-		})).asReadonly();
+		return signal(
+			[...this.openTabs()].filter(([id, tab]) => {
+				console.log(tab.url.hostname == url.hostname, tab.url.hostname, url.hostname);
+				return tab.url.hostname == url.hostname;
+			})
+		).asReadonly();
 	}
 
 	public get isRouterActive(): boolean {
@@ -61,23 +67,21 @@ export class StateService {
 
 		const openTabs = this.openTabs();
 
-		const nextTab = this.getNearestTab(tab.tabId)
+		const nextTab = this.getNearestTab(tab.tabId);
 
-		openTabs.delete(tab.tabId)
+		openTabs.delete(tab.tabId);
 
 		if (openTabs.size < 1) {
-			this.router.navigate(["/library"])
-				.catch(console.error);
+			this.router.navigate(['/library']).catch(console.error);
 			return;
 		}
 
 		if (nextTab) {
-			this.activeView.set(openTabs.get(nextTab)!.tabId)
+			this.activeView.set(openTabs.get(nextTab)!.tabId);
 			return;
 		}
 
-		this.router.navigate(["/library"])
-			.catch(console.error);
+		this.router.navigate(['/library']).catch(console.error);
 	}
 
 	public playGame(url: string, game: LibraryGame): void {
@@ -86,22 +90,26 @@ export class StateService {
 		const newTab: Tab = {
 			tabId: random(),
 
+			game: game,
+
 			title: 'Loading..',
 
 			url: new URL(url),
 			rawUrl: url,
 			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
-			isWhitelistedDomain: true,
+			isWhitelistedDomain: true
 		};
 
 		this.openTabs().set(newTab.tabId, newTab);
 
 		this.activeView.set(newTab.tabId);
+		
+		this.currentGame.set(game);
 	}
 
 	public openURL(url: string): void {
-		const game: LibraryGame | undefined = this.gameService.getGamesByURL(url)
+		const game: LibraryGame | undefined = this.gameService.getGamesByURL(url);
 
 		if (game) {
 			this.playGame(url, game);
@@ -117,7 +125,7 @@ export class StateService {
 			rawUrl: url,
 			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
-			isWhitelistedDomain: false,
+			isWhitelistedDomain: false
 		};
 
 		this.openTabs().set(newTab.tabId, newTab);
@@ -126,11 +134,11 @@ export class StateService {
 	}
 
 	public setLoadingProgress(value: number): void {
-		this.loadingProgress.set(value)
+		this.loadingProgress.set(value);
 	}
 
 	public setLoadingText(text: string): void {
-		this.loadingText.set(text)
+		this.loadingText.set(text);
 	}
 
 	/**
@@ -143,19 +151,19 @@ export class StateService {
 
 		const removedIndex = keysArr.indexOf(tabId);
 
-		const previousKey = keysArr[removedIndex - 1]
+		const previousKey = keysArr[removedIndex - 1];
 
 		if (previousKey) {
 			return previousKey;
 		}
 
-		const nextKey = keysArr[removedIndex + 1]
+		const nextKey = keysArr[removedIndex + 1];
 
 		if (nextKey) {
 			return nextKey;
 		}
 
-		return undefined
+		return undefined;
 	}
-
+	
 }

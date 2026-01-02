@@ -54,4 +54,8 @@ export class TopBar {
 		el.scrollLeft += e.deltaY;
 	}
 
+	protected toggleSideBar(): void {
+		this.state.isSideBarVisible.set(!this.state.isSideBarVisible());
+	}
+	
 }
