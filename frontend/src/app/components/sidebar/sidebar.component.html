@@ -25,7 +25,15 @@
 
 					[attr.aria-label]="'Select ' + game.title">
 
-					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl">
+					@let tabs = stateService.getTabsByUrl(game.url)();
+
+					@if (tabs.length > 0) {
+						<span class="absolute -right-1 -top-1 inline-flex items-center justify-center bg-primary text-[10px] text-white w-4 h-4 rounded-full font-medium pl-[1px] z-10">
+							{{ tabs.length }}
+						</span>
+					}
+
+					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="w-full h-full object-cover rounded-xl grayscale z-0 hover:grayscale-0" [ngClass]="tabs.length > 0 ? 'grayscale-0' : 'grayscale-1'">
 				</button>
 			</div>
 		} @empty {

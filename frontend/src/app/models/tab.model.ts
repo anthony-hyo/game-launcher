@@ -5,6 +5,7 @@ export interface Tab {
 
 	title: string;
 
+	url: URL;
 	rawUrl: string;
 	safeUrl: SafeResourceUrl;
 

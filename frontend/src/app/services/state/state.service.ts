@@ -1,4 +1,4 @@
-import {inject, Injectable, signal} from '@angular/core';
+import {inject, Injectable, Signal, signal} from '@angular/core';
 import {LibraryGame} from '../../models/library-game.model';
 import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';
@@ -34,6 +34,14 @@ export class StateService {
 				openURL: this.openURL.bind(this),
 			};
 		}
+	}
+
+	public getTabsByUrl(rawUrl: string): Signal<any[]> {
+		const url = new URL(rawUrl);
+		return signal([...this.openTabs()].filter(([id, tab]) => {
+			console.log(tab.url.hostname == url.hostname, tab.url.hostname, url.hostname)
+			return tab.url.hostname == url.hostname;
+		})).asReadonly();
 	}
 
 	public get isRouterActive(): boolean {
@@ -80,6 +88,7 @@ export class StateService {
 
 			title: 'Loading..',
 
+			url: new URL(url),
 			rawUrl: url,
 			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
@@ -104,6 +113,7 @@ export class StateService {
 
 			title: 'Loading..',
 
+			url: new URL(url),
 			rawUrl: url,
 			safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
 
