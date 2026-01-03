@@ -20,7 +20,7 @@ export class StateService {
 
 	public readonly loadingProgress = signal<number>(0);
 
-	public readonly loadingText = signal<string>('');
+	public readonly loadingText = signal<string>('Loading...');
 
 	public readonly currentGame = signal<LibraryGame | undefined>(undefined);
 	public readonly isSideBarVisible = signal(true);
