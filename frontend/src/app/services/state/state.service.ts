@@ -42,12 +42,7 @@ export class StateService {
 
 	public getTabsByUrl(rawUrl: string): Signal<any[]> {
 		const url = new URL(rawUrl);
-		return signal(
-			[...this.openTabs()].filter(([id, tab]) => {
-				console.log(tab.url.hostname == url.hostname, tab.url.hostname, url.hostname);
-				return tab.url.hostname == url.hostname;
-			})
-		).asReadonly();
+		return signal([...this.openTabs()].filter(([id, tab]) => tab.url.hostname == url.hostname)).asReadonly();
 	}
 
 	public get isRouterActive(): boolean {
