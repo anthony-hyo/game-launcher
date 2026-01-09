@@ -16,7 +16,10 @@ declare global {
 			openURL: (url: string) => void,
 		},
 		electron: {
-			update_rich_presence: (data: any) => void,
+			discord_rpc_update: (data: any) => void,
+			discord_rpc_destroy: () => void,
+			discord_rpc_enable: () => void,
+			discord_rpc_disable: () => void,
 
 			window_minimize: () => void,
 			window_maximize: () => void,

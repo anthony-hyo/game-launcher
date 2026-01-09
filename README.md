@@ -112,7 +112,12 @@ The Electron preload script exposes APIs to the frontend:
 window.electron.window_minimize()
 window.electron.window_maximize()
 window.electron.window_close()
-window.electron.update_rich_presence(data)
+
+//Discord RPC
+window.electron.discord_rpc_update(data)
+window.electron.discord_rpc_destroy()
+window.electron.discord_rpc_enable()
+window.electron.discord_rpc_disable()
 
 // Tab management
 window.tab.open(viewId)
