@@ -11,7 +11,10 @@
 
 		<div #scrollArea (wheel)="onWheelHorizontal($event)" class="scrollbar-none flex h-full items-end self-end overflow-x-auto overflow-y-hidden scroll-smooth pl-4">
 			@for (tab of state.openTabs().values(); track tab.tabId) {
-				<app-top-bar-tab [tab]="tab" [class.hidden]="state.currentGame()?.id != tab.game?.id" />
+				@let currentGame = state.currentGame();
+				@let tabGame = tab.game;
+
+				<app-top-bar-tab [tab]="tab" [class.hidden]="currentGame && tabGame && currentGame.id != tabGame.id" />
 			}
 		</div>
 	</div>
