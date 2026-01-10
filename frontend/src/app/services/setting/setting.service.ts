@@ -9,11 +9,13 @@ export class SettingsService {
 	public readonly isSettingsVisible = signal<boolean>(false);
 
 	public readonly theme = signal<ThemeType>('dark');
-	public readonly isDiscordRpcEnabled = signal<boolean>(false);
+	public readonly isDiscordRpcEnabled = signal<boolean>(true);
 
 	constructor() {
 		this.theme.set(<'light' | 'dark'>localStorage.getItem(HelperStorage.SETTING_THEME) ?? 'dark');
-		this.isDiscordRpcEnabled.set(localStorage.getItem(HelperStorage.SETTING_DISCORD_RPC) === 'true');
+		
+		const settingDiscordRPC = localStorage.getItem(HelperStorage.SETTING_DISCORD_RPC);
+		this.isDiscordRpcEnabled.set(settingDiscordRPC === null || settingDiscordRPC === 'true');
 
 		if (environment.useWebview && window.electron) {
 			effect(() => {
