@@ -12,7 +12,10 @@ export class SettingsService {
 	public readonly isDiscordRpcEnabled = signal<boolean>(false);
 
 	constructor() {
-		if (environment.useWebview) {
+		this.theme.set(<'light' | 'dark'>localStorage.getItem(HelperStorage.SETTING_THEME) ?? 'dark');
+		this.isDiscordRpcEnabled.set(localStorage.getItem(HelperStorage.SETTING_DISCORD_RPC) === 'true');
+
+		if (environment.useWebview && window.electron) {
 			effect(() => {
 				if (this.isDiscordRpcEnabled()) {
 					window.electron.discord_rpc_enable();
@@ -21,9 +24,6 @@ export class SettingsService {
 				}
 			});
 		}
-		
-		this.theme.set(<'light' | 'dark'>localStorage.getItem(HelperStorage.SETTING_THEME) ?? 'dark');
-		this.isDiscordRpcEnabled.set(localStorage.getItem(HelperStorage.SETTING_DISCORD_RPC) === 'true');
 	}
 
 	public toggleSettings(visible: boolean): void {

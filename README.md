@@ -115,7 +115,7 @@ window.electron.window_close()
 
 //Discord RPC
 window.electron.discord_rpc_update(data)
-window.electron.discord_rpc_destroy()
+window.electron.discord_rpc_destroy(hostname)
 window.electron.discord_rpc_enable()
 window.electron.discord_rpc_disable()
 

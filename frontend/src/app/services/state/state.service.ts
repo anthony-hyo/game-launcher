@@ -1,4 +1,4 @@
-import {inject, Injectable, Signal, signal} from '@angular/core';
+import {effect, inject, Injectable, Signal, signal} from '@angular/core';
 import {LibraryGame} from '../../models/library-game.model';
 import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';
@@ -65,6 +65,10 @@ export class StateService {
 		const nextTab = this.getNearestTab(tab.tabId);
 
 		openTabs.delete(tab.tabId);
+
+		if (environment.useWebview && window.electron) {
+			window.electron.discord_rpc_destroy(tab.url.hostname);
+		}
 
 		if (openTabs.size < 1) {
 			this.router.navigate(['/library']).catch(console.error);

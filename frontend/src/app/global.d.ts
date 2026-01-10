@@ -17,7 +17,7 @@ declare global {
 		},
 		electron: {
 			discord_rpc_update: (data: any) => void,
-			discord_rpc_destroy: () => void,
+			discord_rpc_destroy: (hostname: string) => void,
 			discord_rpc_enable: () => void,
 			discord_rpc_disable: () => void,
 
