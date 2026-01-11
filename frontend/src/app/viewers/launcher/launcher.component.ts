@@ -14,10 +14,11 @@ import {TopBar} from '../../components/top-tab/top-bar.component';
 import {StateService} from '../../services/state/state.service';
 import {SettingsService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
-import {Setting} from '../../components/setting/setting.component';
+import {Setting} from '../../components/modal/setting/setting.component';
 import {environment} from '../../../environments/environment';
 import {Title} from '@angular/platform-browser';
 import {ModalType} from '../../constants/modal.const';
+import {Login} from '../../components/modal/login/login.component';
 
 @Component({
 	selector: 'app-launcher',
@@ -25,7 +26,8 @@ import {ModalType} from '../../constants/modal.const';
 		RouterOutlet,
 		Sidebar,
 		TopBar,
-		Setting
+		Setting,
+		Login
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
