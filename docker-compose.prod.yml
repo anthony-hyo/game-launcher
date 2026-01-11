@@ -49,10 +49,6 @@ services:
     depends_on:
       backend:
         condition: service_healthy
-    networks:
-      - game_launcher-net
-    ports:
-      - "3000:3000"
 
 networks:
   game_launcher-net:
