@@ -6,8 +6,6 @@ import {environment} from '../../../environments/environment';
 @Injectable({providedIn: 'root'})
 export class SettingsService {
 
-	public readonly isSettingsVisible = signal<boolean>(false);
-
 	public readonly theme = signal<ThemeType>('dark');
 	public readonly isDiscordRpcEnabled = signal<boolean>(true);
 
@@ -26,10 +24,6 @@ export class SettingsService {
 				}
 			});
 		}
-	}
-
-	public toggleSettings(visible: boolean): void {
-		this.isSettingsVisible.set(visible);
 	}
 
 	public toggleTheme(): void {

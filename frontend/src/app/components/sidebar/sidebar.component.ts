@@ -7,6 +7,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { StateService } from '../../services/state/state.service';
 import { LibraryGame } from '../../models/library-game.model';
+import {ModalType} from '../../constants/modal.const';
 
 @Component({
 	selector: 'app-sidebar',
@@ -27,5 +28,6 @@ export class Sidebar {
 	protected onGameSelect(game: LibraryGame): void {
 		this.stateService.currentGame.set(game);
 	}
-	
+
+	protected readonly ModalType = ModalType;
 }

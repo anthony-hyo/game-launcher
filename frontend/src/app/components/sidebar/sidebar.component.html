@@ -58,7 +58,7 @@
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
 	<app-sidebar-button
-		(click)="settingsService.toggleSettings(true)"
+		(click)="stateService.openModal(ModalType.SETTINGS)"
 		description="Open Settings"
 		icon="settings"
 		iconAnimation="transition-transform hover:rotate-90"

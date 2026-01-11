@@ -17,6 +17,7 @@ import {RouterHandler} from '../../services/router-handler/router-handler.servic
 import {Setting} from '../../components/setting/setting.component';
 import {environment} from '../../../environments/environment';
 import {Title} from '@angular/platform-browser';
+import {ModalType} from '../../constants/modal.const';
 
 @Component({
 	selector: 'app-launcher',
@@ -76,4 +77,5 @@ export class Launcher {
 		}
 	}
 
+	protected readonly ModalType = ModalType;
 }

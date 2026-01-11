@@ -7,6 +7,7 @@ import {random} from '../../helper/helper.random';
 import {LibraryService} from '../library/library.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
+import {ModalType} from '../../constants/modal.const';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
@@ -17,6 +18,8 @@ export class StateService {
 
 	public readonly activeView = signal<'router' | string>('router'); //todo: make private
 	public readonly openTabs = signal<Map<string, Tab>>(new Map());
+
+	public readonly currentModal = signal<ModalType>(ModalType.NONE);
 
 	public readonly loadingProgress = signal<number>(0);
 
@@ -130,6 +133,10 @@ export class StateService {
 		this.openTabs().set(newTab.tabId, newTab);
 
 		this.activeView.set(newTab.tabId);
+	}
+
+	public openModal(modalType: ModalType): void {
+		this.currentModal.set(modalType);
 	}
 
 	public setLoadingProgress(value: number): void {
