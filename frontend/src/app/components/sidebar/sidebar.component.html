@@ -1,29 +1,49 @@
-<aside [class.hidden]="!this.stateService.isSideBarVisible()" class="flex h-screen w-20 flex-shrink-0 flex-col items-center space-y-5 overflow-y-auto overflow-x-hidden border-r border-white/5 bg-neutral-950 py-5 backdrop-blur-md light:border-black/10 light:bg-gray-200">
+<aside
+	[class.hidden]="!this.stateService.isSideBarVisible()"
+	class="flex h-screen w-20 flex-shrink-0 flex-col items-center space-y-5 overflow-y-auto overflow-x-hidden border-r border-white/5 bg-neutral-950 py-5 backdrop-blur-md light:border-black/10 light:bg-gray-200"
+>
 	@if (environment.showHome) {
-		<app-sidebar-button [description]="'Go to Home'" [path]="'home'" [icon]="'home'" />
+		<app-sidebar-button description="Go to Home" path="home" icon="home" />
 	}
 
 	@if (environment.showDownload) {
-		<app-sidebar-button [description]="'Go to Downloads'" [path]="'download'" [icon]="'download'" />
+		<app-sidebar-button description="Go to Downloads" path="download" icon="download" />
 	}
 
-	<app-sidebar-button [description]="'Go to Library'" [path]="'library'" [icon]="'grid_view'" />
+	<app-sidebar-button description="Go to Library" path="library" icon="grid_view" />
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<div class="scrollbar-none staggered-list mx-auto h-full w-full snap-y snap-mandatory scroll-py-8 overflow-y-auto overflow-x-hidden py-1 text-center">
+	<div
+		class="scrollbar-none staggered-list mx-auto h-full w-full snap-y snap-mandatory scroll-py-8 overflow-y-auto overflow-x-hidden py-1 text-center"
+	>
 		@for (game of gameService.getGamesByPlays(); track game.title) {
 			<div class="staggered-list-item" [style.--index]="$index">
-				<button [routerLink]="['/library/viewer', game.id]" routerLinkActive #rla="routerLinkActive" (click)="onGameSelect(game)" class="group relative h-14 w-14 flex-shrink-0 transform snap-start rounded-xl ring-2 ring-offset-2 ring-offset-tertiary transition-all duration-300 hover:scale-90 focus:outline-none light:ring-offset-tertiary-light" [ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'" [attr.aria-label]="'Select ' + game.title">
+				<button
+					[routerLink]="['/library/viewer', game.id]"
+					routerLinkActive
+					#rla="routerLinkActive"
+					(click)="onGameSelect(game)"
+					class="group relative h-14 w-14 flex-shrink-0 transform snap-start rounded-xl ring-2 ring-offset-2 ring-offset-tertiary transition-all duration-300 hover:scale-90 focus:outline-none light:ring-offset-tertiary-light"
+					[ngClass]="rla.isActive ? 'ring-primary' : 'ring-transparent'"
+					[attr.aria-label]="'Select ' + game.title"
+				>
 					@let tabs = stateService.getTabsByUrl(game.url)();
 
 					@if (tabs.length > 0) {
-						<span class="absolute -right-1 -top-1 z-10 inline-flex h-4 w-4 items-center justify-center rounded-full bg-primary pl-[1px] text-[10px] font-medium text-white">
+						<span
+							class="absolute -right-1 -top-1 z-10 inline-flex h-4 w-4 items-center justify-center rounded-full bg-primary pl-[1px] text-[10px] font-medium text-white"
+						>
 							{{ tabs.length }}
 						</span>
 					}
 
-					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="z-0 h-full w-full rounded-xl object-cover grayscale hover:grayscale-0" [ngClass]="tabs.length > 0 || rla.isActive ? 'grayscale-0' : 'grayscale-1'" />
+					<img
+						[src]="game.iconUrl"
+						[alt]="game.title + ' icon'"
+						class="z-0 h-full w-full rounded-xl object-cover grayscale hover:grayscale-0"
+						[ngClass]="tabs.length > 0 || rla.isActive ? 'grayscale-0' : 'grayscale-1'"
+					/>
 				</button>
 			</div>
 		} @empty {
@@ -37,7 +57,10 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<button (click)="settingsService.toggleSettings(true)" aria-label="Open Settings" class="hove group relative flex-shrink-0 bg-transparent text-gray-400 transition-colors duration-200 hover:text-white focus:outline-none light:text-gray-500 light:hover:text-black">
-		<span class="material-symbols-rounded transition-transform hover:rotate-90">settings</span>
-	</button>
+	<app-sidebar-button
+		(click)="settingsService.toggleSettings(true)"
+		description="Open Settings"
+		icon="settings"
+		iconAnimation="transition-transform hover:rotate-90"
+	/>
 </aside>

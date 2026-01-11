@@ -1,4 +1,4 @@
-import {effect, inject, Injectable, Signal, signal} from '@angular/core';
+import {inject, Injectable, Signal, signal} from '@angular/core';
 import {LibraryGame} from '../../models/library-game.model';
 import {Tab} from '../../models/tab.model';
 import {ViewType} from '../../helper/helper.viewer';

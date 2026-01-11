@@ -1,13 +1,10 @@
 <button
-	[routerLink]="path()"
-
-	routerLinkActive #rla="routerLinkActive"
-
-	class="flex bg-transparent text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black transition-colors duration-200 focus:outline-none flex-shrink-0"
-
+	[routerLink]="path() ?? null"
+	routerLinkActive
+	#rla="routerLinkActive"
+	class="flex flex-shrink-0 bg-transparent text-gray-400 transition-colors duration-200 hover:text-white focus:outline-none light:text-gray-500 light:hover:text-black"
 	[ngClass]="rla.isActive && state.isRouterActive ? 'text-primary light:text-primary' : ''"
-
-	aria-label="{{ description()}}">
-
-	<span class="material-symbols-rounded">{{ icon() }}</span>
+	aria-label="{{ description() }}"
+>
+	<span class="material-symbols-rounded" [ngClass]="iconAnimation()">{{ icon() }}</span>
 </button>
