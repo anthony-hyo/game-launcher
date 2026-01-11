@@ -12,10 +12,11 @@ services:
     networks:
       - game_launcher-net
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER}"]
-      interval: 5s
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 10s
   
   backend:
     build:
@@ -28,13 +29,12 @@ services:
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_DB: ${DATABASE_DB}
     depends_on:
-      postgresql:
-        condition: service_healthy
+      - postgresql
     networks:
       - game_launcher-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 10s
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/api/library/games" ]
+      interval: 30s
       timeout: 5s
       retries: 3
       start_period: 40s
