@@ -23,7 +23,7 @@
 						</span>
 					}
 
-					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="z-0 h-full w-full rounded-xl object-cover grayscale hover:grayscale-0" [ngClass]="tabs.length > 0 ? 'grayscale-0' : 'grayscale-1'" />
+					<img [src]="game.iconUrl" [alt]="game.title + ' icon'" class="z-0 h-full w-full rounded-xl object-cover grayscale hover:grayscale-0" [ngClass]="tabs.length > 0 || rla.isActive ? 'grayscale-0' : 'grayscale-1'" />
 				</button>
 			</div>
 		} @empty {
