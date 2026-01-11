@@ -1,0 +1,29 @@
+<div
+	(click)="stateService.openModal(ModalType.NONE)"
+	class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+>
+	<div
+		(click)="$event.stopPropagation()"
+		class="w-full max-w-lg rounded-xl border border-white/10 bg-neutral-800 shadow-2xl light:border-black/10 light:bg-white"
+	>
+		<div class="flex items-center justify-between border-b border-white/10 p-6 light:border-black/10">
+			<h2 class="text-2xl font-bold">{{ title() }}</h2>
+			<button
+				(click)="stateService.openModal(ModalType.NONE)"
+				class="flex items-center justify-center bg-transparent text-gray-400 transition-colors hover:text-primary light:text-gray-400 light:hover:text-primary"
+			>
+				<span class="material-symbols-rounded">close</span>
+			</button>
+		</div>
+
+		<div class="space-y-6 p-6">
+			<ng-content select="[modal-body]" />
+		</div>
+
+		<div
+			class="rounded-b-xl border-t border-white/10 bg-neutral-900 px-6 py-4 text-right light:border-black/10 light:bg-gray-100"
+		>
+			<ng-content select="[modal-footer]" />
+		</div>
+	</div>
+</div>
