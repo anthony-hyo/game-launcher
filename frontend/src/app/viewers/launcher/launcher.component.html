@@ -44,7 +44,9 @@
 
 @switch (state.currentModal()) {
 	@case (ModalType.NONE) {}
-	@case (ModalType.LOGIN) {}
+	@case (ModalType.LOGIN) {
+		<app-login />
+	}
 	@case (ModalType.SETTINGS) {
 		<app-setting />
 	}

@@ -57,6 +57,8 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
+	<app-sidebar-button (click)="stateService.openModal(ModalType.LOGIN)" description="Open Login" icon="person" />
+
 	<app-sidebar-button
 		(click)="stateService.openModal(ModalType.SETTINGS)"
 		description="Open Settings"
