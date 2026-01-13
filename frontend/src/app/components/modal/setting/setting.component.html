@@ -7,13 +7,13 @@
 			</div>
 			<div class="flex items-center space-x-2">
 				<button
-					(click)="settings.toggleTheme()"
+					(click)="settingService.toggleTheme()"
 					class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white"
 				>
 					<span
-						[class.rotate-180]="settings.theme() === 'dark'"
+						[class.rotate-180]="settingService.theme() === 'dark'"
 						class="material-symbols-rounded transition-transform duration-300"
-						>{{ settings.theme() === 'dark' ? 'dark_mode' : 'light_mode' }}</span
+						>{{ settingService.theme() === 'dark' ? 'dark_mode' : 'light_mode' }}</span
 					>
 				</button>
 			</div>
@@ -26,14 +26,14 @@
 			</div>
 
 			<button
-				(click)="settings.toggleDiscordRpc()"
-				[class.bg-gray-400]="!settings.isDiscordRpcEnabled()"
-				[class.bg-primary]="settings.isDiscordRpcEnabled()"
+				(click)="settingService.toggleDiscordRpc()"
+				[class.bg-gray-400]="!settingService.isDiscordRpcEnabled()"
+				[class.bg-primary]="settingService.isDiscordRpcEnabled()"
 				class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-neutral-800 light:focus:ring-offset-white"
 			>
 				<span
-					[class.translate-x-0]="!settings.isDiscordRpcEnabled()"
-					[class.translate-x-5]="settings.isDiscordRpcEnabled()"
+					[class.translate-x-0]="!settingService.isDiscordRpcEnabled()"
+					[class.translate-x-5]="settingService.isDiscordRpcEnabled()"
 					class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
 				></span>
 			</button>

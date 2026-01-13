@@ -15,12 +15,12 @@ import {NgClass} from '@angular/common';
 })
 export class SidebarButton {
 
-	protected readonly state = inject(StateService);
+	protected readonly stateService = inject(StateService);
 
-	description = input.required<string>();
-	path = input<string>();
+	public readonly description = input.required<string>();
+	public readonly path = input<string>();
 	
-	icon = input.required<string>();
-	iconAnimation = input<string>('');
+	public readonly icon = input.required<string>();
+	public readonly iconAnimation = input<string>('');
 
 }

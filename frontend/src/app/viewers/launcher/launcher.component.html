@@ -5,12 +5,12 @@
 		<app-top-bar />
 
 		<div class="relative flex-grow overflow-y-auto">
-			@if (state.isRouterActive) {
+			@if (stateService.isRouterActive) {
 				<router-outlet />
 			}
 
-			@for (tab of state.openTabs().values(); track tab.tabId) {
-				<div class="absolute inset-0" [class.hidden]="state.activeView() !== tab.tabId">
+			@for (tab of stateService.openTabs().values(); track tab.tabId) {
+				<div class="absolute inset-0" [class.hidden]="stateService.activeView() !== tab.tabId">
 					@if (environment.useWebview) {
 						@if (tab.isWhitelistedDomain) {
 							<webview
@@ -42,7 +42,7 @@
 	</main>
 </div>
 
-@switch (state.currentModal()) {
+@switch (stateService.currentModal()) {
 	@case (ModalType.NONE) {}
 	@case (ModalType.LOGIN) {
 		<app-login />

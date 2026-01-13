@@ -1,30 +1,48 @@
-<div class="group relative h-auto w-full rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-black/40 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-tertiary light:focus-within:ring-offset-tertiary-light bg-neutral-800 light:bg-gray-300">
+<div
+	class="group relative h-auto w-full transform overflow-hidden rounded-xl bg-neutral-800 shadow-lg transition-all duration-300 ease-in-out focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-tertiary hover:scale-105 hover:shadow-2xl hover:shadow-black/40 light:bg-gray-300 light:focus-within:ring-offset-tertiary-light"
+>
 	@if (game().playCount && game().playCount > 0) {
-		<div class="absolute top-4 left-4 z-20 bg-black/30 light:bg-white/30 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-medium text-white light:text-black flex items-center gap-1">
-			<span class="material-symbols-rounded text-sm">play_circle</span>
-			{{ game().playCount }} plays
+		<div
+			class="absolute left-4 top-4 z-20 flex items-center gap-1 rounded-lg bg-black/30 px-3 py-1 text-xs font-medium text-white backdrop-blur-md light:bg-white/30 light:text-black"
+		>
+			<span class="material-symbols-rounded text-sm">play_circle</span> {{ game().playCount }} plays
 		</div>
 	}
 
-	<img [alt]="game().title" [src]="game().coverUrl" class="w-full aspect-video object-cover transition-all duration-300 group-hover:brightness-50 group-hover:scale-110">
+	<img
+		[alt]="game().title"
+		[src]="game().coverUrl"
+		class="aspect-video w-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-50"
+	/>
 
-	<div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent flex items-end justify-between z-10">
+	<div
+		class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between bg-gradient-to-t from-black/70 to-transparent p-4"
+	>
 		<div class="flex items-center gap-3">
-			<img [src]="game().iconUrl" class="h-12 w-12 object-contain rounded-lg shadow-md" [alt]="game().title + ' logo'">
+			<img
+				[alt]="game().title + ' logo'"
+				[src]="game().iconUrl"
+				class="h-12 w-12 rounded-lg object-contain shadow-md"
+			/>
 
-			<h3 class="text-lg font-bold text-white truncate max-w-[20rem]">
-				{{ game().title }}
-			</h3>
+			<h3 class="max-w-[20rem] truncate text-lg font-bold text-white">{{ game().title }}</h3>
 		</div>
 	</div>
 
-	<div class="absolute inset-0 light:bg-white/70 bg-black/70 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md z-20">
-		<button (click)="state.playGame(game().url, game())" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-3 mb-3 text-base font-bold text-white bg-primary rounded-lg hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
-			<span class="material-symbols-rounded mr-2">play_arrow</span>
-			Play
+	<div
+		class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/70 p-4 opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 light:bg-white/70"
+	>
+		<button
+			(click)="stateService.playGame(game().url, game())"
+			class="mb-3 inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50"
+		>
+			<span class="material-symbols-rounded mr-2">play_arrow</span> Play
 		</button>
 
-		<button [routerLink]="['/library/viewer', game().id]" class="w-full max-w-xs inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white light:bg-black/20 bg-white/20 rounded-lg hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300">
+		<button
+			[routerLink]="['/library/viewer', game().id]"
+			class="inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-white/20 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 light:bg-black/20"
+		>
 			Game Info
 		</button>
 	</div>

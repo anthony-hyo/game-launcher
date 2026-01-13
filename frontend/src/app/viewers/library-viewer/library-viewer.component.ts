@@ -21,8 +21,7 @@ export class LibraryViewer {
 
 	private readonly route = inject(ActivatedRoute);
 
-	private libraryGameId!: number;
-
+	protected libraryGameId!: number;
 	protected libraryGame!: LibraryGame;
 
 	constructor() {

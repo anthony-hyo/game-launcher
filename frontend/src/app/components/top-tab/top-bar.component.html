@@ -1,17 +1,37 @@
-<div class="draggable z-20 flex h-[50px] w-full flex-shrink-0 items-center justify-between border-b border-white/5 bg-neutral-950 pr-3 backdrop-blur-md light:border-black/10 light:bg-gray-200">
+<div
+	class="draggable z-20 flex h-[50px] w-full flex-shrink-0 items-center justify-between border-b border-white/5 bg-neutral-950 pr-3 backdrop-blur-md light:border-black/10 light:bg-gray-200"
+>
 	<div class="-mb-px flex h-full items-end self-end overflow-hidden">
-		<button (click)="toggleSideBar()" class="not-draggable flex h-full items-center bg-transparent px-4 py-3 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-white focus:outline-none light:text-gray-600 light:hover:text-black">
-			<span class="material-symbols-rounded">{{ this.state.isSideBarVisible() ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</span>
+		<button
+			(click)="toggleSideBar()"
+			class="not-draggable flex h-full items-center bg-transparent px-4 py-3 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-white focus:outline-none light:text-gray-600 light:hover:text-black"
+		>
+			<span class="material-symbols-rounded">{{
+				stateService.isSideBarVisible() ? 'keyboard_arrow_left' : 'keyboard_arrow_right'
+			}}</span>
 		</button>
 
-		<button routerLink="/library" (click)="state.openRouterView()" [ngClass]="this.state.isRouterActive ? 'border-primary text-white light:text-black' : 'border-transparent text-gray-400 hover:text-white light:text-gray-600 light:hover:text-black'" class="not-draggable flex h-full items-center border-b-2 bg-transparent px-4 py-3 text-sm font-medium transition-colors duration-200 focus:outline-none">
+		<button
+			(click)="stateService.openRouterView()"
+			[ngClass]="
+				stateService.isRouterActive
+					? 'border-primary text-white light:text-black'
+					: 'border-transparent text-gray-400 hover:text-white light:text-gray-600 light:hover:text-black'
+			"
+			class="not-draggable flex h-full items-center border-b-2 bg-transparent px-4 py-3 text-sm font-medium transition-colors duration-200 focus:outline-none"
+			routerLink="/library"
+		>
 			<span class="material-symbols-rounded mr-2">browse</span>
 			Library
 		</button>
 
-		<div #scrollArea (wheel)="onWheelHorizontal($event)" class="scrollbar-none flex h-full items-end self-end overflow-x-auto overflow-y-hidden scroll-smooth pl-4">
-			@for (tab of state.openTabs().values(); track tab.tabId) {
-				@let currentGame = state.currentGame();
+		<div
+			#scrollArea
+			(wheel)="onWheelHorizontal($event)"
+			class="scrollbar-none flex h-full items-end self-end overflow-x-auto overflow-y-hidden scroll-smooth pl-4"
+		>
+			@for (tab of stateService.openTabs().values(); track tab.tabId) {
+				@let currentGame = stateService.currentGame();
 				@let tabGame = tab.game;
 
 				<app-top-bar-tab [tab]="tab" [class.hidden]="currentGame && tabGame && currentGame.id != tabGame.id" />
@@ -20,11 +40,19 @@
 	</div>
 
 	<div [class.hidden]="!isScrollable()" class="not-draggable flex items-center">
-		<button (click)="scrollLeft()" aria-label="Minimize" class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black">
+		<button
+			(click)="scrollLeft()"
+			aria-label="Minimize"
+			class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black"
+		>
 			<span class="material-symbols-rounded">keyboard_arrow_left</span>
 		</button>
 
-		<button (click)="scrollRight()" aria-label="Minimize" class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black">
+		<button
+			(click)="scrollRight()"
+			aria-label="Minimize"
+			class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black"
+		>
 			<span class="material-symbols-rounded">keyboard_arrow_right</span>
 		</button>
 	</div>

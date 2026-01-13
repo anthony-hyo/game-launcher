@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {SettingsService} from '../../../services/setting/setting.service';
+import {SettingService} from '../../../services/setting/setting.service';
 import {StateService} from '../../../services/state/state.service';
 import {ModalType} from '../../../constants/modal.const';
 import {Modal} from '../modal.component';
@@ -14,9 +14,9 @@ import {Modal} from '../modal.component';
 })
 export class Setting {
 
-	stateService = inject(StateService);
-	settings = inject(SettingsService);
-
 	protected readonly ModalType = ModalType;
+
+	protected readonly stateService = inject(StateService);
+	protected readonly settingService = inject(SettingService);
 
 }

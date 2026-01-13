@@ -13,21 +13,21 @@ export class WindowControl {
 
 	protected readonly environment = environment;
 
-	protected readonly state = inject(StateService);
+	protected readonly stateService = inject(StateService);
 
 	public readonly hasMinimize = input<boolean>(true);
 	public readonly hasMaximize = input<boolean>(true);
 	public readonly hasClose = input<boolean>(true);
 
-	protected minimize(): void {
+	protected onClickMinimize(): void {
 		window.electron.window_minimize()
 	}
 
-	protected toggleMaximize(): void {
+	protected onClickToggleMaximize(): void {
 		window.electron.window_maximize()
 	}
 
-	protected close(): void {
+	protected onClickClose(): void {
 		window.electron.window_close();
 	}
 

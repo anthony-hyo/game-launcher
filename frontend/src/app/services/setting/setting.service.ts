@@ -4,7 +4,7 @@ import {HelperStorage} from '../../helper/helper.storage';
 import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
-export class SettingsService {
+export class SettingService {
 
 	public readonly theme = signal<ThemeType>('dark');
 	public readonly isDiscordRpcEnabled = signal<boolean>(true);

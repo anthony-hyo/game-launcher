@@ -1,18 +1,30 @@
 <div class="not-draggable flex items-center gap-1.5">
 	@if (hasMinimize()) {
-		<button (click)="minimize()" aria-label="Minimize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
+		<button
+			(click)="onClickMinimize()"
+			aria-label="Minimize"
+			class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black"
+		>
 			<span class="material-symbols-rounded text-base">minimize</span>
 		</button>
 	}
 
 	@if (hasMaximize()) {
-		<button (click)="toggleMaximize()" aria-label="Maximize" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black hover:bg-white/5 light:hover:bg-black/5 transition-colors duration-300 focus:outline-none">
+		<button
+			(click)="onClickToggleMaximize()"
+			aria-label="Maximize"
+			class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-white/5 hover:text-white focus:outline-none light:text-gray-500 light:hover:bg-black/5 light:hover:text-black"
+		>
 			<span class="material-symbols-rounded text-base">crop_square</span>
 		</button>
 	}
 
 	@if (hasClose()) {
-		<button (click)="close()" aria-label="Close" class="bg-transparent w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 transition-colors duration-300 focus:outline-none">
+		<button
+			(click)="onClickClose()"
+			aria-label="Close"
+			class="flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-red-500 hover:text-white focus:outline-none light:text-gray-500 light:hover:text-white"
+		>
 			<span class="material-symbols-rounded text-base">close</span>
 		</button>
 	}

@@ -1,12 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { LibraryService } from '../../services/library/library.service';
-import { NgClass } from '@angular/common';
-import { SettingsService } from '../../services/setting/setting.service';
-import { SidebarButton } from '../sidebar-button/sidebar-button.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { environment } from '../../../environments/environment';
-import { StateService } from '../../services/state/state.service';
-import { LibraryGame } from '../../models/library-game.model';
+import {Component, inject} from '@angular/core';
+import {LibraryService} from '../../services/library/library.service';
+import {NgClass} from '@angular/common';
+import {SidebarButton} from '../sidebar-button/sidebar-button.component';
+import {RouterLink, RouterLinkActive} from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {StateService} from '../../services/state/state.service';
+import {LibraryGame} from '../../models/library-game.model';
 import {ModalType} from '../../constants/modal.const';
 
 @Component({
@@ -18,16 +17,13 @@ import {ModalType} from '../../constants/modal.const';
 export class Sidebar {
 	
 	protected readonly environment = environment;
+	protected readonly ModalType = ModalType;
 
 	protected readonly stateService = inject(StateService);
 	protected readonly gameService = inject(LibraryService);
-	protected readonly settingsService = inject(SettingsService);
-
-	protected readonly StateService = StateService;
 
 	protected onGameSelect(game: LibraryGame): void {
 		this.stateService.currentGame.set(game);
 	}
 
-	protected readonly ModalType = ModalType;
 }

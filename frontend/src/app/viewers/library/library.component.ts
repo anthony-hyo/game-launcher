@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {LibraryCard} from "../../components/library-card/library-card.component";
+import {LibraryCard} from '../../components/library-card/library-card.component';
 import {LibraryService} from '../../services/library/library.service';
 
 @Component({
@@ -12,6 +12,6 @@ import {LibraryService} from '../../services/library/library.service';
 })
 export class Library {
 
-	public gameService = inject(LibraryService);
+	protected readonly gameService = inject(LibraryService);
 
 }

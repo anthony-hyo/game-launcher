@@ -8,31 +8,31 @@ import {LibraryService} from '../library/library.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
 import {ModalType} from '../../constants/modal.const';
+import {LoadingService} from '../loading/loading.service';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
 
 	private readonly router = inject(Router);
+
 	private readonly gameService = inject(LibraryService);
+	private readonly loadingService = inject(LoadingService);
+
 	private readonly sanitizer = inject(DomSanitizer);
 
 	public readonly activeView = signal<'router' | string>('router'); //todo: make private
 	public readonly openTabs = signal<Map<string, Tab>>(new Map());
 
 	public readonly currentModal = signal<ModalType>(ModalType.NONE);
-
-	public readonly loadingProgress = signal<number>(0);
-
-	public readonly loadingText = signal<string>('Loading...');
-
 	public readonly currentGame = signal<LibraryGame | undefined>(undefined);
+
 	public readonly isSideBarVisible = signal(true);
 
 	constructor() {
 		if (environment.useWebview) {
 			window.loading = {
-				progress: this.setLoadingProgress.bind(this),
-				text: this.setLoadingText.bind(this)
+				progress: this.loadingService.setProgress.bind(this),
+				text: this.loadingService.setText.bind(this)
 			};
 
 			window.tab = {
@@ -137,14 +137,6 @@ export class StateService {
 
 	public openModal(modalType: ModalType): void {
 		this.currentModal.set(modalType);
-	}
-
-	public setLoadingProgress(value: number): void {
-		this.loadingProgress.set(value);
-	}
-
-	public setLoadingText(text: string): void {
-		this.loadingText.set(text);
 	}
 
 	/**

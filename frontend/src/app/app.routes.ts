@@ -44,6 +44,11 @@ export const routes: Routes = [
 				path: 'library/viewer/:id',
 				component: LibraryViewer,
 				title: libraryViewer
+			},
+			{
+				path: 'admin',
+				component: Admin,
+				title: 'Library'
 			}
 		]
 	},

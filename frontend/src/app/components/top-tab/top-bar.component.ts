@@ -21,10 +21,9 @@ export class TopBar {
 
 	protected readonly environment = environment;
 
-	private readonly scrollArea = viewChild.required<ElementRef>('scrollArea')
+	protected readonly stateService = inject(StateService);
 
-	protected readonly state = inject(StateService);
-
+	protected readonly scrollArea = viewChild.required<ElementRef>('scrollArea');
 	protected readonly isScrollable = signal(false);
 
 	constructor() {
@@ -55,7 +54,7 @@ export class TopBar {
 	}
 
 	protected toggleSideBar(): void {
-		this.state.isSideBarVisible.set(!this.state.isSideBarVisible());
+		this.stateService.isSideBarVisible.set(!this.stateService.isSideBarVisible());
 	}
 	
 }

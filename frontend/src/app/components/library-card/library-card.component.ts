@@ -1,8 +1,6 @@
 import {Component, inject, input} from '@angular/core';
 import {LibraryGame} from '../../models/library-game.model';
 import {StateService} from '../../services/state/state.service';
-import {LibraryService} from '../../services/library/library.service';
-import {SettingsService} from '../../services/setting/setting.service';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -14,11 +12,9 @@ import {RouterLink} from '@angular/router';
 	styleUrl: './library-card.component.scss',
 })
 export class LibraryCard {
+	
+	protected readonly stateService = inject(StateService);
 
-	public gameService = inject(LibraryService);
-	public state = inject(StateService);
-	public settings = inject(SettingsService);
-
-	public game = input.required<LibraryGame>();
+	public readonly game = input.required<LibraryGame>();
 
 }

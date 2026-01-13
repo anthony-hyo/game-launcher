@@ -12,7 +12,7 @@ import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
 import {TopBar} from '../../components/top-tab/top-bar.component';
 import {StateService} from '../../services/state/state.service';
-import {SettingsService} from '../../services/setting/setting.service';
+import {SettingService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
 import {Setting} from '../../components/modal/setting/setting.component';
 import {environment} from '../../../environments/environment';
@@ -37,10 +37,10 @@ import {Login} from '../../components/modal/login/login.component';
 })
 export class Launcher {
 
-	protected readonly state = inject(StateService);
-	protected readonly settings = inject(SettingsService);
-
 	protected readonly environment = environment;
+
+	protected readonly stateService = inject(StateService);
+	protected readonly settingService = inject(SettingService);
 
 	private readonly renderer = inject(Renderer2);
 	private readonly document = inject(DOCUMENT);
@@ -50,7 +50,7 @@ export class Launcher {
 
 	constructor(_routerHandler: RouterHandler) {
 		effect(() => {
-			if (this.settings.theme() === 'light') {
+			if (this.settingService.theme() === 'light') {
 				this.renderer.addClass(this.document.documentElement, 'light');
 			} else {
 				this.renderer.removeClass(this.document.documentElement, 'light');
@@ -64,7 +64,7 @@ export class Launcher {
 						continue;
 					}
 
-					const tab = this.state.openTabs().get(webview.nativeElement.dataset.tabId)!;
+					const tab = this.stateService.openTabs().get(webview.nativeElement.dataset.tabId)!;
 
 					webview.nativeElement.addEventListener('did-finish-load', () => {
 						const title: string = webview.nativeElement.getTitle();

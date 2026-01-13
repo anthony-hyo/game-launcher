@@ -1,15 +1,24 @@
 <button
-	(click)="state.openTab(tab().tabId)"
+	(click)="stateService.openTab(tab().tabId)"
+	[ngClass]="
+		stateService.activeView() == tab().tabId
+			? 'border-primary text-white light:text-black'
+			: 'border-transparent text-gray-400 hover:text-white light:text-gray-600 light:hover:text-black'
+	"
+	class="not-draggable flex h-full max-w-[200px] items-center whitespace-nowrap border-b-2 bg-transparent px-4 py-3 text-sm font-medium transition-colors duration-200 focus:outline-none"
+>
+	<img
+		[alt]="tab().title"
+		[src]="'https://s2.googleusercontent.com/s2/favicons?domain=' + tab().rawUrl + '&sz=32'"
+		class="h-auto w-4 rounded-xl object-cover"
+	/>
 
-	class="not-draggable bg-transparent flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-colors duration-200 focus:outline-none h-full whitespace-nowrap max-w-[200px]"
+	<span class="truncate ps-2">{{ tab().title }}</span>
 
-	[ngClass]="state.activeView() == tab().tabId ? 'text-white light:text-black border-primary' : 'text-gray-400 light:text-gray-600 border-transparent hover:text-white light:hover:text-black'">
-
-	<img class="w-4 h-auto object-cover rounded-xl" [src]="'https://s2.googleusercontent.com/s2/favicons?domain='+tab().rawUrl+'&sz=32'" [alt]="tab().title"/>
-
-	<span class="ps-2 truncate">{{ tab().title }}</span>
-
-	<button (click)="this.state.closeTab($event, tab())" class="bg-transparent ml-2 w-5 h-5 rounded-lg flex items-center justify-center text-gray-400 light:text-gray-500 hover:text-white light:hover:text-white hover:bg-red-500 focus:outline-none transition-colors duration-300 flex-shrink-0">
+	<button
+		(click)="stateService.closeTab($event, tab())"
+		class="ml-2 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-lg bg-transparent text-gray-400 transition-colors duration-300 hover:bg-red-500 hover:text-white focus:outline-none light:text-gray-500 light:hover:text-white"
+	>
 		<span class="material-symbols-rounded">close_small</span>
 	</button>
 </button>

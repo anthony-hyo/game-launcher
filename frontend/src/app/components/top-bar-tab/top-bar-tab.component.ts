@@ -12,13 +12,14 @@ import {Tab} from '../../models/tab.model';
 	styleUrl: './top-bar-tab.component.scss',
 })
 export class TopBarTab implements AfterViewInit {
+	
+	protected readonly stateService = inject(StateService);
 
-	protected readonly state = inject(StateService);
 	protected readonly host = inject(ElementRef)
 
-	public tab = input.required<Tab>();
+	public readonly tab = input.required<Tab>();
 
-	ngAfterViewInit(): void {
+	public ngAfterViewInit(): void {
 		this.host.nativeElement.scrollIntoView({behavior: 'smooth', inline: 'center'});
 	}
 

@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {WindowControl} from '../../components/window-control/window-control.component';
-import {StateService} from '../../services/state/state.service';
 import {environment} from '../../../environments/environment';
+import {LoadingService} from '../../services/loading/loading.service';
 
 @Component({
 	selector: 'app-loading',
@@ -13,7 +13,8 @@ import {environment} from '../../../environments/environment';
 })
 export class Loading {
 
-	protected readonly stateService = inject(StateService);
 	protected readonly environment = environment;
+
+	protected readonly loadingService = inject(LoadingService);
 
 }

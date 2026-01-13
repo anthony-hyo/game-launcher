@@ -1,15 +1,32 @@
-<div class="h-[383px] w-[512px] overflow-hidden rounded-lg border border-white/5 bg-tertiary shadow-2xl shadow-black/20 light:border-black/10 light:bg-tertiary-light">
-	<div class="draggable z-20 flex h-[50px] flex-shrink-0 items-center justify-end border-b border-white/5 bg-neutral-950 pr-3 backdrop-blur-md light:border-black/10 light:bg-gray-200">
+<div
+	class="h-[383px] w-[512px] overflow-hidden rounded-lg border border-white/5 bg-tertiary shadow-2xl shadow-black/20 light:border-black/10 light:bg-tertiary-light"
+>
+	<div
+		class="draggable z-20 flex h-[50px] flex-shrink-0 items-center justify-end border-b border-white/5 bg-neutral-950 pr-3 backdrop-blur-md light:border-black/10 light:bg-gray-200"
+	>
 		<app-window-control [hasMaximize]="false" />
 	</div>
 
-	<img alt="Launcher Loading" draggable="false" [src]="environment.loadingImageUrl" class="block" width="512px" height="288px" />
+	<img
+		[src]="environment.loadingImageUrl"
+		alt="Launcher Loading"
+		class="block"
+		draggable="false"
+		height="288px"
+		width="512px"
+	/>
 
 	<div class="px-4 py-2 text-center">
-		<span class="text-sm font-semibold tracking-wider text-gray-400 light:text-gray-500" [innerHTML]="stateService.loadingText()"></span>
+		<span
+			[innerHTML]="loadingService.loadingText()"
+			class="text-sm font-semibold tracking-wider text-gray-400 light:text-gray-500"
+		></span>
 	</div>
 
 	<div class="h-2 w-full bg-black/50 light:bg-black/20">
-		<div class="h-1 bg-secondary transition-all duration-300 ease-linear" [style.width.%]="stateService.loadingProgress()"></div>
+		<div
+			[style.width.%]="loadingService.loadingProgress()"
+			class="h-1 bg-secondary transition-all duration-300 ease-linear"
+		></div>
 	</div>
 </div>
