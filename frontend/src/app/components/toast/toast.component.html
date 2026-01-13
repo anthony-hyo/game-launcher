@@ -1,0 +1,10 @@
+<div
+	[class.hidden]="!isVisible"
+	[ngClass]="[typeClass(), animationClass()]"
+	class="animate-fade-in-up flex items-center gap-4 rounded-lg px-6 py-4 shadow-2xl"
+>
+	<div class="max-w-sm flex-1">{{ message() }}</div>
+	<button class="bg-transparent text-white transition-colors hover:text-gray-200">
+		<span (click)="onClose()" class="material-symbols-rounded text-sm">close</span>
+	</button>
+</div>

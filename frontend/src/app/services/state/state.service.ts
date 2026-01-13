@@ -9,6 +9,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {environment} from '../../../environments/environment';
 import {ModalType} from '../../constants/modal.const';
 import {LoadingService} from '../loading/loading.service';
+import {ToastService} from '../toast/toast.service';
 
 @Injectable({providedIn: 'root'})
 export class StateService {
@@ -17,6 +18,7 @@ export class StateService {
 
 	private readonly gameService = inject(LibraryService);
 	private readonly loadingService = inject(LoadingService);
+	private readonly toastService = inject(ToastService);
 
 	private readonly sanitizer = inject(DomSanitizer);
 
@@ -74,7 +76,8 @@ export class StateService {
 		}
 
 		if (openTabs.size < 1) {
-			this.router.navigate(['/library']).catch(console.error);
+			this.router.navigate(['/library'])
+				.catch(error => this.toastService.show('error', `Failed to navigate to library: ${error}`));
 			return;
 		}
 
@@ -83,7 +86,8 @@ export class StateService {
 			return;
 		}
 
-		this.router.navigate(['/library']).catch(console.error);
+		this.router.navigate(['/library'])
+			.catch(error => this.toastService.show('error', `Failed to navigate to library: ${error}`));
 	}
 
 	public playGame(url: string, game: LibraryGame): void {
