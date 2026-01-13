@@ -7,6 +7,7 @@ import {libraryViewer} from './app.titles.resolver';
 import {Launcher} from './viewers/launcher/launcher.component';
 import {Loading} from './viewers/loading/loading.component';
 import {environment} from '../environments/environment';
+import {Admin} from './viewers/admin/admin.component';
 
 export const routes: Routes = [
 	{

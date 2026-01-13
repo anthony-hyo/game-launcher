@@ -1,0 +1,84 @@
+<app-modal title="Edit/Add Game">
+	<ng-container modal-body>
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div>
+				<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="title">Title</label
+				><input
+					class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+					id="title"
+					placeholder="e.g., Awesome Adventure"
+					type="text"
+				/>
+			</div>
+			<div>
+				<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="genre">Genre</label
+				><input
+					class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+					id="genre"
+					placeholder="e.g., Action RPG"
+					type="text"
+				/>
+			</div>
+		</div>
+		<div>
+			<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="description"
+				>Description</label
+			><textarea
+				class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+				id="description"
+				placeholder="A short, catchy description of the game."
+				rows="3"
+			></textarea>
+		</div>
+		<div>
+			<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="url">Game URL</label
+			><input
+				class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+				id="url"
+				placeholder="https://example.com/game"
+				type="url"
+			/>
+		</div>
+		<div>
+			<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="imageUrl"
+				>Background Image URL</label
+			><input
+				class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+				id="imageUrl"
+				placeholder="https://picsum.photos/1920/1080"
+				type="url"
+			/>
+		</div>
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div>
+				<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="coverUrl"
+					>Cover Image URL</label
+				><input
+					class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+					id="coverUrl"
+					placeholder="https://picsum.photos/300/450"
+					type="url"
+				/>
+			</div>
+			<div>
+				<label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="iconUrl"
+					>Icon URL</label
+				><input
+					class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-700"
+					id="iconUrl"
+					placeholder="https://picsum.photos/100/100"
+					type="url"
+				/>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container modal-footer>
+		<button
+			class="w-full rounded-lg bg-primary px-4 py-2 font-bold text-white transition-all hover:brightness-90 focus:outline-none focus:ring-4 focus:ring-primary/50"
+			type="submit"
+		>
+			Save/Add
+		</button>
+	</ng-container>
+</app-modal>

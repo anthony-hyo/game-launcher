@@ -1,0 +1,114 @@
+<div class="absolute inset-0">
+	>
+	<div class="absolute inset-0 overflow-y-auto bg-tertiary-light dark:bg-tertiary">
+		<div class="mx-auto w-full max-w-7xl p-8 sm:p-12">
+			<div class="mb-12 flex items-start justify-between">
+				<div class="text-left">
+					<h1 class="text-5xl font-black uppercase tracking-tighter">Admin Panel</h1>
+					<p class="mt-2 text-lg text-gray-500 dark:text-gray-400">Platform-wide management</p>
+				</div>
+			</div>
+			<div
+				class="mt-10 overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm dark:border-white/5 dark:bg-neutral-800"
+			>
+				<div class="flex items-center justify-between border-b border-black/10 p-5 dark:border-white/10">
+					<h2 class="text-xl font-bold">Game Library</h2>
+
+					<button
+						(click)="stateService.openModal(ModalType.ADMIN_ADD_GAME)"
+						class="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-sm font-bold text-white transition-all duration-300 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/50"
+					>
+						<svg
+							class="mr-2 h-4 w-4"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								clip-rule="evenodd"
+								d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+								fill-rule="evenodd"
+							></path>
+						</svg>
+						Add New Game
+					</button>
+				</div>
+				<div class="overflow-x-auto">
+					<table class="min-w-full text-sm">
+						<thead
+							class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-neutral-700/50 dark:text-gray-400"
+						>
+							<tr>
+								<th class="px-6 py-3 text-left tracking-wider" scope="col">Game</th>
+								<th class="px-6 py-3 text-left tracking-wider" scope="col">Genre</th>
+								<th class="px-6 py-3 text-right tracking-wider" scope="col">Actions</th>
+							</tr>
+						</thead>
+
+						<tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+							@for (game of gameService.getGamesByPlays(); track game.title) {
+								<tr
+									class="staggered-list-item hover:bg-gray-50 dark:hover:bg-neutral-700/30"
+									[style.--index]="$index"
+								>
+									<td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+										<div class="flex items-center">
+											<img
+												[alt]="game.title + ' logo'"
+												class="mr-3 h-8 w-8 rounded-md"
+												[src]="game.iconUrl"
+											/>
+											<span [innerText]="game.title"></span>
+										</div>
+									</td>
+									<td
+										class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400"
+										[innerText]="game.genre"
+									></td>
+									<td class="space-x-2 whitespace-nowrap px-6 py-4 text-right">
+										<button
+											class="font-semibold text-blue-600 hover:underline dark:text-blue-400"
+											(click)="toastService.show('info', 'Edit functionality coming soon!')"
+										>
+											Edit
+										</button>
+										<button
+											class="font-semibold text-red-600 hover:underline dark:text-red-500"
+											(click)="toastService.show('error', 'Delete functionality coming soon!')"
+										>
+											Delete
+										</button>
+									</td>
+								</tr>
+							} @empty {
+								@for (_ of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track _) {
+									<tr
+										class="staggered-list-item hover:bg-gray-50 dark:hover:bg-neutral-700/30"
+										[style.--index]="$index"
+									>
+										<td
+											class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+										>
+											<div class="flex items-center">
+												<div class="h-8 w-8 animate-pulse rounded-md bg-zinc-700/40"></div>
+											</div>
+										</td>
+										<td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">
+											<div class="h-8 w-12 animate-pulse rounded-md bg-zinc-700/40"></div>
+										</td>
+										<td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">
+											<div class="h-8 w-12 animate-pulse rounded-md bg-zinc-700/40"></div>
+										</td>
+										<td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">
+											<div class="h-8 w-12 animate-pulse rounded-md bg-zinc-700/40"></div>
+										</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
