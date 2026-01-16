@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-		<div class="flex items-center justify-between">
+		<div class="flex items-center justify-between" [class.opacity-50]="!environment.useWebview">
 			<div>
 				<h3 class="font-semibold">Discord Rich Presence</h3>
 				<p class="text-sm text-gray-400 light:text-gray-500">Show your current game activity on Discord.</p>
@@ -27,6 +27,7 @@
 
 			<button
 				(click)="settingService.toggleDiscordRpc()"
+				[attr.disabled]="!environment.useWebview"
 				[class.bg-gray-400]="!settingService.isDiscordRpcEnabled()"
 				[class.bg-primary]="settingService.isDiscordRpcEnabled()"
 				class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-neutral-800 light:focus:ring-offset-white"
