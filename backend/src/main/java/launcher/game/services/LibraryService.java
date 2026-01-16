@@ -1,6 +1,6 @@
 package launcher.game.services;
 
-import launcher.game.models.games.Games;
+import launcher.game.models.games.Game;
 import launcher.game.repositories.GameRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,24 @@ public class LibraryService {
 		this.gameRepository = gameRepository;
 	}
 
-	public Iterable<Games> getGames() {
+	public Iterable<Game> getGames() {
 		return this.gameRepository.findAll();
 	}
 
-	public Optional<Games> getGameById(int id) {
+	public Optional<Game> gameById(int id) {
 		return this.gameRepository.findById(id);
+	}
+
+	public void deleteGameById(int id) {
+		this.gameRepository.deleteById(id);
+	}
+
+	public Game addGame(Game game) {
+		return this.gameRepository.save(game);
+	}
+
+	public void updateGame(Game game) {
+		this.gameRepository.save(game);
 	}
 
 }

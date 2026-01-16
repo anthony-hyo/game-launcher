@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "launcher_deploys")
-public class LauncherDeploys {
+public class LauncherDeploy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class LauncherDeploys {
 		return id;
 	}
 
-	public LauncherDeploys setId(int id) {
+	public LauncherDeploy setId(int id) {
 		this.id = id;
 		return this;
 	}
@@ -50,7 +50,7 @@ public class LauncherDeploys {
 		return system;
 	}
 
-	public LauncherDeploys setSystem(String system) {
+	public LauncherDeploy setSystem(String system) {
 		this.system = system;
 		return this;
 	}
@@ -59,7 +59,7 @@ public class LauncherDeploys {
 		return version;
 	}
 
-	public LauncherDeploys setVersion(String version) {
+	public LauncherDeploy setVersion(String version) {
 		this.version = version;
 		return this;
 	}
@@ -68,7 +68,7 @@ public class LauncherDeploys {
 		return description;
 	}
 
-	public LauncherDeploys setDescription(String description) {
+	public LauncherDeploy setDescription(String description) {
 		this.description = description;
 		return this;
 	}
@@ -77,7 +77,7 @@ public class LauncherDeploys {
 		return url;
 	}
 
-	public LauncherDeploys setUrl(String url) {
+	public LauncherDeploy setUrl(String url) {
 		this.url = url;
 		return this;
 	}
@@ -86,7 +86,7 @@ public class LauncherDeploys {
 		return createdAt;
 	}
 
-	public LauncherDeploys setCreatedAt(LocalDateTime createdAt) {
+	public LauncherDeploy setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 		return this;
 	}
@@ -95,7 +95,7 @@ public class LauncherDeploys {
 		return updatedAt;
 	}
 
-	public LauncherDeploys setUpdatedAt(LocalDateTime updatedAt) {
+	public LauncherDeploy setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 		return this;
 	}

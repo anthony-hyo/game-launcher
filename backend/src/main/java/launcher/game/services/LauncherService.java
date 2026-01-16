@@ -1,6 +1,6 @@
 package launcher.game.services;
 
-import launcher.game.models.launcher.LauncherDeploys;
+import launcher.game.models.launcher.LauncherDeploy;
 import launcher.game.repositories.LauncherDeploysRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,8 @@ public class LauncherService {
 		this.launcherDeploysRepository = launcherDeploysRepository;
 	}
 
-	public List<LauncherDeploys> getLauncherDeploys() {
-		return (List<LauncherDeploys>) this.launcherDeploysRepository.findAll();
+	public List<LauncherDeploy> getLauncherDeploys() {
+		return (List<LauncherDeploy>) this.launcherDeploysRepository.findAll();
 	}
 
 }

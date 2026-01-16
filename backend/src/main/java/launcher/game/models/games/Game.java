@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "games")
-public class Games {
+public class Game {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +54,7 @@ public class Games {
 		return id;
 	}
 
-	public Games setId(int id) {
+	public Game setId(int id) {
 		this.id = id;
 		return this;
 	}
@@ -63,7 +63,7 @@ public class Games {
 		return title;
 	}
 
-	public Games setTitle(String title) {
+	public Game setTitle(String title) {
 		this.title = title;
 		return this;
 	}
@@ -72,7 +72,7 @@ public class Games {
 		return description;
 	}
 
-	public Games setDescription(String description) {
+	public Game setDescription(String description) {
 		this.description = description;
 		return this;
 	}
@@ -81,7 +81,7 @@ public class Games {
 		return genre;
 	}
 
-	public Games setGenre(String genre) {
+	public Game setGenre(String genre) {
 		this.genre = genre;
 		return this;
 	}
@@ -90,7 +90,7 @@ public class Games {
 		return url;
 	}
 
-	public Games setUrl(String url) {
+	public Game setUrl(String url) {
 		this.url = url;
 		return this;
 	}
@@ -99,7 +99,7 @@ public class Games {
 		return imageUrl;
 	}
 
-	public Games setImageUrl(String imageUrl) {
+	public Game setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 		return this;
 	}
@@ -108,7 +108,7 @@ public class Games {
 		return coverUrl;
 	}
 
-	public Games setCoverUrl(String coverUrl) {
+	public Game setCoverUrl(String coverUrl) {
 		this.coverUrl = coverUrl;
 		return this;
 	}
@@ -117,7 +117,7 @@ public class Games {
 		return iconUrl;
 	}
 
-	public Games setIconUrl(String iconUrl) {
+	public Game setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
 		return this;
 	}
@@ -126,7 +126,7 @@ public class Games {
 		return playClicks;
 	}
 
-	public Games setPlayClicks(Long playClicks) {
+	public Game setPlayClicks(Long playClicks) {
 		this.playClicks = playClicks;
 		return this;
 	}
@@ -135,7 +135,7 @@ public class Games {
 		return updatedAt;
 	}
 
-	public Games setUpdatedAt(LocalDateTime updatedAt) {
+	public Game setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 		return this;
 	}
@@ -144,7 +144,7 @@ public class Games {
 		return createdAt;
 	}
 
-	public Games setCreatedAt(LocalDateTime createdAt) {
+	public Game setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 		return this;
 	}
