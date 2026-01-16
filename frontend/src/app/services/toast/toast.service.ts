@@ -1,4 +1,4 @@
-import {ComponentRef, Injectable, signal, ViewContainerRef} from '@angular/core';
+import {ComponentRef, Injectable, ViewContainerRef} from '@angular/core';
 import {Toast} from '../../components/toast/toast.component';
 import {random} from '../../helper/helper.random';
 
@@ -9,10 +9,10 @@ export class ToastService {
 
 	private readonly active = new Map<string, ComponentRef<Toast>>();
 
-	public readonly container = signal<ViewContainerRef | undefined>(undefined);
+	public container: ViewContainerRef | undefined = undefined;
 
 	public show(type: 'info' | 'success' | 'warning' | 'error', message: string, duration = 3000) {
-		const container = this.container();
+		const container = this.container;
 
 		if (!container) {
 			console.error(`Toast container is not initialized`);
@@ -23,7 +23,7 @@ export class ToastService {
 		const element = container.createComponent(Toast);
 
 		if (!element) {
-			console.error(`Toast container is not initialized`);
+			console.error(`Toast element is not initialized`);
 			console.error(type, message);
 			return;
 		}

@@ -7,6 +7,7 @@ import {environment} from '../../../environments/environment';
 import {StateService} from '../../services/state/state.service';
 import {LibraryGame} from '../../models/library-game.model';
 import {ModalType} from '../../constants/modal.const';
+import {ModalService} from "../../services/modal/modal.service";
 
 @Component({
 	selector: 'app-sidebar',
@@ -21,6 +22,7 @@ export class Sidebar {
 
 	protected readonly stateService = inject(StateService);
 	protected readonly gameService = inject(LibraryService);
+	protected readonly modalService = inject(ModalService);
 
 	protected onGameSelect(game: LibraryGame): void {
 		this.stateService.currentGame.set(game);
