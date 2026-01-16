@@ -179,7 +179,6 @@ DATABASE_USER=root
 DATABASE_PASSWORD=321
 DATABASE_DB=game_launcher
 DATABASE_URL=jdbc:postgresql://postgresql:5432/game_launcher
-API_URL=http://backend:8080
 ```
 
 Then run:

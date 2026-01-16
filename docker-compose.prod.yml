@@ -44,8 +44,6 @@ services:
       context: .
       dockerfile: .docker/frontend/frontend.Dockerfile
     restart: unless-stopped
-    environment:
-      API_URL: ${API_URL:-http://backend:8080}
     depends_on:
       backend:
         condition: service_healthy
