@@ -57,10 +57,10 @@
 
 	<div class="w-10 border-t border-white/10 light:border-black/10"></div>
 
-	<app-sidebar-button (click)="stateService.openModal(ModalType.LOGIN)" description="Open Login" icon="person" />
+	<app-sidebar-button (click)="modalService.show(ModalType.LOGIN)" description="Open Login" icon="person" />
 
 	<app-sidebar-button
-		(click)="stateService.openModal(ModalType.SETTINGS)"
+		(click)="modalService.show(ModalType.SETTINGS)"
 		description="Open Settings"
 		icon="settings"
 		iconAnimation="transition-transform hover:rotate-90"

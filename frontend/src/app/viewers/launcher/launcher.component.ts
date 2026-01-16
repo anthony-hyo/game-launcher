@@ -4,10 +4,12 @@ import {
 	effect,
 	ElementRef,
 	inject,
-	NO_ERRORS_SCHEMA, OnInit,
+	NO_ERRORS_SCHEMA,
+	OnInit,
 	Renderer2,
 	viewChild,
-	viewChildren, ViewContainerRef
+	viewChildren,
+	ViewContainerRef
 } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Sidebar} from '../../components/sidebar/sidebar.component';
@@ -15,23 +17,18 @@ import {TopBar} from '../../components/top-tab/top-bar.component';
 import {StateService} from '../../services/state/state.service';
 import {SettingService} from '../../services/setting/setting.service';
 import {RouterHandler} from '../../services/router-handler/router-handler.service';
-import {Setting} from '../../components/modal/setting/setting.component';
 import {environment} from '../../../environments/environment';
 import {Title} from '@angular/platform-browser';
 import {ModalType} from '../../constants/modal.const';
-import {Login} from '../../components/modal/login/login.component';
-import {AdminAddGame} from '../../components/modal/admin-add-game/admin-add-game.component';
 import {ToastService} from '../../services/toast/toast.service';
+import {ModalService} from "../../services/modal/modal.service";
 
 @Component({
 	selector: 'app-launcher',
 	imports: [
 		RouterOutlet,
 		Sidebar,
-		TopBar,
-		Setting,
-		Login,
-		AdminAddGame,
+		TopBar
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
@@ -40,12 +37,13 @@ import {ToastService} from '../../services/toast/toast.service';
 	styleUrl: './launcher.component.scss',
 })
 export class Launcher implements OnInit {
-	
+
 	protected readonly environment = environment;
 	protected readonly ModalType = ModalType;
 
 	protected readonly stateService = inject(StateService);
 	protected readonly settingService = inject(SettingService);
+	protected readonly modalService = inject(ModalService);
 	protected readonly toastService = inject(ToastService);
 
 	private readonly renderer = inject(Renderer2);
@@ -53,6 +51,7 @@ export class Launcher implements OnInit {
 	private readonly title = inject(Title);
 
 	private readonly webviews = viewChildren('webview', {read: ElementRef});
+	private readonly modals = viewChild.required('modals', {read: ViewContainerRef});
 	private readonly toasts = viewChild.required('toasts', {read: ViewContainerRef});
 
 	constructor(_routerHandler: RouterHandler) {
@@ -87,7 +86,8 @@ export class Launcher implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this.toastService.container.set(this.toasts())
+		this.modalService.container = this.modals()
+		this.toastService.container = this.toasts()
 	}
 
 }

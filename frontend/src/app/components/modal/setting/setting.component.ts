@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {SettingService} from '../../../services/setting/setting.service';
-import {StateService} from '../../../services/state/state.service';
 import {ModalType} from '../../../constants/modal.const';
 import {Modal} from '../modal.component';
+import {ModalChild} from "../modal-child.base";
 import {environment} from '../../../../environments/environment';
 
 @Component({
@@ -13,12 +13,11 @@ import {environment} from '../../../../environments/environment';
 	templateUrl: './setting.component.html',
 	styleUrl: './setting.component.scss',
 })
-export class Setting {
+export class Setting extends ModalChild {
 
 	protected readonly environment = environment;
 	protected readonly ModalType = ModalType;
 
-	protected readonly stateService = inject(StateService);
 	protected readonly settingService = inject(SettingService);
 
 }

@@ -42,19 +42,8 @@
 	</main>
 </div>
 
-@switch (stateService.currentModal()) {
-	@case (ModalType.NONE) {}
-	@case (ModalType.LOGIN) {
-		<app-login />
-	}
-	@case (ModalType.SETTINGS) {
-		<app-setting />
-	}
-	@case (ModalType.ADMIN_ADD_GAME) {
-		<app-admin-add-game />
-	}
-}
-
 <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
 	<ng-container #toasts></ng-container>
 </div>
+
+<ng-container #modals></ng-container>

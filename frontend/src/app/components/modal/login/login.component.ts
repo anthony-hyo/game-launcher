@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ModalType} from '../../../constants/modal.const';
 import {Modal} from '../modal.component';
+import {ModalChild} from "../modal-child.base";
 
 @Component({
 	selector: 'app-login',
@@ -10,7 +11,7 @@ import {Modal} from '../modal.component';
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss'
 })
-export class Login {
+export class Login extends ModalChild {
 
 	protected readonly ModalType = ModalType;
 

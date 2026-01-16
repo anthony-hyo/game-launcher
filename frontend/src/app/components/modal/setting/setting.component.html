@@ -1,4 +1,4 @@
-<app-modal title="Settings">
+<app-modal title="Settings" [modalType]="ModalType.SETTINGS">
 	<ng-container modal-body>
 		<div class="flex items-center justify-between">
 			<div>
@@ -43,7 +43,7 @@
 
 	<ng-container modal-footer>
 		<button
-			(click)="stateService.openModal(ModalType.NONE)"
+			(click)="modal().onClose()"
 			class="rounded-lg bg-primary px-6 py-2 font-bold text-white transition-all hover:brightness-90"
 		>
 			Done
