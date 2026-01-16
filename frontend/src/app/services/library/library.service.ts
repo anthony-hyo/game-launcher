@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {LibraryGame} from '../../models/library-game.model';
 import {HelperStorage} from '../../helper/helper.storage';
 import {environment} from '../../../environments/environment';
-import {interval, retry, startWith, switchMap} from 'rxjs';
+import {interval, merge, retry, startWith, Subject, switchMap} from 'rxjs';
 import {LibraryGameResponse} from '../../models/library-game-response.model';
 
 @Injectable({providedIn: 'root'})
@@ -12,9 +12,14 @@ export class LibraryService {
 	private readonly http = inject(HttpClient);
 
 	private readonly games: WritableSignal<LibraryGame[]> = signal<LibraryGame[]>([]);
+	
+	private readonly refresh$ = new Subject<void>();
 
 	constructor() {
-		interval(60000 * 30) //execute every thirty minutes
+		merge(
+			interval(60000 * 30), // every 30 minutes
+			this.refresh$        // manual trigger
+		)
 			.pipe(
 				startWith(0), //execute now
 				switchMap(() =>
@@ -36,6 +41,10 @@ export class LibraryService {
 
 				this.loadPlayCounts();
 			})
+	}
+
+	public refreshGames(): void {
+		this.refresh$.next();
 	}
 
 	public get getGames(): Signal<LibraryGame[]> {
