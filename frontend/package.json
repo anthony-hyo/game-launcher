@@ -10,7 +10,7 @@
     "test": "ng test"
   },
   "prettier": {
-    "printWidth": 120,
+    "printWidth": 150,
     "tabWidth": 4,
     "useTabs": true,
     "semi": true,

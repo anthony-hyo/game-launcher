@@ -1,7 +1,7 @@
 <div
 	(click)="onClose()"
 	[ngClass]="animationClass()"
-	class="fixed inset-0 z-50 flex animate-fade-in-up items-center justify-center bg-black/70 backdrop-blur-sm"
+	class="fixed inset-0 z-40 flex animate-fade-in-up items-center justify-center bg-black/70 backdrop-blur-sm"
 >
 	<div
 		(click)="$event.stopPropagation()"
@@ -22,9 +22,7 @@
 			<ng-content select="[modal-body]" />
 		</div>
 
-		<div
-			class="rounded-b-xl border-t border-white/10 bg-neutral-900 px-6 py-4 text-right light:border-black/10 light:bg-gray-100"
-		>
+		<div class="rounded-b-xl border-t border-white/10 bg-neutral-900 px-6 py-4 text-right light:border-black/10 light:bg-gray-100">
 			<ng-content select="[modal-footer]" />
 		</div>
 	</div>

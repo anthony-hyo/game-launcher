@@ -98,7 +98,7 @@ export class ModalService {
 		setTimeout(() => {
 			modal.reference?.destroy();
 			modal.reference = undefined;
-		}, 1000);
+		}, 200);
 	}
 
 }
