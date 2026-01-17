@@ -19,6 +19,12 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
+	private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+	public SecurityConfig(CustomAuthenticationEntryPoint authenticationEntryPoint) {
+		this.authenticationEntryPoint = authenticationEntryPoint;
+	}
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -37,6 +43,9 @@ public class SecurityConfig {
 
 				// Required Authenticate
 				.anyRequest().authenticated()
+			)
+			.exceptionHandling(exception -> exception
+				.authenticationEntryPoint(authenticationEntryPoint)
 			);
 
 		// TODO: Validate JWT
@@ -49,6 +58,7 @@ public class SecurityConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 
+		configuration.setAllowCredentials(true);
 		configuration.setAllowedOrigins(Arrays.asList(
 			"https://launcher.anthhyo.dev", //TODO: use environment
 			"http://localhost:80",
@@ -57,7 +67,6 @@ public class SecurityConfig {
 
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(List.of("*"));
-		configuration.setAllowCredentials(true);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);

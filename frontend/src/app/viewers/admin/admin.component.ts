@@ -27,20 +27,28 @@ export class Admin {
 
 	protected onGameEdit(game: LibraryGame): void {
 		this.httpClient.get(`${environment.apiUrl}/api/library/games/${game.id}`)
-			.subscribe((response) => {
-				this.modalService.show(ModalType.ADMIN_GAME, {
-					isEditing: true,
-					game: response
-				})
+			.subscribe({
+				next: value => {
+					this.modalService.show(ModalType.ADMIN_GAME, {
+						isEditing: true,
+						game: value
+					})
+				},
+				error: err => {
+					this.toastService.show('error', err.error.message || 'Failed to edit game');
+				}
 			});
 	}
 
 	protected onGameDelete(game: LibraryGame): void {
 		this.httpClient.delete(`${environment.apiUrl}/api/library/games/${game.id}`)
-			.subscribe((data) => {
-				console.log(data);
-				
-				this.gameService.refreshGames();
+			.subscribe({
+				next: value => {
+					this.gameService.refreshGames();
+				},
+				error: err => {
+					this.toastService.show('error', err.error.message || 'Failed to delete game');
+				}
 			});
 	}
 
