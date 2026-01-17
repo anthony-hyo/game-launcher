@@ -42,7 +42,7 @@ export class ModalService {
 
 	public container: ViewContainerRef | undefined = undefined;
 
-	public show(type: ModalType): void {
+	public show(type: ModalType, data: unknown | undefined = undefined): void {
 		const modal = this.modals.find(modal => modal.type === type);
 
 		if (!modal) {
@@ -67,6 +67,10 @@ export class ModalService {
 		if (!element) {
 			this.toastService.show('error', `Modal element is not initialized`);
 			return;
+		}
+
+		if (data) {
+			element.setInput('data', data);
 		}
 
 		modal.reference = element;
