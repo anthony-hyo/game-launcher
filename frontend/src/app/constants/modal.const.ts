@@ -1,6 +1,6 @@
 export enum ModalType {
 	LOGIN = 'login',
 	SETTINGS = 'settings',
-	ADMIN_ADD_GAME = 'admin_add_game',
+	ADMIN_GAME = 'admin_game',
 	CONFIRMATION = 'confirmation',
 }

@@ -4,7 +4,7 @@ import {ToastService} from "../toast/toast.service";
 import {ModalState} from "../../models/modal-state.model";
 import {Login} from "../../components/modal/login/login.component";
 import {Setting} from "../../components/modal/setting/setting.component";
-import {AdminAddGame} from "../../components/modal/admin-add-game/admin-add-game.component";
+import {AdminGame} from "../../components/modal/admin-game/admin-game.component";
 import {Confirmation} from "../../components/modal/confirmation/confirmation.component";
 import {ModalChild} from "../../components/modal/modal-child.base";
 
@@ -12,7 +12,7 @@ import {ModalChild} from "../../components/modal/modal-child.base";
 	providedIn: 'root'
 })
 export class ModalService {
-	
+
 	//this code is a mess and probably need rework to make it more "maintainable"
 
 	private readonly toastService = inject(ToastService);
@@ -29,9 +29,9 @@ export class ModalService {
 			component: Setting
 		},
 		{
-			type: ModalType.ADMIN_ADD_GAME,
+			type: ModalType.ADMIN_GAME,
 			reference: undefined,
-			component: AdminAddGame
+			component: AdminGame
 		},
 		{
 			type: ModalType.CONFIRMATION,
