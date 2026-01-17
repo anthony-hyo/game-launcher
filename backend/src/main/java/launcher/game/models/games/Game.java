@@ -36,6 +36,9 @@ public class Game {
 	@Column(name = "icon_url")
 	private String iconUrl;
 
+	@Column(name = "is_visible")
+	private Boolean isVisible;
+
 	@JsonIgnore
 	@Column(name = "play_clicks")
 	private Long playClicks;
@@ -119,6 +122,15 @@ public class Game {
 
 	public Game setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
+		return this;
+	}
+
+	public Boolean getIsVisible() {
+		return isVisible;
+	}
+
+	public Game setIsVisible(Boolean isVisible) {
+		this.isVisible = isVisible;
 		return this;
 	}
 

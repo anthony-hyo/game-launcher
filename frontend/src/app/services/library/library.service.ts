@@ -52,7 +52,13 @@ export class LibraryService {
 	}
 
 	public get getGamesByPlays(): Signal<LibraryGame[]> {
-		return signal([...this.games()].sort((a, b) => b.playCount - a.playCount)).asReadonly();
+		return signal(
+			[
+				...this.games()
+			]
+				.filter(game => game.isVisible)
+				.sort((a, b) => b.playCount - a.playCount)
+		).asReadonly();
 	}
 
 	public incrementPlayCount(gameTitle: string): void {

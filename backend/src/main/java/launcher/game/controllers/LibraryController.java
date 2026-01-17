@@ -51,7 +51,8 @@ public class LibraryController {
 			.setUrl(newGame.getUrl())
 			.setImageUrl(newGame.getImageUrl())
 			.setCoverUrl(newGame.getCoverUrl())
-			.setIconUrl(newGame.getIconUrl());
+			.setIconUrl(newGame.getIconUrl())
+			.setIsVisible(newGame.getIsVisible());
 
 		this.libraryService.updateGame(game);
 

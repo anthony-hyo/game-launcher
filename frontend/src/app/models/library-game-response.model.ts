@@ -10,4 +10,6 @@ export interface LibraryGameResponse {
 	imageUrl: string;
 	coverUrl: string;
 	iconUrl: string;
+
+	isVisible: boolean;
 }

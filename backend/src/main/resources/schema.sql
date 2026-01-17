@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS games
     url         TEXT         DEFAULT 'https://www.google.com/'                                    NOT NULL,
     image_url   TEXT         DEFAULT 'https://placehold.co/1920x1080?text=Background&font=roboto' NOT NULL,
     cover_url   TEXT         DEFAULT 'https://placehold.co/300x450?textCover&font=roboto'         NOT NULL,
+    is_visible  BOOLEAN      DEFAULT false                                                        NOT NULL,
     icon_url    TEXT         DEFAULT 'https://placehold.co/100x100?text=Icon&font=roboto'         NOT NULL,
     play_clicks BIGINT       DEFAULT 0                                                            NOT NULL,
     created_at  TIMESTAMP    DEFAULT NOW()                                                        NOT NULL,
