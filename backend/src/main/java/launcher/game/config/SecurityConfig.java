@@ -2,6 +2,7 @@ package launcher.game.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -28,10 +29,11 @@ public class SecurityConfig {
 
 			.authorizeHttpRequests(auth -> auth
 				// Non-Authenticate
-				.requestMatchers(
-					"/api/launcher/deploys",
-					"/api/library/games"
-				).permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/launcher/deploys").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/library/games").permitAll()
+
+				// Allow OPTIONS for CORS preflight
+				.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
 				// Required Authenticate
 				.anyRequest().authenticated()
