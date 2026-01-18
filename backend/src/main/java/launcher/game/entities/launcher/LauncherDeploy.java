@@ -15,17 +15,17 @@ public class LauncherDeploy {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "system", nullable = false)
-	private String system;
+	@Column(name = "system", nullable = false, length = 16)
+	private String system = "Windows";
 
-	@Column(name = "version", nullable = false)
-	private String version;
+	@Column(name = "version", nullable = false, length = 16)
+	private String version = "1.0.0";
 
-	@Column(name = "description", nullable = false)
-	private String description;
+	@Column(name = "description", nullable = false, columnDefinition = "TEXT")
+	private String description = "No description available.,No description available.,No description available.,No description available.";
 
-	@Column(name = "url", nullable = false)
-	private String url;
+	@Column(name = "url", nullable = false, columnDefinition = "TEXT")
+	private String url = "https://www.google.com/";
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp

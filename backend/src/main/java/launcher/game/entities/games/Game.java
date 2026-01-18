@@ -15,33 +15,33 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "title", unique = true, nullable = false)
-	private String title;
+	@Column(name = "title", unique = true, nullable = false, length = 128)
+	private String title = "Game Example";
 
-	@Column(name = "description", nullable = false)
-	private String description;
+	@Column(name = "description", nullable = false, columnDefinition = "TEXT")
+	private String description = "No description available.";
 
-	@Column(name = "genre", nullable = false)
-	private String genre;
+	@Column(name = "genre", nullable = false, length = 64)
+	private String genre = "MMORPG";
 
-	@Column(name = "url", unique = true, nullable = false)
-	private String url;
+	@Column(name = "url", unique = true, nullable = false, columnDefinition = "TEXT")
+	private String url = "https://www.google.com/";
 
-	@Column(name = "image_url", nullable = false)
-	private String imageUrl;
+	@Column(name = "image_url", nullable = false, columnDefinition = "TEXT")
+	private String imageUrl = "https://placehold.co/1920x1080?text=Background&font=roboto";
 
-	@Column(name = "cover_url", nullable = false)
-	private String coverUrl;
+	@Column(name = "cover_url", nullable = false, columnDefinition = "TEXT")
+	private String coverUrl = "https://placehold.co/300x450?textCover&font=roboto";
 
-	@Column(name = "icon_url", nullable = false)
-	private String iconUrl;
+	@Column(name = "icon_url", nullable = false, columnDefinition = "TEXT")
+	private String iconUrl = "https://placehold.co/100x100?text=Icon&font=roboto";
 
 	@Column(name = "is_visible", nullable = false)
-	private Boolean isVisible;
+	private Boolean isVisible = false;
 
 	@JsonIgnore
 	@Column(name = "play_clicks", nullable = false)
-	private Long playClicks;
+	private Long playClicks = 0L;
 
 	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
