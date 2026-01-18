@@ -1,6 +1,6 @@
 package launcher.game.controllers;
 
-import launcher.game.models.launcher.LauncherDeploy;
+import launcher.game.entities.launcher.LauncherDeploy;
 import launcher.game.services.LauncherService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

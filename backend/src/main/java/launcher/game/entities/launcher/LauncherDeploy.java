@@ -1,4 +1,4 @@
-package launcher.game.models.launcher;
+package launcher.game.entities.launcher;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -15,16 +15,16 @@ public class LauncherDeploy {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "system")
+	@Column(name = "system", nullable = false)
 	private String system;
 
-	@Column(name = "version")
+	@Column(name = "version", nullable = false)
 	private String version;
 
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@Column(name = "url")
+	@Column(name = "url", nullable = false)
 	private String url;
 
 	@Column(name = "created_at", updatable = false)

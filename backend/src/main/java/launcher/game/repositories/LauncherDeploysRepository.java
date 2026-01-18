@@ -1,8 +1,9 @@
 package launcher.game.repositories;
 
-import launcher.game.models.launcher.LauncherDeploy;
+import launcher.game.entities.launcher.LauncherDeploy;
+import org.jspecify.annotations.NonNull;
 import org.springframework.data.repository.CrudRepository;
 
-public interface LauncherDeploysRepository extends CrudRepository<LauncherDeploy, Integer> {
+public interface LauncherDeploysRepository extends CrudRepository<@NonNull LauncherDeploy, @NonNull Integer> {
 
 }

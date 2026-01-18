@@ -1,4 +1,4 @@
-package launcher.game.models.games;
+package launcher.game.entities.games;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -15,32 +15,32 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "title", unique = true)
+	@Column(name = "title", unique = true, nullable = false)
 	private String title;
 
-	@Column(name = "description")
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@Column(name = "genre")
+	@Column(name = "genre", nullable = false)
 	private String genre;
 
-	@Column(name = "url", unique = true)
+	@Column(name = "url", unique = true, nullable = false)
 	private String url;
 
-	@Column(name = "image_url")
+	@Column(name = "image_url", nullable = false)
 	private String imageUrl;
 
-	@Column(name = "cover_url")
+	@Column(name = "cover_url", nullable = false)
 	private String coverUrl;
 
-	@Column(name = "icon_url")
+	@Column(name = "icon_url", nullable = false)
 	private String iconUrl;
 
-	@Column(name = "is_visible")
+	@Column(name = "is_visible", nullable = false)
 	private Boolean isVisible;
 
 	@JsonIgnore
-	@Column(name = "play_clicks")
+	@Column(name = "play_clicks", nullable = false)
 	private Long playClicks;
 
 	@Column(name = "created_at", updatable = false)

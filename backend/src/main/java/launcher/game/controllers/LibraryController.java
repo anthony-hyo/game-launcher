@@ -1,7 +1,7 @@
 package launcher.game.controllers;
 
+import launcher.game.entities.games.Game;
 import launcher.game.exceptions.GameNotFoundException;
-import launcher.game.models.games.Game;
 import launcher.game.services.LibraryService;
 import org.springframework.web.bind.annotation.*;
 

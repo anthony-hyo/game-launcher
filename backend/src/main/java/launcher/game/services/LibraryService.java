@@ -1,6 +1,6 @@
 package launcher.game.services;
 
-import launcher.game.models.games.Game;
+import launcher.game.entities.games.Game;
 import launcher.game.repositories.GameRepository;
 import org.springframework.stereotype.Service;
 

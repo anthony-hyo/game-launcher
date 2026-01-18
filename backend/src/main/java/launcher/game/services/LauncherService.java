@@ -1,6 +1,6 @@
 package launcher.game.services;
 
-import launcher.game.models.launcher.LauncherDeploy;
+import launcher.game.entities.launcher.LauncherDeploy;
 import launcher.game.repositories.LauncherDeploysRepository;
 import org.springframework.stereotype.Service;
 
